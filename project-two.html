@@ -25,6 +25,46 @@
 
     <section>
       <h2>Research</h2>
+
+      <!-- PLACEHOLDER COPY — replace with the real write-up. -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.</p>
+
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      <ul class="gallery">
+        <li>
+          <button type="button" class="shot"
+                  data-full="images/research-01-brooches-full.jpg"
+                  data-caption="Dragonesque brooches, 1st–2nd century AD; silver brooch in dolphin form, 1st–3rd century AD.">
+            <img src="images/research-01-brooches-thumb.jpg" width="517" height="800"
+                 loading="lazy" decoding="async"
+                 alt="Pencil and coloured-pencil studies of two dragonesque brooches and a silver brooch in dolphin form.">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="shot"
+                  data-full="images/research-02-glass-seagod-full.jpg"
+                  data-caption="Small disc brooch, 1st–3rd century AD; glass vessel studies; mosaic of a sea-god — &quot;lobster claws at each temple&quot;.">
+            <img src="images/research-02-glass-seagod-thumb.jpg" width="530" height="800"
+                 loading="lazy" decoding="async"
+                 alt="Pencil studies of a small disc brooch, four Roman glass vessels, and line sketches of a sea-god mosaic.">
+          </button>
+        </li>
+        <li>
+          <button type="button" class="shot"
+                  data-full="images/research-03-neptune-oceanus-full.jpg"
+                  data-caption="Annotated reading — Patricia Witts, &quot;Neptune and Oceanus in Romano-British Mosaics: A Special Case?&quot;">
+            <img src="images/research-03-neptune-oceanus-thumb.jpg" width="549" height="800"
+                 loading="lazy" decoding="async"
+                 alt="Collage of highlighted and annotated passages from a journal article on Neptune and Oceanus, with mosaic photographs taped alongside.">
+          </button>
+        </li>
+      </ul>
     </section>
 
     <section>
@@ -39,6 +79,17 @@
   </main>
 
   <p class="reveal" style="--delay: 260ms"><a class="back" href="./">← index</a></p>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Enlarged image" hidden>
+    <button type="button" class="lightbox-close">close</button>
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+  </div>
+
+  <script src="lightbox.js" defer></script>
 
 </body>
 </html>

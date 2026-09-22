@@ -43,9 +43,23 @@ file for missing URLs at any depth.
 index.html        name, title, and the unit menu; unit 1 expands in place
 project-two.html  unit 1 / project 2 — the only live project page
 style.css         tokens at the top, light + dark
+lightbox.js       click a gallery thumbnail to enlarge it
+images/           research images; -thumb.jpg in the grid, -full.jpg enlarged
 404.html          not-found page
 .nojekyll         serve files as-is, no Jekyll build
 ```
+
+Images are committed as JPEG (browsers cannot display HEIC). To add one, convert
+the original and drop both sizes into `images/`:
+
+```sh
+sips -s format jpeg -s formatOptions 80 -Z 800  ~/Downloads/IMG_XXXX.HEIC --out images/<slug>-thumb.jpg
+sips -s format jpeg -s formatOptions 65 -Z 1800 ~/Downloads/IMG_XXXX.HEIC --out images/<slug>-full.jpg
+```
+
+then copy one `<li>` block in the gallery, updating `data-full`, `data-caption`,
+`src`, `alt`, and the `width`/`height` (read them with `sips -g pixelWidth -g
+pixelHeight images/<slug>-thumb.jpg`).
 
 Unit 1 uses a native `<details>`, so the expansion works with no JavaScript.
 Units 2 and 3 are inert `<span>`s — to publish one, give it the same

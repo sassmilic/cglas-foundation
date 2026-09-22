@@ -1,0 +1,200 @@
+/* ---- tokens ------------------------------------------------------------ */
+:root {
+  --paper:  #faf8f7;
+  --ink:    #191617;
+  --dim:    #9c9496;
+  --faint:  #c9c1c2;
+  --rule:   #e7e1e1;
+  --accent: #b4687e;
+
+  --pad: clamp(1.5rem, 5vw, 3rem);
+  --sm:  clamp(0.7rem, 0.66rem + 0.18vw, 0.78rem);
+  --md:  clamp(0.82rem, 0.78rem + 0.2vw, 0.92rem);
+  --lg:  clamp(0.95rem, 0.88rem + 0.4vw, 1.15rem);
+
+  --menu: 24ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:  #111010;
+    --ink:    #ece7e7;
+    --dim:    #6e6768;
+    --faint:  #443e3f;
+    --rule:   #272324;
+    --accent: #d78da2;
+  }
+}
+
+/* ---- base -------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+               Consolas, monospace;
+  font-size: var(--md);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---- name, top left ---------------------------------------------------- */
+.name {
+  margin: 0;
+  font-size: var(--sm);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ---- centred block, left aligned --------------------------------------- */
+.centre {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 3rem 0;
+}
+
+.block {
+  width: var(--menu);
+  text-align: left;
+}
+
+.title {
+  margin: 0 0 2.4rem;
+  font-size: var(--lg);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title span {
+  display: block;
+  color: var(--dim);
+}
+
+/* ---- menu -------------------------------------------------------------- */
+.menu { margin: 0; padding: 0; list-style: none; }
+
+.menu > li + li { margin-top: 0.15rem; }
+
+.unit,
+.menu > li > span.unit {
+  display: flex;
+  gap: 1ch;
+  padding: 0.15rem 0;
+}
+
+/* inert units */
+.menu span.unit { color: var(--faint); cursor: default; }
+
+/* unit 1 — expands */
+details > summary.unit {
+  list-style: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: color 180ms ease;
+}
+details > summary.unit::-webkit-details-marker { display: none; }
+
+details > summary.unit::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--faint);
+  transition: color 180ms ease;
+}
+details[open] > summary.unit::after { content: "–"; }
+
+summary.unit:hover,
+summary.unit:focus-visible { color: var(--accent); }
+summary.unit:hover::after,
+summary.unit:focus-visible::after { color: var(--accent); }
+summary.unit:focus-visible { outline: none; text-decoration: underline;
+                             text-underline-offset: 0.35em; }
+
+/* ---- projects ---------------------------------------------------------- */
+.projects {
+  margin: 0.4rem 0 1rem;
+  padding: 0 0 0 3ch;
+  list-style: none;
+  font-size: var(--sm);
+}
+
+.projects li { padding: 0.12rem 0; }
+
+.projects span { color: var(--faint); }
+
+.projects a {
+  display: inline-flex;
+  gap: 1ch;
+  color: var(--dim);
+  transition: color 180ms ease;
+}
+
+.projects a::after {
+  content: "→";
+  opacity: 0;
+  transform: translateX(-0.4ch);
+  transition: opacity 200ms ease, transform 260ms cubic-bezier(.22,1,.36,1);
+}
+
+.projects a:hover,
+.projects a:focus-visible { color: var(--accent); outline: none; }
+.projects a:hover::after,
+.projects a:focus-visible::after { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  details[open] .projects {
+    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes unfold {
+    from { opacity: 0; transform: translateY(-0.35rem); }
+  }
+}
+
+/* ---- project page ------------------------------------------------------ */
+.back {
+  display: inline-block;
+  font-size: var(--sm);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  transition: color 180ms ease;
+}
+.back:hover, .back:focus-visible { color: var(--accent); }
+
+.page { width: var(--menu); text-align: left; }
+
+.page h1 {
+  margin: 0 0 1.6rem;
+  font-size: var(--lg);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page p { margin: 0 0 1.2em; color: var(--dim); }
+
+/* ---- entrance ---------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    animation: fade 600ms ease forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes fade { to { opacity: 1; } }
+}
+
+.name a { transition: color 180ms ease; }
+.name a:hover, .name a:focus-visible { color: var(--accent); }

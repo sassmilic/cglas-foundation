@@ -52,7 +52,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---- name, top left ---------------------------------------------------- */
 .name {
-  margin: 1;
+  margin: 0;
   padding: 0 var(--pad) 1.1rem;
   border-bottom: 1px dotted var(--rule);
   font-size: var(--sm);

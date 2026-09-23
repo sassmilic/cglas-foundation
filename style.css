@@ -354,6 +354,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   background: none;
   /* Hot-pink crosshair cursor for thumbnails that open at full size. */
   cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
+}
 
 .shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 

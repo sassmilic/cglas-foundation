@@ -142,11 +142,16 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .projects li { padding: 0.12rem 0; }
 
-.projects span { color: var(--faint); }
+.project {
+  display: inline-grid;
+  grid-template-columns: 4ch auto auto;
+  align-items: baseline;
+  column-gap: 1ch;
+}
 
-.projects a {
-  display: inline-flex;
-  gap: 1ch;
+.project--inactive { color: var(--faint); }
+
+.projects a.project {
   color: var(--dim);
   transition: color 180ms ease;
 }

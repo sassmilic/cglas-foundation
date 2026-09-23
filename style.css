@@ -233,12 +233,17 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   min-width: 0;
 }
 
-.doc h2 {
+.project-section-heading {
   margin: 0;
   font-size: var(--md);
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  text-align: center;
+}
+
+.project-section-heading + .section-layout {
+  margin-top: clamp(1.6rem, 4svh, 2.4rem);
 }
 
 .doc .sub {

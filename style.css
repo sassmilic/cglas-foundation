@@ -289,11 +289,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   padding: 0;
   border: 0;
   background: none;
-  cursor: zoom-in;
-  transition: opacity 220ms ease;
+  /* Hot-pink crosshair cursor for thumbnails that open at full size. */
+  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
 }
 
-.shot:hover { opacity: 0.82; }
 .shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
 /* Square previews keep the grid stable while the lightbox shows the full image. */

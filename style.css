@@ -283,6 +283,8 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .shot {
   display: block;
   width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   border: 0;
@@ -294,8 +296,18 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .shot:hover { opacity: 0.82; }
 .shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
-/* natural proportions — nothing cropped */
-.shot img { display: block; width: 100%; height: auto; }
+/* Square previews keep the grid stable while the lightbox shows the full image. */
+.shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Portrait studies can opt into a considered focal point. */
+.shot--crop-upper img { object-position: center 38%; }
+.shot--crop-upper-middle img { object-position: center 42%; }
 
 /* ---- lightbox ---------------------------------------------------------- */
 body.is-locked { overflow: hidden; }

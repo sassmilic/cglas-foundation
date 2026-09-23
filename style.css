@@ -279,6 +279,56 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .marginnote > :first-child { margin-top: 0; }
 .marginnote > :last-child { margin-bottom: 0; }
 
+/* ---- epigraphs --------------------------------------------------------- */
+/* A quiet, reusable quotation group for project research and writing. */
+.epigraphs {
+  max-width: 62ch;
+}
+
+.epigraphs h3 {
+  margin: 0 0 clamp(2rem, 6svh, 3.5rem);
+  font-size: var(--sm);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.epigraph {
+  margin: 0;
+}
+
+.epigraph + .epigraph {
+  margin-top: clamp(2.4rem, 7svh, 4.25rem);
+}
+
+.epigraph blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.doc .section-copy .epigraph blockquote p {
+  max-width: none;
+  margin: 0;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.epigraph figcaption {
+  max-width: 52ch;
+  margin: 0.65rem 0 0 auto;
+  font-size: var(--xs);
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: right;
+  color: var(--dim);
+}
+
+.epigraph cite {
+  font-style: italic;
+}
+
 /* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
 @media (max-width: 760px) {
   .section-layout {

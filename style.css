@@ -343,6 +343,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   line-height: 1.8;
 }
 
+.doc .section-copy .epigraph blockquote p + p {
+  margin-top: 1rem;
+}
+
 .epigraph figcaption {
   max-width: 52ch;
   margin: 0.65rem 0 0 auto;
@@ -355,6 +359,17 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .epigraph cite {
   font-style: italic;
+}
+
+.epigraph figcaption a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+.epigraph figcaption a:hover,
+.epigraph figcaption a:focus-visible {
+  color: var(--accent);
 }
 
 /* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */

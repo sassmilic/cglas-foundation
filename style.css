@@ -14,6 +14,11 @@
   --md:  clamp(0.98rem, 0.92rem + 0.3vw, 1.14rem);
   --lg:  clamp(1.2rem, 1.05rem + 0.65vw, 1.55rem);
 
+  /* Keep the type hierarchy within the weights that are actually loaded. */
+  --weight-body: 300;
+  --weight-label: 400;
+  --weight-title: 500;
+
   --menu: 29ch;
 }
 
@@ -43,7 +48,7 @@ body {
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
                Menlo, Consolas, monospace;
   font-size: var(--md);
-  font-weight: 300;
+  font-weight: var(--weight-body);
   line-height: 2.0;
   -webkit-font-smoothing: antialiased;
 }
@@ -56,7 +61,7 @@ a { color: inherit; text-decoration: none; }
   padding: 0 var(--pad) 1.1rem;
   border-bottom: 1px dotted var(--rule);
   font-size: var(--sm);
-  font-weight: 400;
+  font-weight: var(--weight-label);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--dim);
@@ -81,7 +86,7 @@ a { color: inherit; text-decoration: none; }
 .title {
   margin: 0 0 2rem;
   font-size: var(--lg);
-  font-weight: 400;
+  font-weight: var(--weight-label);
   line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -203,7 +208,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .doc .eyebrow {
   margin: 0;
   font-size: var(--lg);
-  font-weight: 400;
+  font-weight: var(--weight-body);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -212,7 +217,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .doc h1 {
   margin: 0;
   font-size: var(--lg);
-  font-weight: 400;
+  font-weight: var(--weight-title);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -243,7 +248,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .project-section-heading {
   margin: 0;
   font-size: var(--md);
-  font-weight: 400;
+  font-weight: var(--weight-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-align: center;
@@ -257,6 +262,22 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   margin: 0.5rem 0 0;
   font-size: var(--sm);
   color: var(--dim);
+}
+
+/* Reset the browser's bold h3 default so supporting metadata cannot compete
+   with the project and section titles. The label remains distinct without
+   making the artist's name look like another heading. */
+.research-artist {
+  margin: 0;
+  font-size: var(--sm);
+  font-weight: var(--weight-body);
+  line-height: 1.7;
+  color: var(--dim);
+}
+
+.research-artist-label {
+  font-weight: var(--weight-label);
+  color: var(--ink);
 }
 
 /* Body copy is left-aligned in the two-thirds reading column. */

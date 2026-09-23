@@ -205,19 +205,40 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   text-transform: uppercase;
 }
 
-/* Sections naturally span the viewport; their content retains a shared inset. */
+/*
+   Project writing follows a Tufte-like reading layout: a generous main measure
+   occupies two thirds of the document column, while the remaining third is
+   held for annotations.  Notes sit alongside their related material where
+   space permits, rather than being positioned with brittle pixel offsets.
+*/
 .doc section {
   padding: clamp(1.6rem, 5svh, 2.4rem) var(--pad) clamp(2.5rem, 8svh, 4rem);
   border-top: 1px dotted var(--rule);
-  text-align: center;
 }
 
-.doc h2 {
+.section-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+.section-copy {
+  min-width: 0;
+}
+
+.project-section-heading {
   margin: 0;
   font-size: var(--md);
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  text-align: center;
+}
+
+.project-section-heading + .section-layout {
+  margin-top: clamp(1.6rem, 4svh, 2.4rem);
 }
 
 .doc .sub {
@@ -226,12 +247,48 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   color: var(--dim);
 }
 
-/* body copy stays left-aligned inside a centred column */
-.doc section p:not(.sub) {
+/* Body copy is left-aligned in the two-thirds reading column. */
+.doc .section-copy p:not(.sub) {
   max-width: 62ch;
-  margin: 1.2rem auto 0;
+  margin: 1.2rem 0 0;
   text-align: left;
   color: var(--dim);
+}
+
+/* Add a .marginnote inside this aside for each annotation or citation. */
+.margin-notes {
+  min-width: 0;
+  padding-top: 0.1rem;
+  text-align: left;
+}
+
+.margin-notes:empty { display: none; }
+
+.marginnote {
+  margin: 0 0 1.4rem;
+  font-size: var(--sm);
+  line-height: 1.65;
+  color: var(--dim);
+}
+
+.marginnote > :first-child { margin-top: 0; }
+.marginnote > :last-child { margin-bottom: 0; }
+
+/* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
+@media (max-width: 760px) {
+  .section-layout {
+    display: block;
+  }
+
+  .margin-notes {
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px dotted var(--rule);
+  }
+
+  .marginnote {
+    max-width: 62ch;
+  }
 }
 
 /* ---- 404 --------------------------------------------------------------- */

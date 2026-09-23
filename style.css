@@ -52,7 +52,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---- name, top left ---------------------------------------------------- */
 .name {
-  margin: 0;
+  margin: 1;
   padding: 0 var(--pad) 1.1rem;
   border-bottom: 1px dotted var(--rule);
   font-size: var(--sm);
@@ -288,10 +288,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   margin: 0;
   padding: 0;
   border: 0;
+  position: relative;
   background: none;
   /* Hot-pink crosshair cursor for thumbnails that open at full size. */
   cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
-}
+
 
 .shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
@@ -302,7 +303,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: opacity 220ms ease;
 }
+
+.shot:hover img,
+.shot:focus-visible img { opacity: 0.45; }
 
 /* Portrait studies can opt into a considered focal point. */
 .shot--crop-upper img { object-position: center 38%; }

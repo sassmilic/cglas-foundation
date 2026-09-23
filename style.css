@@ -288,12 +288,30 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   margin: 0;
   padding: 0;
   border: 0;
+  position: relative;
   background: none;
-  cursor: zoom-in;
+  cursor: pointer;
+}
+
+/* A clear, pink invitation to open the full-size study. */
+.shot::after {
+  content: "+";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  font-family: Arial, sans-serif;
+  font-size: clamp(5rem, 18vw, 11rem);
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 220ms ease;
 }
 
-.shot:hover { opacity: 0.82; }
+.shot:hover::after,
+.shot:focus-visible::after { opacity: 1; }
 .shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
 /* Square previews keep the grid stable while the lightbox shows the full image. */
@@ -303,7 +321,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: opacity 220ms ease;
 }
+
+.shot:hover img,
+.shot:focus-visible img { opacity: 0.45; }
 
 /* Portrait studies can opt into a considered focal point. */
 .shot--crop-upper img { object-position: center 38%; }

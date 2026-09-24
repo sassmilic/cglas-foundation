@@ -235,14 +235,26 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .section-layout {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
-  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: clamp(2.4rem, 7svh, 4.25rem);
   max-width: 96rem;
   margin: 0 auto;
 }
 
+/* Each row owns its copy/note relationship, so optional notes cannot affect
+   the placement of the content in a later row. */
+.section-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+}
+
 .section-copy {
+  grid-column: 1;
   min-width: 0;
+}
+
+.margin-notes {
+  grid-column: 2;
 }
 
 .project-section-heading {
@@ -294,20 +306,14 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   color: var(--accent);
 }
 
-/* Reset the browser's bold h3 default so supporting metadata cannot compete
-   with the project and section titles. The label remains distinct without
-   making the artist's name look like another heading. */
-.research-artist {
+/* Reset the browser's bold h3 default so supporting labels cannot compete
+   with the project and section titles. */
+.section-label {
   margin: 0;
   font-size: var(--sm);
   font-weight: var(--weight-body);
   line-height: 1.7;
   color: var(--dim);
-}
-
-.research-artist-label {
-  font-weight: var(--weight-label);
-  color: var(--ink);
 }
 
 /* Body copy is left-aligned in the two-thirds reading column. */
@@ -408,8 +414,13 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 /* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
 @media (max-width: 760px) {
-  .section-layout {
-    display: block;
+  .section-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-copy,
+  .margin-notes {
+    grid-column: 1;
   }
 
   .margin-notes {

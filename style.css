@@ -264,6 +264,36 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   color: var(--dim);
 }
 
+.bullet-list {
+  max-width: 62ch;
+  margin: 0;
+  padding-left: 2ch;
+}
+
+.bullet-list li + li {
+  margin-top: 0.55rem;
+}
+
+.doc .section-copy .source {
+  margin-top: 1.5rem;
+  font-size: var(--xs);
+}
+
+.source cite {
+  font-style: normal;
+}
+
+.source a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+.source a:hover,
+.source a:focus-visible {
+  color: var(--accent);
+}
+
 /* Reset the browser's bold h3 default so supporting metadata cannot compete
    with the project and section titles. The label remains distinct without
    making the artist's name look like another heading. */

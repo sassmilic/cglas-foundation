@@ -7,6 +7,7 @@
   --rule:   #e7e1e1;
   --scrim:  rgba(250, 248, 247, 0.97);
   --accent: #FF46A2;
+  --accent-wash: rgba(255, 70, 162, 0.08);
 
   --pad: clamp(1.5rem, 5vw, 3rem);
   --xs:  clamp(0.66rem, 0.62rem + 0.16vw, 0.76rem);
@@ -229,7 +230,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
    space permits, rather than being positioned with brittle pixel offsets.
 */
 .doc section {
-  padding: clamp(1.6rem, 5svh, 2.4rem) var(--pad) clamp(2.5rem, 8svh, 4rem);
+  padding: 0.65rem var(--pad);
   border-top: 1px dotted var(--rule);
 }
 
@@ -266,8 +267,55 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   text-align: center;
 }
 
-.project-section-heading + .section-layout {
+.project-section > summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin: -0.25rem -0.5rem;
+  padding: 0.25rem 0.5rem;
+  list-style: none;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.project-section > summary::-webkit-details-marker { display: none; }
+
+.project-section > summary::before {
+  content: "";
+}
+
+.project-section > summary::after {
+  content: "+";
+  justify-self: end;
+  color: var(--faint);
+  font-size: var(--lg);
+  line-height: 1;
+  transition: color 180ms ease;
+}
+
+.project-section[open] > summary::after { content: "–"; }
+
+.project-section > summary:hover,
+.project-section > summary:focus-visible {
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+.project-section > summary:hover::after,
+.project-section > summary:focus-visible::after { color: var(--accent); }
+.project-section > summary:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0.25rem;
+}
+
+.project-section > summary + .section-layout {
   margin-top: clamp(1.6rem, 4svh, 2.4rem);
+  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-section[open] > .section-layout {
+    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
+  }
 }
 
 .doc .sub {

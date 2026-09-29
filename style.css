@@ -296,10 +296,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .project-section[open] > summary::after { content: "–"; }
 
 .project-section > summary:hover,
-.project-section > summary:focus-visible {
-  color: var(--accent);
-  background: var(--accent-wash);
-}
+.project-section > summary:focus-visible { color: var(--accent); }
 .project-section > summary:hover::after,
 .project-section > summary:focus-visible::after { color: var(--accent); }
 .project-section > summary:focus-visible {
@@ -310,6 +307,12 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .project-section > summary + .section-layout {
   margin-top: clamp(1.6rem, 4svh, 2.4rem);
   margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-section[open] > .section-layout {
+    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

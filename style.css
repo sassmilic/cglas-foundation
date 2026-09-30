@@ -18,7 +18,7 @@
   /* Keep the type hierarchy within the weights that are actually loaded. */
   --weight-body: 300;
   --weight-label: 400;
-  --weight-title: 500;
+  --weight-title: 400;
 
   --menu: 29ch;
 }
@@ -491,7 +491,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .page h1 {
   margin: 0 0 1.6rem;
   font-size: var(--lg);
-  font-weight: 400;
+  font-weight: 200;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }

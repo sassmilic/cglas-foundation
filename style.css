@@ -332,9 +332,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   margin-top: 0.55rem;
 }
 
-.doc .section-copy .source {
+.doc .source {
   margin-top: 1.5rem;
   font-size: var(--xs);
+  color: var(--dim);
 }
 
 .source cite {
@@ -406,6 +407,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .epigraph {
   margin: 0;
+}
+
+.section-label + .epigraph {
+  margin-top: clamp(2rem, 6svh, 3.5rem);
 }
 
 .epigraph + .epigraph {
@@ -524,6 +529,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   align-items: start;
   gap: clamp(0.8rem, 2vw, 1.4rem);
+}
+
+/* Feature galleries may use all of the space offered by their layout. */
+.gallery--feature {
+  max-width: none;
 }
 
 /* strip the button back to nothing — it is here for keyboard access */

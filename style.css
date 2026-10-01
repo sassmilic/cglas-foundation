@@ -332,9 +332,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   margin-top: 0.55rem;
 }
 
-.doc .section-copy .source {
+.doc .source {
   margin-top: 1.5rem;
   font-size: var(--xs);
+  color: var(--dim);
 }
 
 .source cite {
@@ -406,6 +407,10 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .epigraph {
   margin: 0;
+}
+
+.section-label + .epigraph {
+  margin-top: clamp(2rem, 6svh, 3.5rem);
 }
 
 .epigraph + .epigraph {
@@ -526,6 +531,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   gap: clamp(0.8rem, 2vw, 1.4rem);
 }
 
+/* Feature galleries may use all of the space offered by their layout. */
+.gallery--feature {
+  max-width: none;
+}
+
 /* strip the button back to nothing — it is here for keyboard access */
 .shot {
   display: block;
@@ -551,6 +561,27 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   object-fit: cover;
   object-position: center;
   transition: opacity 220ms ease;
+}
+
+/* Feature images retain their natural proportions so the complete work is visible. */
+.shot--feature {
+  aspect-ratio: auto;
+}
+
+.shot.shot--feature img {
+  height: auto;
+  object-fit: contain;
+}
+
+/* A caption immediately following a gallery shares the gallery's width. */
+.doc .gallery + .source {
+  width: 100%;
+  max-width: min(100%, 68rem);
+  margin-inline: auto;
+}
+
+.doc .gallery--feature + .source {
+  max-width: none;
 }
 
 .shot:hover img,

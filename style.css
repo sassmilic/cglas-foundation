@@ -553,6 +553,23 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   transition: opacity 220ms ease;
 }
 
+/* Feature images retain their natural proportions so the complete work is visible. */
+.shot--feature {
+  aspect-ratio: auto;
+}
+
+.shot--feature img {
+  height: auto;
+  object-fit: contain;
+}
+
+/* A caption immediately following a gallery shares the gallery's full width. */
+.doc .section-copy .gallery + .source {
+  width: 100%;
+  max-width: min(100%, 68rem);
+  margin-inline: auto;
+}
+
 .shot:hover img,
 .shot:focus-visible img { opacity: 0.45; }
 

@@ -568,20 +568,16 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   aspect-ratio: auto;
 }
 
-.shot.shot--feature img {
+.shot--feature img {
   height: auto;
   object-fit: contain;
 }
 
-/* A caption immediately following a gallery shares the gallery's width. */
-.doc .gallery + .source {
+/* A caption immediately following a gallery shares the gallery's full width. */
+.doc .section-copy .gallery + .source {
   width: 100%;
   max-width: min(100%, 68rem);
   margin-inline: auto;
-}
-
-.doc .gallery--feature + .source {
-  max-width: none;
 }
 
 .shot:hover img,

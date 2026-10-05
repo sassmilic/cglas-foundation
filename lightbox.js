@@ -4,8 +4,7 @@
   var img     = document.getElementById("lightbox-img");
   var cap     = document.getElementById("lightbox-cap");
   var closeEl = box && box.querySelector(".lightbox-close");
-  var gallery = document.querySelector(".gallery");
-  if (!box || !gallery) return;
+  if (!box) return;
 
   var opener = null;   // thumbnail that opened it, so focus can go back
 
@@ -29,8 +28,9 @@
     if (opener) { opener.focus(); opener = null; }
   }
 
-  gallery.addEventListener("click", function (e) {
-    var shot = e.target.closest(".shot");
+  // one listener for every gallery on the page
+  document.addEventListener("click", function (e) {
+    var shot = e.target.closest(".gallery .shot");
     if (shot) open(shot);
   });
 

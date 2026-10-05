@@ -158,7 +158,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .project {
   display: inline-grid;
-  grid-template-columns: 4ch auto auto;
+  grid-template-columns: 4ch 1fr auto;
   align-items: baseline;
   column-gap: 1ch;
 }
@@ -166,8 +166,12 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .project--inactive { color: var(--faint); }
 
 .projects a.project {
+  width: calc(100% + 3ch);
+  margin-left: -3ch;
+  padding-left: 3ch;
+  border-bottom: 1px solid transparent;
   color: var(--dim);
-  transition: color 180ms ease;
+  transition: border-color 180ms ease;
 }
 
 .projects a::after {
@@ -178,8 +182,9 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 }
 
 .projects a:hover,
-.projects a:focus-visible { color: var(--accent); outline: 1px solid currentColor;
-                             outline-offset: var(--focus-offset); }
+.projects a:focus-visible { border-bottom-color: currentColor; }
+.projects a:focus-visible { outline: 1px solid currentColor;
+                            outline-offset: var(--focus-offset); }
 .projects a:hover::after,
 .projects a:focus-visible::after { opacity: 1; transform: none; }
 

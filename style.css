@@ -171,18 +171,21 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   padding-left: 3ch;
   border-bottom: 1px solid transparent;
   color: var(--dim);
-  transition: border-color 180ms ease;
+  transition: color 400ms ease, border-color 400ms ease;
 }
 
 .projects a::after {
-  content: "→";
+  content: "⟶";
   opacity: 0;
   transform: translateX(-0.4ch);
-  transition: opacity 200ms ease, transform 260ms cubic-bezier(.22,1,.36,1);
+  transition: opacity 400ms ease, transform 400ms cubic-bezier(.22,1,.36,1);
 }
 
 .projects a:hover,
-.projects a:focus-visible { border-bottom-color: currentColor; }
+.projects a:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--accent);
+}
 .projects a:focus-visible { outline: 1px solid currentColor;
                             outline-offset: var(--focus-offset); }
 .projects a:hover::after,

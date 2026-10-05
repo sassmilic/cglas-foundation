@@ -523,12 +523,17 @@ details[open] > summary.unit::after { content: "–"; }
   transition: opacity 220ms ease;
 }
 
-/* Feature images retain their natural proportions so the complete work is visible. */
+/* Feature images retain their natural proportions so the complete work is visible,
+   and are never shown larger than the image file itself. */
 .shot--feature {
+  width: fit-content;
+  max-width: 100%;
   aspect-ratio: auto;
 }
 
 .shot--feature img {
+  width: auto;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
 }

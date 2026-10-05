@@ -70,6 +70,10 @@ a {
   color: var(--dim);
 }
 
+.name a { transition: color 180ms ease; }
+
+.back { margin-left: var(--pad); }
+
 /* ---- centred block, left aligned --------------------------------------- */
 .centre {
   flex: 1;
@@ -112,8 +116,7 @@ a {
 
 .menu > li + li { margin-top: 0.15rem; }
 
-.unit,
-.menu > li > span.unit {
+.unit {
   display: flex;
   gap: 1ch;
   padding: 0.15rem 0;
@@ -138,13 +141,6 @@ details > summary.unit::after {
   transition: color 180ms ease;
 }
 details[open] > summary.unit::after { content: "–"; }
-
-summary.unit:hover,
-summary.unit:focus-visible { color: var(--accent); }
-summary.unit:hover::after,
-summary.unit:focus-visible::after { color: var(--accent); }
-summary.unit:focus-visible { outline: 1px solid currentColor;
-                             outline-offset: var(--focus-offset); }
 
 /* ---- projects ---------------------------------------------------------- */
 .projects {
@@ -182,12 +178,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 }
 
 .projects a:hover,
-.projects a:focus-visible {
-  border-bottom-color: currentColor;
-  color: var(--accent);
-}
-.projects a:focus-visible { outline: 1px solid currentColor;
-                            outline-offset: var(--focus-offset); }
+.projects a:focus-visible { border-bottom-color: currentColor; }
 .projects a:hover::after,
 .projects a:focus-visible::after { opacity: 1; transform: none; }
 
@@ -214,17 +205,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   padding-inline: var(--pad);
 }
 
-/* set exactly like the title, just on the other side of the line */
-.doc .eyebrow {
-  margin: 0;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.doc h1 {
+/* eyebrow is set exactly like the title, just on the other side of the line;
+   the 404 heading shares the same treatment */
+.doc .eyebrow,
+.doc h1,
+.page h1 {
   margin: 0;
   font-size: var(--lg);
   font-weight: var(--weight-body);
@@ -263,9 +248,15 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   min-width: 0;
 }
 
+/* Add a .marginnote inside this aside for each annotation or citation. */
 .margin-notes {
   grid-column: 2;
+  min-width: 0;
+  padding-top: 0.1rem;
+  text-align: left;
 }
+
+.margin-notes:empty { display: none; }
 
 .project-section-heading {
   margin: 0;
@@ -289,9 +280,8 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .project-section > summary::-webkit-details-marker { display: none; }
 
-.project-section > summary::before {
-  content: "";
-}
+/* empty first column balances the +/– so the heading stays centred */
+.project-section > summary::before { content: ""; }
 
 .project-section > summary::after {
   content: "+";
@@ -303,15 +293,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 }
 
 .project-section[open] > summary::after { content: "–"; }
-
-.project-section > summary:hover,
-.project-section > summary:focus-visible { color: var(--accent); }
-.project-section > summary:hover::after,
-.project-section > summary:focus-visible::after { color: var(--accent); }
-.project-section > summary:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: var(--focus-offset);
-}
 
 .project-section > summary + .section-layout {
   margin-top: clamp(1.6rem, 4svh, 2.4rem);
@@ -350,15 +331,11 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   font-style: normal;
 }
 
-.source a {
+.source a,
+.epigraph figcaption a {
   text-decoration: underline;
   text-decoration-color: var(--faint);
   text-underline-offset: 0.2em;
-}
-
-.source a:hover,
-.source a:focus-visible {
-  color: var(--accent);
 }
 
 /* Keep supporting headings at the project-title scale; color preserves hierarchy. */
@@ -378,15 +355,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   color: var(--dim);
 }
 
-/* Add a .marginnote inside this aside for each annotation or citation. */
-.margin-notes {
-  min-width: 0;
-  padding-top: 0.1rem;
-  text-align: left;
-}
-
-.margin-notes:empty { display: none; }
-
 .marginnote {
   margin: 3rem 0 1.4rem 2rem;
   padding-left: 1rem;
@@ -401,18 +369,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 /* ---- epigraphs --------------------------------------------------------- */
 /* A quiet, reusable quotation group for project research and writing. */
-.epigraphs {
-  max-width: var(--measure);
-}
-
-.epigraphs h3 {
-  margin: 0 0 clamp(2rem, 6svh, 3.5rem);
-  font-size: var(--sm);
-  font-weight: var(--weight-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .epigraph {
   margin: 0;
 }
@@ -457,17 +413,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   font-style: italic;
 }
 
-.epigraph figcaption a {
-  text-decoration: underline;
-  text-decoration-color: var(--faint);
-  text-underline-offset: 0.2em;
-}
-
-.epigraph figcaption a:hover,
-.epigraph figcaption a:focus-visible {
-  color: var(--accent);
-}
-
 /* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
 @media (max-width: 760px) {
   .section-row {
@@ -497,13 +442,7 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   text-align: left;
 }
 
-.page h1 {
-  margin: 0 0 1.6rem;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+.page h1 { margin-bottom: 1.6rem; }
 
 .page p { margin: 0 0 1.2em; color: var(--dim); }
 
@@ -520,12 +459,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
   .reveal--menu { animation-delay: 220ms; }
   .reveal--footer { animation-delay: 260ms; }
 }
-
-.name a { transition: color 180ms ease; }
-.name a:hover, .name a:focus-visible { color: var(--accent); }
-.name a:focus-visible { outline: 1px solid currentColor; outline-offset: var(--focus-offset); }
-
-.back { margin-left: var(--pad); }
 
 /* ---- gallery ----------------------------------------------------------- */
 .gallery {
@@ -655,9 +588,6 @@ body.is-locked { overflow: hidden; }
   transition: color 180ms ease;
 }
 
-.lightbox-close:hover,
-.lightbox-close:focus-visible { color: var(--accent); outline: 1px solid currentColor;
-                                outline-offset: var(--focus-offset); }
 
 @media (prefers-reduced-motion: no-preference) {
   .lightbox:not([hidden]) {
@@ -669,4 +599,29 @@ body.is-locked { overflow: hidden; }
     from { opacity: 0; }
     to   { opacity: 1; }
   }
+}
+
+/* ---- interaction ------------------------------------------------------- */
+/* One hover/focus treatment for everything clickable. Kept last so it wins
+   over each element's resting colour. */
+summary.unit:hover,               summary.unit:focus-visible,
+summary.unit:hover::after,        summary.unit:focus-visible::after,
+.project-section > summary:hover, .project-section > summary:focus-visible,
+.project-section > summary:hover::after,
+.project-section > summary:focus-visible::after,
+.projects a:hover,                .projects a:focus-visible,
+.name a:hover,                    .name a:focus-visible,
+.source a:hover,                  .source a:focus-visible,
+.epigraph figcaption a:hover,     .epigraph figcaption a:focus-visible,
+.lightbox-close:hover,            .lightbox-close:focus-visible {
+  color: var(--accent);
+}
+
+summary.unit:focus-visible,
+.project-section > summary:focus-visible,
+.projects a:focus-visible,
+.name a:focus-visible,
+.lightbox-close:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: var(--focus-offset);
 }

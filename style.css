@@ -157,8 +157,8 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .projects li { padding: 0.12rem 0; }
 
 .project {
-  display: grid;
-  grid-template-columns: 4ch minmax(0, 1fr) 3ch;
+  display: inline-grid;
+  grid-template-columns: 4ch 1fr auto;
   align-items: baseline;
   column-gap: 1ch;
 }
@@ -176,7 +176,6 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 
 .projects a::after {
   content: "⟶";
-  justify-self: end;
   opacity: 0;
   transform: translateX(-0.4ch);
   transition: opacity 400ms ease, transform 400ms cubic-bezier(.22,1,.36,1);

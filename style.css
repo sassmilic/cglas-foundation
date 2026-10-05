@@ -157,8 +157,8 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .projects li { padding: 0.12rem 0; }
 
 .project {
-  display: inline-grid;
-  grid-template-columns: 4ch auto auto;
+  display: grid;
+  grid-template-columns: 4ch minmax(0, 1fr) 3ch;
   align-items: baseline;
   column-gap: 1ch;
 }
@@ -166,20 +166,29 @@ summary.unit:focus-visible { outline: 1px solid currentColor;
 .project--inactive { color: var(--faint); }
 
 .projects a.project {
+  width: calc(100% + 3ch);
+  margin-left: -3ch;
+  padding-left: 3ch;
+  border-bottom: 1px solid transparent;
   color: var(--dim);
-  transition: color 180ms ease;
+  transition: color 400ms ease, border-color 400ms ease;
 }
 
 .projects a::after {
-  content: "→";
+  content: "⟶";
+  justify-self: end;
   opacity: 0;
   transform: translateX(-0.4ch);
-  transition: opacity 200ms ease, transform 260ms cubic-bezier(.22,1,.36,1);
+  transition: opacity 400ms ease, transform 400ms cubic-bezier(.22,1,.36,1);
 }
 
 .projects a:hover,
-.projects a:focus-visible { color: var(--accent); outline: 1px solid currentColor;
-                             outline-offset: var(--focus-offset); }
+.projects a:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--accent);
+}
+.projects a:focus-visible { outline: 1px solid currentColor;
+                            outline-offset: var(--focus-offset); }
 .projects a:hover::after,
 .projects a:focus-visible::after { opacity: 1; transform: none; }
 

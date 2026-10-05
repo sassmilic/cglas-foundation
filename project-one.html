@@ -39,7 +39,20 @@
         <summary><h2 class="project-section-heading">Process</h2></summary>
         <div class="section-layout">
           <div class="section-row">
-            <div class="section-copy"></div>
+            <div class="section-copy">
+              <ul class="gallery gallery--feature">
+                <li>
+                  <button type="button" class="shot shot--feature"
+                          data-full="images/drawing-01-letting-go-full.jpg"
+                          data-caption="First drawing: letting the mind go">
+                    <img src="images/drawing-01-letting-go-thumb.jpg" width="800" height="539"
+                         loading="lazy" decoding="async"
+                         alt="Charcoal drawing of looping, overlapping continuous lines and curls filling a sheet of paper.">
+                  </button>
+                </li>
+              </ul>
+              <p class="source">First drawing: letting the mind go</p>
+            </div>
             <aside class="margin-notes" aria-label="Process notes"></aside>
           </div>
         </div>
@@ -90,6 +103,17 @@
   </main>
 
   <p class="reveal reveal--footer"><a class="back" href="./">← index</a></p>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Enlarged image" hidden>
+    <button type="button" class="lightbox-close">close</button>
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+  </div>
+
+  <script src="lightbox.js" defer></script>
 
 </body>
 </html>

@@ -205,6 +205,22 @@ details[open] > summary.unit::after { content: "–"; }
   padding-inline: var(--pad);
 }
 
+/* Optional full-bleed banner under the title: a detail of the project's work.
+   Any project page can add one with <figure class="banner"><img ...></figure>.
+   The height is held to a band so the detail never dominates the page, and
+   narrow screens crop to the centre rather than shrinking to a sliver. */
+.banner {
+  margin: 0 0 clamp(2.5rem, 8svh, 4rem);
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: clamp(9rem, 27.7vw, 34rem);
+  object-fit: cover;
+  object-position: center;
+}
+
 /* eyebrow is set exactly like the title, just on the other side of the line;
    the 404 heading shares the same treatment */
 .doc .eyebrow,

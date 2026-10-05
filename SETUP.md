@@ -40,8 +40,13 @@ file for missing URLs at any depth.
 ## Files
 
 ```
-index.html        name, title, and the unit menu; unit 1 expands in place
-project-two.html  unit 1 / project 2 — the only live project page
+index.html            name, title, and the unit menu; unit 1 expands in place
+project-one.html      unit 1 / week 1 — Drawing Week
+project-two.html      unit 1 / project 2 — Research Week
+project-three-a.html  unit 1 / week 3A — The Infraordinary
+project-four.html     unit 1 / project 4 — Refashioned
+project-four-b.html   unit 1 / week 4B — Cardboard Orchestra
+project-five.html     unit 1 / project 5 — Space Oddity
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
 images/           research images; -thumb.jpg in the grid, -full.jpg enlarged

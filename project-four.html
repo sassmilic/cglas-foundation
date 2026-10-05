@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#111010" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -119,6 +119,17 @@
   </main>
 
   <p class="reveal reveal--footer"><a class="back" href="./">← index</a></p>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Enlarged image" hidden>
+    <button type="button" class="lightbox-close">close</button>
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+  </div>
+
+  <script src="lightbox.js" defer></script>
 
 </body>
 </html>

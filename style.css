@@ -90,6 +90,7 @@ a {
 }
 
 .title {
+  container-type: inline-size;
   margin: 0 0 2rem;
   font-size: var(--lg);
   font-weight: var(--weight-label);
@@ -124,6 +125,21 @@ a {
 }
 
 .title .title-split > span:last-child { text-align: right; }
+
+/* diploma name: the gap between the words grows with the letter spacing,
+   and the size is worked out so the line still runs edge to edge.
+   IBM Plex Mono letters are 0.6em wide; the gap is a space plus 3x the tracking. */
+.title .title-main {
+  --track: 0.2;
+  color: inherit;
+  white-space: nowrap;
+  text-align-last: left;
+  letter-spacing: calc(var(--track) * 1em);
+  word-spacing: calc(var(--track) * 3em);
+  /* the other title lines end 0.1em of tracking short of the edge; end at the same place */
+  font-size: calc((100cqi - 0.1 * var(--lg)) / (18 * 0.6 + 20 * var(--track)));
+  margin-right: calc(var(--track) * -1em + 0.1 * var(--lg));
+}
 
 /* ---- menu -------------------------------------------------------------- */
 .menu {

@@ -209,7 +209,9 @@ details[open] > summary.unit::after { content: "–"; }
    Any project page can add one with <figure class="banner"><img ...></figure>.
    Each detail keeps its own proportions (from the img's width and height),
    held between a minimum and maximum height: narrow screens crop to the
-   centre rather than shrinking to a sliver. */
+   centre rather than shrinking to a sliver. A banner whose source is narrower
+   than the screen sets --banner-max to its own width, so it is never shown
+   larger than it is; it then sits centred instead of edge to edge. */
 .banner {
   margin: 0 0 clamp(2.5rem, 8svh, 4rem);
 }
@@ -217,6 +219,8 @@ details[open] > summary.unit::after { content: "–"; }
 .banner img {
   display: block;
   width: 100%;
+  max-width: var(--banner-max, none);
+  margin-inline: auto;
   height: auto;
   min-height: 9rem;
   max-height: 34rem;

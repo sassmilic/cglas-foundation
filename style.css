@@ -129,14 +129,15 @@ a {
 /* diploma name as one word, spaced out so it runs edge to edge.
    IBM Plex Mono letters are 0.6em wide, so 18 characters take 10.8em; the
    leftover width is shared between the 17 gaps. It ends 0.1em short of the
-   edge, like the other title lines. */
+   edge, like the other title lines (their tracking is 0.1 x --lg). */
 .title .title-main {
-  --spread: calc((100cqi - 10.9em) / 17);
+  --spread: calc((100cqi - 10.8em - 0.1 * var(--lg)) / 17);
+  font-size: 1em;
   color: inherit;
   white-space: nowrap;
   text-align-last: left;
   letter-spacing: var(--spread);
-  margin-right: calc(0.1em - var(--spread));
+  margin-right: calc(0.1 * var(--lg) - var(--spread));
 }
 
 /* ---- menu -------------------------------------------------------------- */

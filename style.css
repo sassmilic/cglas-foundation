@@ -207,9 +207,10 @@ details[open] > summary.unit::after { content: "–"; }
 
 /* Optional full-bleed banner under the title: a detail of the project's work.
    Any project page can add one with <figure class="banner"><img ...></figure>.
-   Each detail keeps its own proportions (from the img's width and height),
-   held between a minimum and maximum height: narrow screens crop to the
-   centre rather than shrinking to a sliver. */
+   Every banner shares one shape (Drawing Week's, the widest), so they are all
+   the same height; taller details lose an equal amount from top and bottom.
+   The height is held between a minimum and maximum: narrow screens crop to
+   the centre rather than shrinking to a sliver. */
 .banner {
   margin: 0 0 clamp(2.5rem, 8svh, 4rem);
 }
@@ -218,6 +219,7 @@ details[open] > summary.unit::after { content: "–"; }
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1600 / 443;
   min-height: 9rem;
   max-height: 34rem;
   object-fit: cover;

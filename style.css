@@ -113,6 +113,20 @@ a {
   color: var(--ink);
 }
 
+/* three-word lines: words to the edges, "&" pinned to the centre so they line up */
+.title .title-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.title .title-split > span {
+  color: inherit;
+  text-align: left;
+  text-align-last: auto;
+}
+
+.title .title-split > span:last-child { text-align: right; }
+
 /* ---- menu -------------------------------------------------------------- */
 .menu {
   margin: 0;

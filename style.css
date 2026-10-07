@@ -132,7 +132,7 @@ a {
    edge, like the other title lines (their tracking is 0.1 x --lg). */
 .title .title-main {
   --spread: calc((100cqi - 10.8em - 0.1 * var(--lg)) / 17);
-  font-size: 1em;
+  font-size: 0.85em;
   color: inherit;
   white-space: nowrap;
   text-align-last: left;

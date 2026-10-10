@@ -47,6 +47,7 @@ project-three-a.html  unit 1 / week 3A — The Infraordinary
 project-four.html     unit 1 / project 4 — Refashioned
 project-four-b.html   unit 1 / week 4B — Cardboard Orchestra
 project-five.html     unit 1 / project 5 — Space Oddity
+project-six.html      unit 1 / project 6 — Printmaking
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
 images/           research images; -thumb.jpg in the grid, -full.jpg enlarged

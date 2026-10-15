@@ -386,6 +386,14 @@ details[open] > summary.unit::after { content: "–"; }
   font-style: normal;
 }
 
+/* Temporary reference numbers on process images (000, 001, …), for talking
+   about them in chat. To remove: delete every <span class="ref-no"> and the
+   "NNN · " prefix in data-caption, then this rule. */
+.ref-no {
+  margin-right: 0.6em;
+  font-variant-numeric: tabular-nums;
+}
+
 .source a,
 .epigraph figcaption a {
   text-decoration: underline;

@@ -109,6 +109,37 @@
 .int-say p { margin: 0; }
 .int-say p + p { margin-top: 0.8em; }
 
+.int-prose ul { max-width: 36em; margin: 0; padding-left: 1.2em; }
+.int-prose li + li { margin-top: 1.1em; }
+
+/* a list of short facts, one per ruled line, in large type */
+.int-facts { margin: 0; padding: 0; list-style: none; }
+.int-facts li { padding: 0.3em 0; border-top: 1px solid var(--rule); }
+
+/* quotations from artists: large type, mono attribution */
+.int-quote blockquote { margin: 0; }
+
+.int-quote blockquote p {
+  margin: 0;
+  font-size: var(--t-l);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.int-quote figcaption {
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--dim);
+}
+
+.int-quote figcaption a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
 /* pull quotes: the largest words on the page after the headline */
 .int-pull {
   font-size: var(--t-xl);
@@ -165,5 +196,6 @@
 }
 
 .int-fig figcaption a:hover,
+.int-quote figcaption a:hover,
 .int-note a:hover { color: var(--accent); }
 

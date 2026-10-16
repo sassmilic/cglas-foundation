@@ -9,8 +9,9 @@
 <meta name="theme-color" content="#111010" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter+Tight:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-int.css">
 </head>
 <body>
 
@@ -33,71 +34,56 @@
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Research</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy">
-              <h3 class="section-label">Nigel Cooke — <cite>New Accursed Art Club</cite> (2007)</h3>
+      <div class="int-grid">
 
-              <figure class="epigraph">
-                <blockquote cite="https://www.youtube.com/watch?v=9rPo5910FFE">
-                  <p>“Painting over the thing completely in white and then finding the image again throws up new shapes and new images.... Often what I like about paintings is the kind of mystery of the making. ...I kind of like the fact that the painting has its own logic, and you just have to let it be what it is.”</p>
-                </blockquote>
-              </figure>
+        <h3 class="int-h3">Nigel Cooke — <cite>New Accursed Art Club</cite> (2007)</h3>
 
-              <ul class="gallery gallery--feature">
-                <li>
-                  <button type="button" class="shot shot--feature"
-                          data-full="images/nigel-cooke-process-full.jpg"
-                          data-caption="Process shots from the making of New Accursed Art Club, captured as screenshots from Nigel Cooke’s studio video on YouTube.">
-                    <img src="images/nigel-cooke-process-thumb.jpg"
-                         width="800" height="500" loading="lazy" decoding="async"
-                         alt="Collage showing New Accursed Art Club at sixteen stages of the painting process.">
-                  </button>
-                </li>
-              </ul>
-              <p class="source">Process shots from the making of <cite>New Accursed Art Club</cite>, captured as screenshots from <a href="https://www.youtube.com/watch?v=9rPo5910FFE">Nigel Cooke’s studio video on YouTube</a>.</p>
-            </div>
-            <aside class="margin-notes" aria-label="Nigel Cooke research notes">
-              <p class="marginnote">Nigel Cooke seems to deliberately move himself away from knowing the final destination. He intentionally sets up blinds, dead ends, and obstacles in his work: adding things he knows he will remove, painting the whole thing white and “excavating” the image underneath, liberally erasing. His process involves getting lost. The painting becomes mysterious even to him. The characters in the painting even begin to speak on their own…</p>
-            </aside>
-          </div>
-          <div class="section-row">
-            <div class="section-copy">
-              <figure class="epigraph">
-                <blockquote cite="https://www.youtube.com/watch?v=9rPo5910FFE">
-                  <p>“When I make a body of work, there’s always one painting that spawns the others, that the others are kind of satellites of, that opens up a new place, and then you sort of feed on it for a couple of years.”</p>
-                </blockquote>
-              </figure>
-            </div>
-            <aside class="margin-notes" aria-label="Research notes"></aside>
-          </div>
+        <figure class="int-quote" style="--col: 1 / 11">
+          <blockquote cite="https://www.youtube.com/watch?v=9rPo5910FFE">
+            <p>“Painting over the thing completely in white and then finding the image again throws up new shapes and new images.... Often what I like about paintings is the kind of mystery of the making. ...I kind of like the fact that the painting has its own logic, and you just have to let it be what it is.”</p>
+          </blockquote>
+        </figure>
+
+        <figure class="int-fig" style="--w: 1800px">
+          <button type="button" class="int-shot"
+                  data-full="images/nigel-cooke-process-full.jpg"
+                  data-caption="Process shots from the making of New Accursed Art Club, captured as screenshots from Nigel Cooke’s studio video on YouTube.">
+            <img src="images/nigel-cooke-process-thumb.jpg"
+                 srcset="images/nigel-cooke-process-thumb.jpg 800w, images/nigel-cooke-process-full.jpg 1800w"
+                 sizes="100vw"
+                 width="800" height="500" loading="lazy" decoding="async"
+                 alt="Collage showing New Accursed Art Club at sixteen stages of the painting process.">
+          </button>
+          <figcaption>Process shots from the making of <cite>New Accursed Art Club</cite>, captured as screenshots from <a href="https://www.youtube.com/watch?v=9rPo5910FFE">Nigel Cooke’s studio video on YouTube</a>.</figcaption>
+        </figure>
+
+        <div class="int-say" style="--col: 3 / 11; --col-m: 1 / 13">
+          <p>Nigel Cooke seems to deliberately move himself away from knowing the final destination. He intentionally sets up blinds, dead ends, and obstacles in his work: adding things he knows he will remove, painting the whole thing white and “excavating” the image underneath, liberally erasing. His process involves getting lost. The painting becomes mysterious even to him. The characters in the painting even begin to speak on their own…</p>
         </div>
+
+        <blockquote class="int-pull" cite="https://www.youtube.com/watch?v=9rPo5910FFE" style="--col: 1 / 13">
+          <p>When I make a body of work, there’s always one painting that spawns the others, that the others are kind of satellites of, that opens up a new place, and then you sort of feed on it for a couple of years.</p>
+        </blockquote>
+
+      </div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Process</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy">
-              <p class="sub">(planning, development, outcomes)</p>
-            </div>
-            <aside class="margin-notes" aria-label="Process notes"></aside>
-          </div>
-        </div>
+      <div class="int-grid">
+
+        <p class="int-sub">(planning, development, outcomes)</p>
+
+      </div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Reflection + Evaluation</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy"></div>
-            <aside class="margin-notes" aria-label="Reflection and evaluation notes"></aside>
-          </div>
-        </div>
+      <div class="int-grid"></div>
       </details>
     </section>
 

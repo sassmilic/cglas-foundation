@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Editorial preview, after It's Nice That features: a large grotesk for
+   headlines and reading, the existing mono for metadata and captions, and a
+   12-column grid where every image and text block picks its own width, so
+   pages mix big and small images and big and small text.
+   Loaded after style.css by pages that opt in with <body class="int">.
+   ========================================================================== */
+
+:root {
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* type scale: each step is a clear jump from the last */
+  --t-body: clamp(1.06rem, 0.98rem + 0.35vw, 1.3rem);
+  --t-l:    clamp(1.45rem, 1.05rem + 1.7vw, 2.6rem);
+  --t-xl:   clamp(2.3rem, 1.1rem + 4.6vw, 5.6rem);
+  --t-xxl:  clamp(3.3rem, 0.8rem + 10vw, 11rem);
+
+  --gap: clamp(0.9rem, 2vw, 1.75rem);
+  --row: clamp(3rem, 7vw, 7rem);
+}
+
+body.int {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.5;
+}
+
+/* ---- top bar ---------------------------------------------------------- */
+.int-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.1rem var(--pad);
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: var(--weight-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.int-top a { transition: color 180ms ease; }
+.int-top span { color: var(--dim); }
+
+/* ---- metadata: small mono labels -------------------------------------- */
+.int-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: var(--weight-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.int-meta .tag {
+  padding: 0.05rem 0.6rem;
+  border: 1px solid var(--faint);
+  border-radius: 99px;
+  letter-spacing: 0.06em;
+}
+
+/* ---- headline block --------------------------------------------------- */
+.int-head {
+  padding: clamp(2.5rem, 8vw, 6rem) var(--pad) 0;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.int-h1 {
+  margin: clamp(1.2rem, 3vw, 2rem) 0 0;
+  font-size: var(--t-xxl);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.int-standfirst {
+  max-width: 30ch;
+  margin: clamp(1.6rem, 4vw, 3rem) 0 0;
+  font-size: var(--t-l);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+/* ---- the 12-column grid ----------------------------------------------- */
+/* Children say where they sit with --col (desktop) and --col-m (phone),
+   both in 12ths, e.g. style="--col: 2 / 6; --col-m: 1 / 9". */
+.int-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: var(--row);
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.int-grid > * {
+  grid-column: var(--col, 1 / -1);
+  align-self: var(--align, start);
+  min-width: 0;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .int-grid { row-gap: calc(var(--row) * 0.85); }
+  .int-grid > * { grid-column: var(--col-m, 1 / -1); }
+}
+
+/* ---- sections --------------------------------------------------------- */
+.int-section { margin-top: var(--row); }
+
+.int-section > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  max-width: 100rem;
+  margin: 0 auto var(--row);
+  padding: 0.8rem var(--pad) 0;
+  border-top: 1px solid var(--ink);
+  list-style: none;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.int-section > summary::-webkit-details-marker { display: none; }
+
+.int-section > summary::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: var(--t-l);
+  line-height: 1;
+  color: var(--faint);
+}
+
+.int-section[open] > summary::after { content: "–"; }
+
+.int-section .num {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+
+.int-section h2 {
+  margin: 0;
+  font-size: var(--t-xl);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+/* subheads: an artist's name, set mid-size */
+.int-h3 {
+  font-size: var(--t-l);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--rule);
+}
+
+.int-h3 cite { font-style: italic; }
+
+.int-sub {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--dim);
+}
+
+/* ---- running text ----------------------------------------------------- */
+.int-prose p { margin: 0; max-width: 36em; }
+.int-prose p + p { margin-top: 1.1em; }
+
+/* side notes: small mono, like a margin */
+.int-note {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.6rem;
+}
+
+.int-note p { margin: 0; }
+.int-note p + p { margin-top: 0.9em; }
+
+/* a note promoted to large type beside a small image */
+.int-say {
+  font-size: var(--t-l);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.int-say p { margin: 0; }
+.int-say p + p { margin-top: 0.8em; }
+
+/* pull quotes: the largest words on the page after the headline */
+.int-pull {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.int-pull p { margin: 0; }
+.int-pull p::before { content: "“"; margin-left: -0.42em; }
+.int-pull p::after  { content: "”"; }
+
+/* ---- figures ---------------------------------------------------------- */
+/* --w is the larger file's width: images fill their columns but are never
+   shown larger than the file itself. */
+.int-fig img {
+  display: block;
+  width: 100%;
+  max-width: var(--w, 100%);
+  height: auto;
+  transition: opacity 220ms ease;
+}
+
+.int-shot {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
+}
+
+.int-shot:hover img,
+.int-shot:focus-visible img { opacity: 0.45; }
+.int-shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+.int-fig figcaption {
+  max-width: min(var(--w, 100%), 52ch);
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.int-fig figcaption a,
+.int-note a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+/* ---- footer ----------------------------------------------------------- */
+.int-foot {
+  margin-top: calc(var(--row) * 1.4);
+  padding: 1.1rem var(--pad) 2rem;
+  border-top: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: var(--xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---- home: project index ---------------------------------------------- */
+.int-home .int-head { padding-bottom: clamp(3rem, 9vw, 8rem); }
+
+.int-unit {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  max-width: 100rem;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+  padding: 0.8rem var(--pad) 0;
+  border-top: 1px solid var(--ink);
+}
+
+.int-unit h2 {
+  margin: 0;
+  font-size: var(--t-xl);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.int-unit .int-meta { margin-left: auto; }
+
+.card { display: block; }
+
+.card img {
+  display: block;
+  width: 100%;
+  max-width: var(--w, 100%);
+  height: auto;
+  margin-bottom: 0.9rem;
+  transition: opacity 300ms ease;
+}
+
+.card-title {
+  margin: 0.25rem 0 0;
+  font-size: var(--size, var(--t-l));
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color 180ms ease;
+}
+
+.card--xl { --size: var(--t-xl); }
+.card--s  { --size: clamp(1.2rem, 1rem + 0.8vw, 1.7rem); }
+
+.card:hover img,
+.card:focus-visible img { opacity: 0.8; }
+
+.card:hover .card-title,
+.card:focus-visible .card-title,
+.int-top a:hover, .int-top a:focus-visible,
+.int-foot a:hover, .int-foot a:focus-visible,
+.int-section > summary:hover,
+.int-section > summary:focus-visible,
+.int-fig figcaption a:hover,
+.int-note a:hover { color: var(--accent); }
+
+.card:focus-visible,
+.int-section > summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+
+.int-later {
+  font-size: var(--t-l);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--faint);
+}
+
+.int-later p { margin: 0; }
+.int-later p + p { margin-top: 0.4em; }
+.int-later .int-meta { margin-bottom: 0.3rem; color: var(--faint); }

@@ -9,103 +9,48 @@
 <meta name="theme-color" content="#111010" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter+Tight:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style-int.css">
 </head>
-<body class="int int-home">
+<body>
 
-  <p class="int-top reveal">Saša Milić <span>Art &amp; Design</span></p>
+  <p class="name reveal">Saša Milić</p>
 
-  <header class="int-head reveal reveal--title">
-    <ul class="int-meta">
-      <li>City &amp; Guilds</li>
-    </ul>
-    <h1 class="int-h1">Foundation Diploma in Art &amp; Design</h1>
-  </header>
+  <div class="centre">
+    <div class="block">
 
-  <main class="reveal reveal--menu">
+      <h1 class="title reveal reveal--title">
+        <span class="title-org title-split"><span>City</span> <span>&amp;</span> <span>Guilds</span></span>
+        <span class="title-main">Foundation&middot;Diploma</span>
+        <span class="title-split"><span>Art</span> <span>&amp;</span> <span>Design</span></span>
+      </h1>
 
-    <div class="int-unit">
-      <h2>Unit 1</h2>
-      <p class="int-meta">7 projects</p>
-    </div>
+      <nav aria-label="Units">
+        <ul class="menu reveal reveal--menu">
 
-    <div class="int-grid">
+          <li>
+            <details>
+              <summary class="unit">unit 1</summary>
+              <ul class="projects">
+                <li><a class="project" href="project-one.html"><span class="project-number">i.</span><span>Drawing Week</span></a></li>
+                <li><a class="project" href="project-two.html"><span class="project-number">ii.</span><span>Research Week</span></a></li>
+                <li><a class="project" href="project-three-a.html"><span class="project-number">iii.</span><span>The Infraordinary</span></a></li>
+                <li><a class="project" href="project-four.html"><span class="project-number">iv.</span><span>Refashioned</span></a></li>
+                <li><a class="project" href="project-four-b.html"><span class="project-number">iv.</span><span>Cardboard Orchestra</span></a></li>
+                <li><a class="project" href="project-five.html"><span class="project-number">v.</span><span>Space Oddity</span></a></li>
+                <li><a class="project" href="project-six.html"><span class="project-number">vi.</span><span>Printmaking</span></a></li>
+              </ul>
+            </details>
+          </li>
 
-      <a class="card card--xl" href="project-one.html" style="--w: 2800px">
-        <img src="images/banner-drawing-week-1600.jpg"
-             srcset="images/banner-drawing-week-1600.jpg 1600w, images/banner-drawing-week-2800.jpg 2800w"
-             sizes="100vw" width="1600" height="443" fetchpriority="high"
-             alt="Detail of a charcoal drawing: thick, smudged ribbons of line looping and curling across pale paper.">
-        <p class="int-meta"><span>i.</span><span>Unit 1, Week 1</span></p>
-        <h3 class="card-title">Drawing Week</h3>
-      </a>
+          <li><span class="unit" aria-disabled="true">unit 2</span></li>
+          <li><span class="unit" aria-disabled="true">unit 3</span></li>
 
-      <a class="card card--s" href="project-two.html" style="--col: 1 / 5; --col-m: 1 / 9; --w: 1164px">
-        <img src="images/research-01-brooches-thumb.jpg"
-             srcset="images/research-01-brooches-thumb.jpg 517w, images/research-01-brooches-full.jpg 1164w"
-             sizes="(min-width: 760px) 33vw, 66vw" width="517" height="800" loading="lazy"
-             alt="Pencil and coloured-pencil studies of two dragonesque brooches and a silver brooch in dolphin form.">
-        <p class="int-meta"><span>ii.</span><span>Unit 1, Project 2</span></p>
-        <h3 class="card-title">Research Week</h3>
-      </a>
-
-      <a class="card" href="project-three-a.html" style="--col: 7 / 12; --col-m: 4 / 13; --align: end; --w: 1321px">
-        <img src="images/infra-01-grey-collage-thumb.jpg"
-             srcset="images/infra-01-grey-collage-thumb.jpg 587w, images/infra-01-grey-collage-full.jpg 1321w"
-             sizes="(min-width: 760px) 42vw, 75vw" width="587" height="800" loading="lazy"
-             alt="Collage of cut grey paper shapes on white: folded pyramids, long tapering shards, a fan of outlined wedges, a curling teardrop form and a grey disc with a black starburst at its centre.">
-        <p class="int-meta"><span>iii.</span><span>Unit 1, Week 3A</span></p>
-        <h3 class="card-title">The Infraordinary</h3>
-      </a>
-
-      <a class="card card--xl" href="project-four.html" style="--col: 1 / 8; --w: 1800px">
-        <img src="images/faggot-seam-thumb.jpg"
-             srcset="images/faggot-seam-thumb.jpg 800w, images/faggot-seam-full.jpg 1800w"
-             sizes="(min-width: 760px) 58vw, 100vw" width="800" height="667" loading="lazy"
-             alt="A collage of diagrams and textile examples showing several ways to sew a faggot seam.">
-        <p class="int-meta"><span>iv.</span><span>Unit 1, Project 4</span></p>
-        <h3 class="card-title">Refashioned</h3>
-      </a>
-
-      <a class="card card--s" href="project-four-b.html" style="--col: 9 / 13; --col-m: 3 / 13; --align: center; --w: 2337px">
-        <img src="images/banner-cardboard-orchestra-1600.jpg"
-             srcset="images/banner-cardboard-orchestra-1600.jpg 1600w, images/banner-cardboard-orchestra-2337.jpg 2337w"
-             sizes="(min-width: 760px) 33vw, 83vw" width="1600" height="527" loading="lazy"
-             alt="Detail of cardboard cut-outs: a looping S-curve and spiral of pale card taped down over a mottled grey and pink surface.">
-        <p class="int-meta"><span>iv.</span><span>Unit 1, Week 4B</span></p>
-        <h3 class="card-title">Cardboard Orchestra</h3>
-      </a>
-
-      <a class="card card--xl" href="project-five.html" style="--col: 2 / 13; --w: 2320px">
-        <img src="images/banner-space-oddity-1600.jpg"
-             srcset="images/banner-space-oddity-1600.jpg 1600w, images/banner-space-oddity-2320.jpg 2320w"
-             sizes="(min-width: 760px) 92vw, 100vw" width="1600" height="354" loading="lazy"
-             alt="Detail of a photograph: two figures blocked out in flat blue stand before floral curtains and a bright window.">
-        <p class="int-meta"><span>v.</span><span>Unit 1, Project 5</span></p>
-        <h3 class="card-title">Space Oddity</h3>
-      </a>
-
-      <a class="card" href="project-six.html" style="--col: 4 / 8; --col-m: 1 / 10; --w: 1203px">
-        <img src="images/print-001-first-print-bee-thumb.jpg"
-             srcset="images/print-001-first-print-bee-thumb.jpg 535w, images/print-001-first-print-bee-full.jpg 1203w"
-             sizes="(min-width: 760px) 33vw, 75vw" width="535" height="800" loading="lazy"
-             alt="Black-and-white etching of a bee seen from above, with large dark eyes, hatched veined wings and a striped, densely cross-hatched body, surrounded by scattered hexagonal honeycomb cells.">
-        <p class="int-meta"><span>vi.</span><span>Unit 1, Project 6</span></p>
-        <h3 class="card-title">Printmaking</h3>
-      </a>
-
-      <div class="int-later" style="--col: 9 / 13; --align: end">
-        <p class="int-meta">To come</p>
-        <p>Unit 2</p>
-        <p>Unit 3</p>
-      </div>
+        </ul>
+      </nav>
 
     </div>
-  </main>
-
-  <p class="int-foot">Saša Milić</p>
+  </div>
 
 </body>
 </html>

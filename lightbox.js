@@ -30,7 +30,7 @@
 
   // one listener for every gallery on the page
   document.addEventListener("click", function (e) {
-    var shot = e.target.closest(".gallery .shot");
+    var shot = e.target.closest(".gallery .shot, .int-shot");
     if (shot) open(shot);
   });
 

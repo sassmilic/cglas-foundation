@@ -9,8 +9,9 @@
 <meta name="theme-color" content="#111010" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter+Tight:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-int.css">
 </head>
 <body>
 
@@ -31,48 +32,35 @@
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Research</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy"></div>
-            <aside class="margin-notes" aria-label="Research notes"></aside>
-          </div>
-        </div>
+      <div class="int-grid"></div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Process</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy">
-              <ul class="gallery gallery--feature">
-                <li>
-                  <button type="button" class="shot shot--feature"
-                          data-full="images/infra-01-grey-collage-full.jpg"
-                          data-caption="">
-                    <img src="images/infra-01-grey-collage-thumb.jpg" width="587" height="800"
-                         loading="lazy" decoding="async"
-                         alt="Collage of cut grey paper shapes on white: folded pyramids, long tapering shards, a fan of outlined wedges, a curling teardrop form and a grey disc with a black starburst at its centre.">
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <aside class="margin-notes" aria-label="Process notes"></aside>
-          </div>
-        </div>
+      <div class="int-grid">
+
+        <figure class="int-fig" style="--col: 3 / 9; --col-m: 1 / 12; --w: 1321px">
+          <button type="button" class="int-shot"
+                  data-full="images/infra-01-grey-collage-full.jpg"
+                  data-caption="">
+            <img src="images/infra-01-grey-collage-thumb.jpg"
+                 srcset="images/infra-01-grey-collage-thumb.jpg 587w, images/infra-01-grey-collage-full.jpg 1321w"
+                 sizes="(min-width: 760px) 50vw, 92vw"
+                 width="587" height="800" loading="lazy" decoding="async"
+                 alt="Collage of cut grey paper shapes on white: folded pyramids, long tapering shards, a fan of outlined wedges, a curling teardrop form and a grey disc with a black starburst at its centre.">
+          </button>
+        </figure>
+
+      </div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Reflection + Evaluation</h2></summary>
-        <div class="section-layout">
-          <div class="section-row">
-            <div class="section-copy"></div>
-            <aside class="margin-notes" aria-label="Reflection and evaluation notes"></aside>
-          </div>
-        </div>
+      <div class="int-grid"></div>
       </details>
     </section>
   </main>

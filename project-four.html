@@ -9,8 +9,9 @@
 <meta name="theme-color" content="#111010" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter+Tight:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-int.css">
 </head>
 <body>
 
@@ -26,93 +27,84 @@
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Research</h2></summary>
-        <div class="section-layout">
-        <div class="section-row">
-          <div class="section-copy">
-            <h3 class="section-label">Quick Facts</h3>
-            <ul class="bullet-list">
-              <li>10% of global carbon emissions come from fashion production.</li>
-              <li>85% of textiles are discarded each year.</li>
-              <li>Fashion is the second-largest industrial consumer of water.</li>
-              <li>Synthetic clothing releases huge quantities of microplastics.</li>
-              <li>Textile dyeing is a major source of water pollution.</li>
-            </ul>
-            <p class="source">Source: <cite><a href="https://earth.org/fast-fashions-detrimental-effect-on-the-environment/">Earth.Org’s article on fast fashion’s environmental impact</a></cite></p>
-          </div>
-          <aside class="margin-notes" aria-label="Quick Facts notes"></aside>
+      <div class="int-grid">
+
+        <h3 class="int-h3">Quick Facts</h3>
+
+        <div class="int-say" style="--col: 1 / 11">
+          <ul class="int-facts">
+            <li>10% of global carbon emissions come from fashion production.</li>
+            <li>85% of textiles are discarded each year.</li>
+            <li>Fashion is the second-largest industrial consumer of water.</li>
+            <li>Synthetic clothing releases huge quantities of microplastics.</li>
+            <li>Textile dyeing is a major source of water pollution.</li>
+          </ul>
         </div>
-        <div class="section-row">
-          <div class="section-copy">
-            <h3 class="section-label">Artist: Chloe Baines</h3>
-            <figure class="epigraph">
-              <blockquote cite="https://www.dezeen.com/2019/08/12/chloe-baines-in-tents-fashion-design/">
-                <p>“I have always been very critical of using lots of colour in my work ... But in utilising the existing colours of the tents I have come to really enjoy the vibrancy ... after a lot of experimentation, I stopped trying to change too much of the existing finishes within each tent and started allowing their existing elements to inspire new designs.”</p>
-              </blockquote>
-              <figcaption>Chloe Baines, <cite><a href="https://www.dezeen.com/2019/08/12/chloe-baines-in-tents-fashion-design/">interview with Dezeen</a></cite></figcaption>
-            </figure>
-            <ul class="gallery gallery--feature">
-              <li>
-                <button type="button" class="shot shot--feature"
-                        data-full="images/chloe-baines-full.jpg"
-                        data-caption="Textile and fashion research image quilt by Chloe Baines.">
-                  <img src="images/chloe-baines-thumb.jpg" width="800" height="640"
-                       loading="lazy" decoding="async"
-                       alt="A quilt of close-up photographs showing Chloe Baines’s colourful woven, laced, and repurposed textile garments.">
-                </button>
-              </li>
-            </ul>
-          </div>
-          <aside class="margin-notes" aria-label="Chloe Baines notes">
-            <p class="marginnote">Baines works with the material rather than against it, allowing its existing character to remain legible.</p>
-          </aside>
+
+        <p class="int-note" style="--col: 1 / 5; --col-m: 1 / 13">Source: <cite><a href="https://earth.org/fast-fashions-detrimental-effect-on-the-environment/">Earth.Org’s article on fast fashion’s environmental impact</a></cite></p>
+
+        <h3 class="int-h3">Artist: Chloe Baines</h3>
+
+        <figure class="int-quote" style="--col: 1 / 11">
+          <blockquote cite="https://www.dezeen.com/2019/08/12/chloe-baines-in-tents-fashion-design/">
+            <p>“I have always been very critical of using lots of colour in my work ... But in utilising the existing colours of the tents I have come to really enjoy the vibrancy ... after a lot of experimentation, I stopped trying to change too much of the existing finishes within each tent and started allowing their existing elements to inspire new designs.”</p>
+          </blockquote>
+          <figcaption>Chloe Baines, <cite><a href="https://www.dezeen.com/2019/08/12/chloe-baines-in-tents-fashion-design/">interview with Dezeen</a></cite></figcaption>
+        </figure>
+
+        <aside class="int-note" style="--col: 1 / 4; --col-m: 1 / 10; --align: end">
+          <p>Baines works with the material rather than against it, allowing its existing character to remain legible.</p>
+        </aside>
+
+        <figure class="int-fig" style="--col: 5 / 13; --w: 1800px">
+          <button type="button" class="int-shot"
+                  data-full="images/chloe-baines-full.jpg"
+                  data-caption="Textile and fashion research image quilt by Chloe Baines.">
+            <img src="images/chloe-baines-thumb.jpg"
+                 srcset="images/chloe-baines-thumb.jpg 800w, images/chloe-baines-full.jpg 1800w"
+                 sizes="(min-width: 760px) 66vw, 100vw"
+                 width="800" height="640" loading="lazy" decoding="async"
+                 alt="A quilt of close-up photographs showing Chloe Baines’s colourful woven, laced, and repurposed textile garments.">
+          </button>
+        </figure>
+
+        <h3 class="int-h3">Faggot Seam</h3>
+
+        <figure class="int-fig" style="--col: 1 / 8; --w: 1800px">
+          <button type="button" class="int-shot"
+                  data-full="images/faggot-seam-full.jpg"
+                  data-caption="Faggot seam stitch diagrams and textile examples.">
+            <img src="images/faggot-seam-thumb.jpg"
+                 srcset="images/faggot-seam-thumb.jpg 800w, images/faggot-seam-full.jpg 1800w"
+                 sizes="(min-width: 760px) 58vw, 100vw"
+                 width="800" height="667" loading="lazy" decoding="async"
+                 alt="A collage of diagrams and textile examples showing several ways to sew a faggot seam.">
+          </button>
+        </figure>
+
+        <div class="int-say" style="--col: 9 / 13; --align: end">
+          <p>When researching relatively simple ways to stitch fabric together -- because I don't have access to a sewing machine right now -- I came across faggot stitching. This led me to deciding to make embroidery a very visible and central element of the final design.</p>
         </div>
-        <div class="section-row">
-          <div class="section-copy">
-            <h3 class="section-label">Faggot Seam</h3>
-            <ul class="gallery gallery--feature">
-              <li>
-                <button type="button" class="shot shot--feature"
-                        data-full="images/faggot-seam-full.jpg"
-                        data-caption="Faggot seam stitch diagrams and textile examples.">
-                  <img src="images/faggot-seam-thumb.jpg" width="800" height="667"
-                       loading="lazy" decoding="async"
-                       alt="A collage of diagrams and textile examples showing several ways to sew a faggot seam.">
-                </button>
-              </li>
-            </ul>
-          </div>
-          <aside class="margin-notes" aria-label="Faggot seam notes">
-            <p class="marginnote">When researching relatively simple ways to stitch fabric together -- because I don't have access to a sewing machine right now -- I came across faggot stitching. This led me to deciding to make embroidery a very visible and central element of the final design. </p>
-          </aside>
-        </div>
-        </div>
+
+      </div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Process</h2></summary>
-        <div class="section-layout">
-        <div class="section-row">
-          <div class="section-copy">
-            <p class="sub">(planning, development, outcomes)</p>
-          </div>
-          <aside class="margin-notes" aria-label="Process notes"></aside>
-        </div>
-        </div>
+      <div class="int-grid">
+
+        <p class="int-sub">(planning, development, outcomes)</p>
+
+      </div>
       </details>
     </section>
 
     <section>
       <details class="project-section">
         <summary><h2 class="project-section-heading">Reflection + Evaluation</h2></summary>
-        <div class="section-layout">
-        <div class="section-row">
-          <div class="section-copy">
-          </div>
-          <aside class="margin-notes" aria-label="Reflection and evaluation notes"></aside>
-        </div>
-        </div>
+      <div class="int-grid"></div>
       </details>
     </section>
 

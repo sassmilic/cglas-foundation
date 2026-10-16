@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Editorial preview, after It's Nice That features: a large grotesk for
+   headlines and reading, the existing mono for metadata and captions, and a
+   12-column grid where every image and text block picks its own width, so
+   pages mix big and small images and big and small text.
+   Loaded after style.css. Only the contents of a page's sections use it
+   (<div class="int-grid"> in place of .section-layout), so pages look the
+   same as before while the sections are collapsed.
+   ========================================================================== */
+
+:root {
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* type scale: each step is a clear jump from the last */
+  --t-body: clamp(1.06rem, 0.98rem + 0.35vw, 1.3rem);
+  --t-l:    clamp(1.45rem, 1.05rem + 1.7vw, 2.6rem);
+  --t-xl:   clamp(2.3rem, 1.1rem + 4.6vw, 5.6rem);
+
+  --gap: clamp(0.9rem, 2vw, 1.75rem);
+  --row: clamp(3rem, 7vw, 7rem);
+}
+
+/* ---- the 12-column grid ----------------------------------------------- */
+/* Children say where they sit with --col (desktop) and --col-m (phone),
+   both in 12ths, e.g. style="--col: 2 / 6; --col-m: 1 / 9". */
+.int-grid {
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.5;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: var(--row);
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+/* same spacing under the section heading as .section-layout */
+.project-section > summary + .int-grid {
+  margin-top: clamp(1.6rem, 4svh, 2.4rem);
+  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
+}
+
+.int-grid:empty { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-section[open] > .int-grid {
+    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
+  }
+}
+
+.int-grid > * {
+  grid-column: var(--col, 1 / -1);
+  align-self: var(--align, start);
+  min-width: 0;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .int-grid { row-gap: calc(var(--row) * 0.85); }
+  .int-grid > * { grid-column: var(--col-m, 1 / -1); }
+}
+
+/* subheads: an artist's name, set mid-size */
+.int-h3 {
+  font-size: var(--t-l);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--rule);
+}
+
+.int-h3 cite { font-style: italic; }
+
+.int-sub {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--dim);
+}
+
+/* ---- running text ----------------------------------------------------- */
+.int-prose p { margin: 0; max-width: 36em; }
+.int-prose p + p { margin-top: 1.1em; }
+
+/* side notes: small mono, like a margin */
+.int-note {
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.6rem;
+}
+
+.int-note p { margin: 0; }
+.int-note p + p { margin-top: 0.9em; }
+
+/* a note promoted to large type beside a small image */
+.int-say {
+  font-size: var(--t-l);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.int-say p { margin: 0; }
+.int-say p + p { margin-top: 0.8em; }
+
+.int-prose ul { max-width: 36em; margin: 0; padding-left: 1.2em; }
+.int-prose li + li { margin-top: 1.1em; }
+
+/* a list of short facts, one per ruled line, in large type */
+.int-facts { margin: 0; padding: 0; list-style: none; }
+.int-facts li { padding: 0.3em 0; border-top: 1px solid var(--rule); }
+
+/* quotations from artists: large type, mono attribution */
+.int-quote blockquote { margin: 0; }
+
+.int-quote blockquote p {
+  margin: 0;
+  font-size: var(--t-l);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.int-quote figcaption {
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--dim);
+}
+
+.int-quote figcaption a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+/* pull quotes: the largest words on the page after the headline */
+.int-pull {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.int-pull p { margin: 0; }
+.int-pull p::before { content: "“"; margin-left: -0.42em; }
+.int-pull p::after  { content: "”"; }
+
+/* ---- figures ---------------------------------------------------------- */
+/* --w is the larger file's width: images fill their columns but are never
+   shown larger than the file itself. */
+.int-fig img {
+  display: block;
+  width: 100%;
+  max-width: var(--w, 100%);
+  height: auto;
+  transition: opacity 220ms ease;
+}
+
+.int-shot {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
+}
+
+.int-shot:hover img,
+.int-shot:focus-visible img { opacity: 0.45; }
+.int-shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+.int-fig figcaption {
+  max-width: min(var(--w, 100%), 52ch);
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.int-fig figcaption a,
+.int-note a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+.int-fig figcaption a:hover,
+.int-quote figcaption a:hover,
+.int-note a:hover { color: var(--accent); }
+

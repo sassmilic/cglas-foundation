@@ -199,3 +199,13 @@
 .int-quote figcaption a:hover,
 .int-note a:hover { color: var(--accent); }
 
+
+/* a grid of equal-size tiles inside one figure (Infraordinary sketches) */
+.int-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

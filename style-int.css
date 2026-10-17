@@ -113,6 +113,41 @@
 .int-prose li + li { margin-top: 1.1em; }
 
 /* a list of short facts, one per ruled line, in large type */
+/* a numbered list set like source code (Drawing Week rules) */
+.int-code {
+  font-family: var(--mono);
+  font-size: var(--sm);
+  font-weight: 400;
+  line-height: 1.8;
+  border-left: 1px solid var(--rule);
+  padding-left: 1.1rem;
+}
+
+.int-code p { margin: 0; }
+.int-code .int-code-title { margin-bottom: 0.4em; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.int-code-head { color: var(--dim); }
+.int-code .int-code-gap { margin: 0.9em 0 0.4em; }
+
+.int-code ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: line;
+}
+
+.int-code li {
+  counter-increment: line;
+  display: grid;
+  grid-template-columns: 3ch 1fr;
+  column-gap: 1.4ch;
+}
+
+.int-code li::before {
+  content: counter(line, decimal-leading-zero);
+  color: var(--dim);
+  text-align: right;
+}
+
 .int-facts { margin: 0; padding: 0; list-style: none; }
 .int-facts li { padding: 0.3em 0; border-top: 1px solid var(--rule); }
 
@@ -162,6 +197,12 @@
   max-width: var(--w, 100%);
   height: auto;
   transition: opacity 220ms ease;
+}
+
+/* a thin keyline round drawings on white paper (Drawing as Process) */
+.int-fig--framed img {
+  box-sizing: border-box;
+  border: 2px solid #000;
 }
 
 .int-shot {

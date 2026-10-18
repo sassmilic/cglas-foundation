@@ -376,6 +376,8 @@ details[open] > summary.unit::after { content: "–"; }
   margin-top: 0.55rem;
 }
 
+.bullet-list .bullet-list { margin-top: 0.55rem; }
+
 .doc .source {
   margin-top: 1.5rem;
   font-size: var(--xs);

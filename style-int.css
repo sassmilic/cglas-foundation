@@ -191,7 +191,8 @@
 /* ---- figures ---------------------------------------------------------- */
 /* --w is the larger file's width: images fill their columns but are never
    shown larger than the file itself. */
-.int-fig img {
+.int-fig img,
+.int-fig video {
   display: block;
   width: 100%;
   max-width: var(--w, 100%);

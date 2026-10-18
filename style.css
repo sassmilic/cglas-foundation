@@ -18,7 +18,7 @@
   --weight-body: 300;
   --weight-label: 400;
 
-  --menu: 44ch;
+  --menu: 29ch;
   --measure: 62ch;
   --focus-offset: 0.25rem;
 }
@@ -196,9 +196,6 @@ details[open] > summary.unit::after { content: "–"; }
 }
 
 .project--inactive { color: var(--faint); }
-
-/* long names ("Discipline — Title") break at the dash, not mid-phrase */
-.project .nowrap { white-space: nowrap; }
 
 .projects a.project {
   width: calc(100% + 3ch);

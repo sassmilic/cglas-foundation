@@ -24,11 +24,15 @@
       <h1>Unit 1, Project 2</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-research-week-1600.jpg"
-           srcset="images/banner-research-week-1600.jpg 1600w, images/banner-research-week-2800.jpg 2800w"
-           sizes="100vw" width="1600" height="519" fetchpriority="high" decoding="async"
-           alt="Detail of a pencil drawing: a symmetrical ornamental design of scrolls, circles and leaf shapes laid out along a faint centre line.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABQAwCdASogAAoAPrVInkmnJCKhMAgA4BaJaQAAex/8KSzfgAD+77jtXaFfn0BNuFjWB15pGNZU4vtxoSRh3G9J2PkMpJwwIyCk54TGakjOGk7B4AX3X0YYNaW0mMFkbJWeW0X9YY46BAAA)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-research-week-800.avif 800w, images/banner-research-week-1600.avif 1600w, images/banner-research-week-2800.avif 2800w">
+        <img src="images/banner-research-week-1600.jpg"
+             srcset="images/banner-research-week-800.jpg 800w, images/banner-research-week-1600.jpg 1600w, images/banner-research-week-2800.jpg 2800w"
+             sizes="100vw" width="1600" height="519" fetchpriority="high" decoding="async"
+             alt="Detail of a pencil drawing: a symmetrical ornamental design of scrolls, circles and leaf shapes laid out along a faint centre line.">
+      </picture>
     </figure>
 
     <section>
@@ -246,6 +250,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

@@ -248,7 +248,17 @@ details[open] > summary.unit::after { content: "–"; }
    The height is held between a minimum and maximum: narrow screens crop to
    the centre rather than shrinking to a sliver. */
 .banner {
+  position: relative;
   margin: 0 0 clamp(2.5rem, 8svh, 4rem);
+}
+
+/* Until the image arrives, the page's inline 32px placeholder (--lqip) shows
+   through as hard-edged pixels, cropped the same way. banner.js then refines
+   it, block by block, into the real image. */
+.banner picture {
+  display: block;
+  background: var(--lqip) center / cover no-repeat;
+  image-rendering: pixelated;
 }
 
 .banner img {
@@ -260,6 +270,15 @@ details[open] > summary.unit::after { content: "–"; }
   max-height: 34rem;
   object-fit: cover;
   object-position: center;
+  image-rendering: auto;   /* pixelated is inherited; only the placeholder wants it */
+}
+
+.banner canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* eyebrow is set exactly like the title, just on the other side of the line;

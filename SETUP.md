@@ -51,6 +51,7 @@ project-six.html      unit 1 / project 6 — Printmaking
 project-seven.html    unit 1 / project 7 — 3D Design — Diorama
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
+banner.js         banner opens as big pixels and refines into the image (WebGL2)
 images/           research images; -thumb.jpg in the grid, -full.jpg enlarged
 404.html          not-found page
 .nojekyll         serve files as-is, no Jekyll build
@@ -67,6 +68,25 @@ sips -s format jpeg -s formatOptions 65 -Z 1800 ~/Downloads/IMG_XXXX.HEIC --out 
 then copy one `<li>` block in the gallery, updating `data-full`, `data-caption`,
 `src`, `alt`, and the `width`/`height` (read them with `sips -g pixelWidth -g
 pixelHeight images/<slug>-thumb.jpg`).
+
+### Banners
+
+Each banner ships as AVIF (with JPEG fallback) at 800w, 1600w and its full
+width, plus a 32px placeholder inlined on the page as `--lqip`. From the
+largest JPEG (`images/banner-<name>-<max>.jpg`):
+
+```sh
+for w in 800 1600 <max>; do
+  magick images/banner-<name>-<max>.jpg -resize ${w}x -strip /tmp/b.png
+  avifenc -q 45 -s 4 /tmp/b.png images/banner-<name>-$w.avif
+  [ -f images/banner-<name>-$w.jpg ] || magick /tmp/b.png -quality 82 images/banner-<name>-$w.jpg
+done
+magick images/banner-<name>-<max>.jpg -resize 32x -strip -quality 60 webp:- | base64
+```
+
+Paste the base64 into `style="--lqip: url(data:image/webp;base64,…)"` on the
+`<figure class="banner">`, copy the `<picture>` markup from any project page,
+and add `<script src="banner.js" defer></script>` before `</body>`.
 
 Unit 1 uses a native `<details>`, so the expansion works with no JavaScript.
 Units 2 and 3 are inert `<span>`s — to publish one, give it the same

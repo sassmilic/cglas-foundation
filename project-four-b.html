@@ -23,11 +23,15 @@
       <h1>Unit 1, Week 4B</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-cardboard-orchestra-1600.jpg"
-           srcset="images/banner-cardboard-orchestra-1600.jpg 1600w, images/banner-cardboard-orchestra-2337.jpg 2337w"
-           sizes="100vw" width="1600" height="527" fetchpriority="high" decoding="async"
-           alt="Detail of cardboard cut-outs: a looping S-curve and spiral of pale card taped down over a mottled grey and pink surface.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAACwBACdASogAAsAPrVKoUqnJCMhsAgA4BaJZwDG9YxO7ZQdQt+VHJ3ljxl5dUSAAPzLFBrKWkMea85Dst2W7Zp94ovAW5f24WAp/csC1f8mIOlDRgduzgdyGj8vqEgz4R5iA/kITk4Szc+KnGNcZXpfXI5nRgQ2lRFjDQGmngHSCVtjYN5rc/cdTbIBIyylbqGMeVZZIZfkexfNOGlvXPINTMPx3dcAm9FV7S15X03B/dXgiy5NAXtI+sGIEIJ7tjG9GdbxAAA=)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-cardboard-orchestra-800.avif 800w, images/banner-cardboard-orchestra-1600.avif 1600w, images/banner-cardboard-orchestra-2337.avif 2337w">
+        <img src="images/banner-cardboard-orchestra-1600.jpg"
+             srcset="images/banner-cardboard-orchestra-800.jpg 800w, images/banner-cardboard-orchestra-1600.jpg 1600w, images/banner-cardboard-orchestra-2337.jpg 2337w"
+             sizes="100vw" width="1600" height="527" fetchpriority="high" decoding="async"
+             alt="Detail of cardboard cut-outs: a looping S-curve and spiral of pale card taped down over a mottled grey and pink surface.">
+      </picture>
     </figure>
 
     <section>
@@ -143,5 +147,6 @@
 
   <p class="reveal reveal--footer"><a class="back" href="./">← index</a></p>
 
+  <script src="banner.js" defer></script>
 </body>
 </html>

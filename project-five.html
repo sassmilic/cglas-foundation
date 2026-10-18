@@ -24,11 +24,15 @@
       <h1>Unit 1, Project 5</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-space-oddity-1600.jpg"
-           srcset="images/banner-space-oddity-1600.jpg 1600w, images/banner-space-oddity-2320.jpg 2320w"
-           sizes="100vw" width="1600" height="354" fetchpriority="high" decoding="async"
-           alt="Detail of a photograph: two figures blocked out in flat blue stand before floral curtains and a bright window.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACQAgCdASogAAcAAoBCJZgCdMoAEm/9SESKbePkAAD+2Armu8ZlaPif/emB7IfvhA++BZcVWiO0a4H7QXnzkOKTJ3DryJ+ItY99zV7f01tlFg2gJC0gUMNOIK67I4y6LeZQBK8z+k/Evh565Gs5/O3ORNQEn/gyZV3dytteWdIG4YfxQePW8GA6waUK/K8VM2Gkztsi43Iu5G2nMuvit5/gSseru9tqCEyxrFi8AAA=)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-space-oddity-800.avif 800w, images/banner-space-oddity-1600.avif 1600w, images/banner-space-oddity-2320.avif 2320w">
+        <img src="images/banner-space-oddity-1600.jpg"
+             srcset="images/banner-space-oddity-800.jpg 800w, images/banner-space-oddity-1600.jpg 1600w, images/banner-space-oddity-2320.jpg 2320w"
+             sizes="100vw" width="1600" height="354" fetchpriority="high" decoding="async"
+             alt="Detail of a photograph: two figures blocked out in flat blue stand before floral curtains and a bright window.">
+      </picture>
     </figure>
 
     <section>
@@ -111,6 +115,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

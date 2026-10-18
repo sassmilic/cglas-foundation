@@ -24,11 +24,15 @@
       <h1>Unit 1, Project 6</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-printmaking-pear-1600.jpg"
-           srcset="images/banner-printmaking-pear-1600.jpg 1600w, images/banner-printmaking-pear-2800.jpg 2800w"
-           sizes="100vw" width="1600" height="393" fetchpriority="high" decoding="async"
-           alt="Close-up of the chine-collé pear from the still-life etching: torn orange, red and yellow tissue paper under black cross-hatching, among grey folds of cloth.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAABwBACdASogAAgAPrVMnkmnJKKhMAgA4BaJbACdAYumtdG20gY1LcMnCQvKAAD+uE01dYfX/Ub1knQ75V4kwilzqw3Mn30RSaH3zu4L8IEGuBqo9nv69vvzN4Fjkc6GRxFOI5C7bdOmyRjm8kfYT1uR+ZCP4IT9esOTZ+Wux9HYp9fz5F4i7/xV8tfm8fJ/43W2/GMVrRhUbpXe6Pc43FlxY/RzteIr9TYexR3LVWkXq+4Cc+gWNAAA)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-printmaking-pear-800.avif 800w, images/banner-printmaking-pear-1600.avif 1600w, images/banner-printmaking-pear-2800.avif 2800w">
+        <img src="images/banner-printmaking-pear-1600.jpg"
+             srcset="images/banner-printmaking-pear-800.jpg 800w, images/banner-printmaking-pear-1600.jpg 1600w, images/banner-printmaking-pear-2800.jpg 2800w"
+             sizes="100vw" width="1600" height="393" fetchpriority="high" decoding="async"
+             alt="Close-up of the chine-collé pear from the still-life etching: torn orange, red and yellow tissue paper under black cross-hatching, among grey folds of cloth.">
+      </picture>
     </figure>
 
     <!-- ================================================================ -->
@@ -485,6 +489,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

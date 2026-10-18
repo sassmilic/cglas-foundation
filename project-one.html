@@ -23,11 +23,15 @@
       <h1>Unit 1, Week 1</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-drawing-week-1600.jpg"
-           srcset="images/banner-drawing-week-1600.jpg 1600w, images/banner-drawing-week-2800.jpg 2800w"
-           sizes="100vw" width="1600" height="443" fetchpriority="high" decoding="async"
-           alt="Detail of a charcoal drawing: thick, smudged ribbons of line looping and curling across pale paper.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAADQAwCdASogAAkAPrVKn0onJCKhsAgA4BaJaQATwBQQA8AnzatxiggA/l87gyizLICFHYKTOcf/vUVlWTtR1UDAEehpuZTDvyCajGkbjEZg6u++1V6HAL2WPEDfhYq810GIhhcCDZXY+DlWT/aAW9IBqn8MXV9zoDIdPpPUZrKMiD11jf4plXxP0/97p4xxwAA=)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-drawing-week-800.avif 800w, images/banner-drawing-week-1600.avif 1600w, images/banner-drawing-week-2800.avif 2800w">
+        <img src="images/banner-drawing-week-1600.jpg"
+             srcset="images/banner-drawing-week-800.jpg 800w, images/banner-drawing-week-1600.jpg 1600w, images/banner-drawing-week-2800.jpg 2800w"
+             sizes="100vw" width="1600" height="443" fetchpriority="high" decoding="async"
+             alt="Detail of a charcoal drawing: thick, smudged ribbons of line looping and curling across pale paper.">
+      </picture>
     </figure>
 
     <section>
@@ -499,6 +503,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

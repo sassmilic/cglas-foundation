@@ -23,11 +23,15 @@
       <h1>Unit 1, Project 7</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-diorama-1600.jpg"
-           srcset="images/banner-diorama-1600.jpg 1600w, images/banner-diorama-2800.jpg 2800w"
-           sizes="100vw" width="1600" height="345" fetchpriority="high" decoding="async"
-           alt="Detail of the diorama from above: variegated green and yellow leaves of the mini tree over the yellow and green arc and torn brown paper, beside the grey and white marble checkered floor.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAACQBQCdASogAAcAPrVMoUqnJCMhsAgA4BaJbAC/cUE4B9f+YgawB5AA9g5XPle/je6omCbjAAD+3j6cPYqWsPS8/km+yznG1f3Nr9bCXfnXLbC3Y1q//8X0zkcBR3iwgdsyWJSbX4r0zxZvSBWv5Mi+jjVb/xTF1Obt5OP3posrjX9wEBO8Fv27fBfq00MOKPV/9LGoCi7kgrUhDrAW3q/VgnRXtd/6MWyOwQVG6OUxtL5mxvTwYT7yIdIS6fL4jpChgMGS/rXwbXbmu/f8Iyn4r+NV8yv25v0ZFEN4AAA=)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-diorama-800.avif 800w, images/banner-diorama-1600.avif 1600w, images/banner-diorama-2800.avif 2800w">
+        <img src="images/banner-diorama-1600.jpg"
+             srcset="images/banner-diorama-800.jpg 800w, images/banner-diorama-1600.jpg 1600w, images/banner-diorama-2800.jpg 2800w"
+             sizes="100vw" width="1600" height="345" fetchpriority="high" decoding="async"
+             alt="Detail of the diorama from above: variegated green and yellow leaves of the mini tree over the yellow and green arc and torn brown paper, beside the grey and white marble checkered floor.">
+      </picture>
     </figure>
 
     <section>
@@ -341,6 +345,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

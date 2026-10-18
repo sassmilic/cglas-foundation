@@ -23,10 +23,15 @@
       <h1>Unit 1, Week 3A</h1>
     </header>
 
-    <figure class="banner">
-      <img src="images/banner-infraordinary-1343.jpg"
-           width="1343" height="441" fetchpriority="high" decoding="async"
-           alt="Detail of a cut-paper collage: grey paper segments radiating from a black centre, outlined in black and white.">
+    <figure class="banner" style="--lqip: url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAAAwBACdASogAAsAPrVInkmnJCKhMAgA4BaJaQAD5UGUKcLH1NH/oRZ9mAAA/vHneiTtU0idNt7vwGphrHrDFP3yTxa2wH2Yu/mL5hzdxlz6g4AyCha10m0tvAs5Ygdgp7msH/M5OR+Wb+Bj1v0lSqmPnyXgjsPf94q9Ab7Ng+t9u7mJGI7SilluqaeDTputtA5luPOF35D/bNVeLgUZL8HU8E7TO+ma/FzLq4nw8eZuqvxC4Fzb9AAA)">
+      <picture>
+        <source type="image/avif" sizes="100vw"
+                srcset="images/banner-infraordinary-800.avif 800w, images/banner-infraordinary-1343.avif 1343w">
+        <img src="images/banner-infraordinary-1343.jpg"
+             srcset="images/banner-infraordinary-800.jpg 800w, images/banner-infraordinary-1343.jpg 1343w"
+             sizes="100vw" width="1343" height="441" fetchpriority="high" decoding="async"
+             alt="Detail of a cut-paper collage: grey paper segments radiating from a black centre, outlined in black and white.">
+      </picture>
     </figure>
 
     <section>
@@ -354,6 +359,7 @@
     </figure>
   </div>
 
+  <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
 
 </body>

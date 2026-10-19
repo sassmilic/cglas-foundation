@@ -34,14 +34,14 @@
       </picture>
     </figure>
 
-    <section>
+    <section id="research">
       <details class="project-section">
         <summary><h2 class="project-section-heading">Research</h2></summary>
       <div class="int-grid"></div>
       </details>
     </section>
 
-    <section>
+    <section id="process">
       <details class="project-section">
         <summary><h2 class="project-section-heading">Process</h2></summary>
       <div class="int-grid">
@@ -137,7 +137,7 @@
       </details>
     </section>
 
-    <section>
+    <section id="reflection">
       <details class="project-section">
         <summary><h2 class="project-section-heading">Reflection + Evaluation</h2></summary>
       <div class="int-grid"></div>
@@ -150,6 +150,17 @@
     <a class="next" href="project-five.html" rel="next">next: Fine Art 2D →</a>
   </p>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+       aria-label="Enlarged image" hidden>
+    <button type="button" class="lightbox-close">close</button>
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+  </div>
+
   <script src="banner.js" defer></script>
+  <script src="lightbox.js" defer></script>
+  <script src="sections.js" defer></script>
 </body>
 </html>

@@ -197,6 +197,40 @@ details[open] > summary.unit::after { content: "–"; }
 
 .projects li { padding: 0.12rem 0; }
 
+/* inside unit 1: read the projects one by one, or one stage across them all */
+.view-switch {
+  margin: 0.4rem 0 0;
+  padding-left: 9ch;               /* lines up with the project names: 3ch indent + 5ch number + 1ch gap */
+  font-size: var(--sm);
+  color: var(--faint);
+}
+
+.view-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.view-switch label {
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.view-switch label:hover,
+.view-switch input:focus-visible + label { color: var(--accent); }
+
+.view-switch input:checked + label {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* hidden by default, so a browser without :has() just shows the projects */
+.projects--by-stage { display: none; }
+details:has(#u1-by-stage:checked) .projects--by-stage { display: block; }
+details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
+
 .project {
   display: inline-grid;
   grid-template-columns: 5ch 1fr auto;

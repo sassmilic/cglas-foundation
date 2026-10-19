@@ -288,3 +288,80 @@
 }
 
 .int-strip-fig figcaption { text-align: right; max-width: none; }
+
+/* ---- reading across sections and projects ------------------------------ */
+/* "expand all" above a project's sections (sections.js) */
+.expand-bar {
+  margin: 0 0 0.4rem;
+  padding: 0 var(--pad);
+  text-align: right;
+}
+
+.expand-all {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+/* stage pages: one section from every project (stages.js) */
+.stage-nav {
+  margin: 0 0 clamp(1.6rem, 4svh, 2.4rem);
+  padding: 0 var(--pad);
+  font-family: var(--mono);
+  font-size: var(--xs);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+
+.stage-nav a { transition: color 180ms ease; }
+.stage-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-underline-offset: 0.25em; }
+
+.stage-project > h2 { margin: 0; }
+
+.stage-project > h2 a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 2rem;
+  font-size: var(--md);
+  font-weight: var(--weight-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.stage-unit { color: var(--dim); }
+
+.stage-project > h2 + .int-grid {
+  margin-top: clamp(1.6rem, 4svh, 2.4rem);
+  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
+}
+
+.stage-empty {
+  margin: 0.9rem 0 1.4rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--faint);
+}
+
+.expand-all:hover, .expand-all:focus-visible,
+.stage-nav a:hover, .stage-nav a:focus-visible,
+.stage-project > h2 a:hover, .stage-project > h2 a:focus-visible {
+  color: var(--accent);
+}
+
+.expand-all:focus-visible,
+.stage-nav a:focus-visible,
+.stage-project > h2 a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: var(--focus-offset);
+}
+
+#stage > .stage-empty { padding: 0 var(--pad); }

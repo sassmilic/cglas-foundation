@@ -31,7 +31,12 @@
           <li>
             <details>
               <summary class="unit">unit 1</summary>
-              <ul class="projects">
+              <p class="view-switch">
+                <input type="radio" name="u1-view" id="u1-by-project" checked><label for="u1-by-project">by project</label>
+                <span aria-hidden="true">·</span>
+                <input type="radio" name="u1-view" id="u1-by-stage"><label for="u1-by-stage">by stage</label>
+              </p>
+              <ul class="projects projects--by-project">
                 <li><a class="project" href="project-one.html"><span class="project-number">i.</span><span>Drawing Week</span></a></li>
                 <li><a class="project" href="project-two.html"><span class="project-number">ii.</span><span>Research</span></a></li>
                 <li><a class="project" href="project-three-a.html"><span class="project-number">iii.</span><span>Visual Communication</span></a></li>
@@ -41,6 +46,11 @@
                 <li><a class="project" href="project-seven.html"><span class="project-number">vi.</span><span>3D Design</span></a></li>
                 <li><a class="project" href="project-eight.html"><span class="project-number">vii.</span><span>Screenprinting</span></a></li>
                 <li><a class="project" href="project-six.html"><span class="project-number">viii.</span><span>Print Making</span></a></li>
+              </ul>
+              <ul class="projects projects--by-stage">
+                <li><a class="project" href="research.html"><span class="project-number">i.</span><span>Research</span></a></li>
+                <li><a class="project" href="process.html"><span class="project-number">ii.</span><span>Process</span></a></li>
+                <li><a class="project" href="reflection.html"><span class="project-number">iii.</span><span>Reflection</span></a></li>
               </ul>
             </details>
           </li>

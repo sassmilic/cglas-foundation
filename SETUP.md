@@ -52,6 +52,11 @@ project-seven.html    unit 1 / project 6 — 3D Design — Diorama
 project-eight.html    unit 1 / project 7 — Screenprinting
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
+sections.js       project pages: "expand all", and #research / #process / #reflection open that section
+research.html     every project's Research in one page (index → unit 1 → "by stage")
+process.html      … every Process (all three are filled in by stages.js)
+reflection.html   … every Reflection + Evaluation
+stages.js         fetches the project pages listed in index.html and gathers one section from each
 banner.js         banner opens as big pixels and refines into the image (WebGL2)
 images/           research images; -thumb.jpg in the grid, -full.jpg enlarged
 404.html          not-found page

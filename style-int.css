@@ -276,7 +276,7 @@
 
 .int-strip img {
   width: auto;
-  height: clamp(2.5rem, 6.5vw, 6rem);
+  height: clamp(5rem, 13vw, 12rem);
 }
 
 .int-strip .ref-no {

@@ -258,3 +258,33 @@
 @media (max-width: 760px) {
   .int-tiles--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* a row of small prints, all the same height, lined up on the right
+   (Printmaking: every print in order at the end of the reflection) */
+.int-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.75rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.int-strip li { flex: none; }
+
+.int-strip img {
+  width: auto;
+  height: clamp(2.5rem, 6.5vw, 6rem);
+}
+
+.int-strip .ref-no {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  color: var(--dim);
+}
+
+.int-strip-fig figcaption { text-align: right; max-width: none; }

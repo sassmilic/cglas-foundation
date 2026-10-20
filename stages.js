@@ -59,6 +59,7 @@
     }));
   }).then(function (blocks) {
     out.replaceChildren.apply(out, blocks);
+    document.dispatchEvent(new Event("stages:ready"));   // e.g. wall-drawings.js starts its canvas
   }).catch(function () {
     out.querySelector(".stage-empty").textContent =
       "Couldn’t load the projects. Open them from the index instead.";

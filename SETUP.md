@@ -59,7 +59,7 @@ images/           research images; -thumb.jpg in the grid, -full.jpg enlarged
 ```
 
 Each project page ends with "← index" and a "next: … →" link to the page after
-it in the home menu's order; the last page has only "← index". When you add a
+it in the home menu's order; the last page (Print Making) has only "← index". When you add a
 project page, give it the same footer and point the previous last page's
 "next" link at it.
 

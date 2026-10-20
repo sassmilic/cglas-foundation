@@ -47,9 +47,9 @@ project-three-a.html  unit 1 / week 3A — The Infraordinary
 project-four.html     unit 1 / project 4 — Refashioned
 project-four-b.html   unit 1 / week 4B — Cardboard Orchestra
 project-five.html     unit 1 / project 5 — Space Oddity
-project-six.html      unit 1 / project 6 — Printmaking
-project-seven.html    unit 1 / project 7 — 3D Design — Diorama
-project-eight.html    unit 1 / project 8 — Screenprinting
+project-six.html      unit 1 / project 8 — Printmaking
+project-seven.html    unit 1 / project 6 — 3D Design — Diorama
+project-eight.html    unit 1 / project 7 — Screenprinting
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
 banner.js         banner opens as big pixels and refines into the image (WebGL2)

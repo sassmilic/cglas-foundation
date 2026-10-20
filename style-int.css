@@ -259,6 +259,16 @@
   .int-tiles--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* images side by side at the same height: each column's fr is that image's
+   width at a shared height, set inline (Cardboard Orchestra exquisite corpse) */
+.int-row {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /* a row of small prints, all the same height, lined up on the right
    (Printmaking: every print in order at the end of the reflection) */
 .int-strip {
@@ -279,7 +289,9 @@
   height: clamp(5rem, 13vw, 12rem);
 }
 
-.int-strip .ref-no {
+.int-strip .ref-no,
+.int-tiles .ref-no,
+.int-row .ref-no {
   display: block;
   margin-top: 0.35rem;
   font-family: var(--mono);

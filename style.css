@@ -2,8 +2,8 @@
 :root {
   --paper: #faf8f7;
   --ink: #191617;
-  --dim: #9c9496;
-  --faint: #c9c1c2;
+  --dim: #736b6d;
+  --faint: #958d8f;
   --rule: #e7e1e1;
   --scrim: rgba(250, 248, 247, 0.97);
   --accent: #ff46a2;
@@ -27,8 +27,8 @@
   :root {
     --paper: #111010;
     --ink: #ece7e7;
-    --dim: #6e6768;
-    --faint: #443e3f;
+    --dim: #968e8f;
+    --faint: #6a6364;
     --rule: #272324;
     --scrim: rgba(17, 16, 16, 0.97);
   }
@@ -200,8 +200,9 @@ details[open] > summary.unit::after { content: "–"; }
 /* inside unit 1: read the projects one by one, or one stage across them all */
 .view-switch {
   margin: 0.4rem 0 0;
-  padding-left: 9ch;               /* lines up with the project names: 3ch indent + 5ch number + 1ch gap */
+  padding-left: 3ch;               /* lines up with the project names */
   font-size: var(--sm);
+  font-style: italic;
   color: var(--faint);
 }
 
@@ -233,7 +234,7 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
 
 .project {
   display: inline-grid;
-  grid-template-columns: 5ch 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: baseline;
   column-gap: 1ch;
 }
@@ -452,9 +453,9 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   font-style: normal;
 }
 
-/* Temporary reference numbers on process images (000, 001, …), for talking
-   about them in chat. To remove: delete every <span class="ref-no"> and the
-   "NNN · " prefix in data-caption, then this rule. */
+/* Temporary reference numbers on every image (000, 001, …, one sequence
+   across the site), for talking about them in chat. Added by ref-numbers.py;
+   to remove, see the note at the top of that file. */
 .ref-no {
   margin-right: 0.6em;
   font-variant-numeric: tabular-nums;

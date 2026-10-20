@@ -52,6 +52,7 @@ project-seven.html    unit 1 / project 6 — 3D Design — Diorama
 project-eight.html    unit 1 / project 7 — Screenprinting
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
+ref-numbers.py    temporary 000–NNN numbers on every image; rerun after adding images (python3 ref-numbers.py)
 sections.js       project pages: "expand all", and #research / #process / #reflection open that section
 research.html     every project's Research in one page (index → unit 1 → "by stage")
 process.html      … every Process (all three are filled in by stages.js)

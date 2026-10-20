@@ -74,6 +74,15 @@ a {
 
 .back { margin-left: var(--pad); }
 
+/* project pages: "← index" on the left, the next project on the right */
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 1.5rem;
+}
+.next { margin-right: var(--pad); margin-left: auto; text-align: right; }
+
 /* ---- centred block, left aligned --------------------------------------- */
 .centre {
   flex: 1;

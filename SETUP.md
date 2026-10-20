@@ -49,6 +49,7 @@ project-four-b.html   unit 1 / week 4B — Cardboard Orchestra
 project-five.html     unit 1 / project 5 — Space Oddity
 project-six.html      unit 1 / project 6 — Printmaking
 project-seven.html    unit 1 / project 7 — 3D Design — Diorama
+project-eight.html    unit 1 / project 8 — Screenprinting
 style.css         tokens at the top, light + dark
 lightbox.js       click a gallery thumbnail to enlarge it
 banner.js         banner opens as big pixels and refines into the image (WebGL2)
@@ -56,6 +57,11 @@ images/           research images; -thumb.jpg in the grid, -full.jpg enlarged
 404.html          not-found page
 .nojekyll         serve files as-is, no Jekyll build
 ```
+
+Each project page ends with "← index" and a "next: … →" link to the page after
+it in the home menu's order; the last page has only "← index". When you add a
+project page, give it the same footer and point the previous last page's
+"next" link at it.
 
 Images are committed as JPEG (browsers cannot display HEIC). To add one, convert
 the original and drop both sizes into `images/`:

@@ -178,6 +178,15 @@
    the <blockquote>, and a <figcaption> for who said it. */
 .int-quote .int-sub { margin-bottom: 1.2rem; }
 
+/* Sol LeWitt's own words (his instructions and sentences, Drawing Week) keep
+   their original setting: reading size, in italics */
+.int-quote--lewitt blockquote {
+  font-size: var(--t-body);
+  line-height: var(--lh-text);
+  letter-spacing: normal;
+  font-style: italic;
+}
+
 /* ---- lists ------------------------------------------------------------ */
 /* a numbered list set like source code (Drawing Week rules) */
 .int-code {

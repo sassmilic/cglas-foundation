@@ -567,6 +567,14 @@
   border: 2px solid #000;
 }
 
+/* content images sit in <picture> (AVIF with a JPEG fallback); the wrapper
+   adds no box of its own, so the image lays out as before */
+.int-grid picture { display: contents; }
+
+/* while media.js holds an image back, it shows its 16px placeholder as
+   hard-edged squares, like the banners before they resolve */
+.int-grid img.is-held { image-rendering: pixelated; }
+
 .int-shot {
   display: block;
   width: 100%;

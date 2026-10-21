@@ -1,3 +1,11 @@
+/* ==========================================================================
+   Two files, two layers:
+   - style.css: the tokens, and the shell every page shares (name bar, home
+     menu, project header, collapsible sections, lightbox). Set in mono.
+   - style-int.css: what sits inside an opened section, the 12-column
+     .int-grid. Sans for reading, mono for anything that is metadata.
+   ========================================================================== */
+
 /* ---- tokens ------------------------------------------------------------ */
 :root {
   --paper: #faf8f7;
@@ -8,19 +16,41 @@
   --scrim: rgba(250, 248, 247, 0.97);
   --accent: #ff46a2;
 
-  --pad: clamp(1.5rem, 5vw, 3rem);
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
+          Menlo, Consolas, monospace;
+
+  /* mono sizes. In the content only two are used: --md for captions and
+     metadata, --xs for small print. */
   --xs:  clamp(0.66rem, 0.62rem + 0.16vw, 0.76rem);
   --sm:  clamp(0.82rem, 0.78rem + 0.2vw, 0.94rem);
   --md:  clamp(0.98rem, 0.92rem + 0.3vw, 1.14rem);
   --lg:  clamp(1.2rem, 1.05rem + 0.65vw, 1.55rem);
 
+  /* sans sizes: reading, and large (subheads, quotes, large notes) */
+  --t-body: clamp(1.06rem, 0.98rem + 0.35vw, 1.3rem);
+  --t-l:    clamp(1.45rem, 1.05rem + 1.7vw, 2.6rem);
+
+  --lh-text: 1.5;
+  --lh-large: 1.2;
+  --lh-meta: 1.6;
+
   /* Keep the type hierarchy within the weights that are actually loaded. */
   --weight-body: 300;
   --weight-label: 400;
 
+  /* the shell's lines are dotted, the content's solid */
+  --dotted: 1px dotted var(--rule);
+  --hairline: 1px solid var(--rule);
+
+  --pad: clamp(1.5rem, 5vw, 3rem);
+  --gap: clamp(0.9rem, 2vw, 1.75rem);
+  --row: clamp(3rem, 7vw, 7rem);
   --menu: 29ch;
   --measure: 62ch;
   --focus-offset: 0.25rem;
+
+  --ease-out: cubic-bezier(.22,1,.36,1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,8 +75,7 @@ body {
   flex-direction: column;
   background: var(--paper);
   color: var(--ink);
-  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
-               Menlo, Consolas, monospace;
+  font-family: var(--mono);
   font-size: var(--md);
   font-weight: var(--weight-body);
   line-height: 2;
@@ -58,19 +87,23 @@ a {
   text-decoration: none;
 }
 
+/* every disclosure on the site ends in a +/– */
+summary { list-style: none; cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+details > summary::after { content: "+"; color: var(--faint); }
+details[open] > summary::after { content: "–"; }
+
 /* ---- name, top left ---------------------------------------------------- */
 .name {
   margin-top: 1em;
   padding: 0 var(--pad) 1.1rem;
-  border-bottom: 1px dotted var(--rule);
+  border-bottom: var(--dotted);
   font-size: var(--sm);
   font-weight: var(--weight-label);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--dim);
 }
-
-.name a { transition: color 180ms ease; }
 
 .back { margin-left: var(--pad); }
 
@@ -83,7 +116,7 @@ a {
 }
 .next { margin-right: var(--pad); margin-left: auto; text-align: right; }
 
-/* ---- centred block, left aligned --------------------------------------- */
+/* ---- centred block, left aligned (home and 404) ------------------------ */
 .centre {
   flex: 1;
   display: grid;
@@ -95,7 +128,8 @@ a {
   align-items: start;
 }
 
-.block {
+.block,
+.page {
   width: min(100%, var(--menu));
   text-align: left;
 }
@@ -151,6 +185,9 @@ a {
   margin-right: calc(0.1 * var(--lg) - var(--spread));
 }
 
+.page h1 { margin-bottom: 1.6rem; }
+.page p { margin: 0 0 1.2em; color: var(--dim); }
+
 /* ---- menu -------------------------------------------------------------- */
 .menu {
   margin: 0;
@@ -171,23 +208,9 @@ a {
 .menu span.unit { color: var(--faint); cursor: default; }
 
 /* unit 1 — expands */
-details > summary.unit {
-  list-style: none;
-  cursor: pointer;
-  color: var(--ink);
-  transition: color 180ms ease;
-}
-details > summary.unit::-webkit-details-marker { display: none; }
+summary.unit { color: var(--ink); }
+summary.unit::after { margin-left: auto; }
 
-details > summary.unit::after {
-  content: "+";
-  margin-left: auto;
-  color: var(--faint);
-  transition: color 180ms ease;
-}
-details[open] > summary.unit::after { content: "–"; }
-
-/* ---- projects ---------------------------------------------------------- */
 .projects {
   margin: 0.4rem 0 1rem;
   padding: 0 0 0 3ch;
@@ -215,11 +238,7 @@ details[open] > summary.unit::after { content: "–"; }
 .view-switch label {
   color: var(--dim);
   cursor: pointer;
-  transition: color 180ms ease;
 }
-
-.view-switch label:hover,
-.view-switch input:focus-visible + label { color: var(--accent); }
 
 .view-switch input:checked + label {
   color: var(--ink);
@@ -239,8 +258,6 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   column-gap: 1ch;
 }
 
-.project--inactive { color: var(--faint); }
-
 .projects a.project {
   width: calc(100% + 3ch);
   margin-left: -3ch;
@@ -254,22 +271,13 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   content: "⟶";
   opacity: 0;
   transform: translateX(-0.4ch);
-  transition: opacity 400ms ease, transform 400ms cubic-bezier(.22,1,.36,1);
+  transition: opacity 400ms ease, transform 400ms var(--ease-out);
 }
 
 .projects a:hover,
 .projects a:focus-visible { border-bottom-color: currentColor; }
 .projects a:hover::after,
 .projects a:focus-visible::after { opacity: 1; transform: none; }
-
-@media (prefers-reduced-motion: no-preference) {
-  details[open] .projects {
-    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes unfold {
-    from { opacity: 0; transform: translateY(-0.35rem); }
-  }
-}
 
 /* ---- project page ------------------------------------------------------ */
 .doc { margin-top: clamp(1rem, 2.5svh, 1.5rem); }
@@ -283,6 +291,18 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   gap: 0.6rem 2rem;
   margin-bottom: clamp(2.5rem, 8svh, 4rem);
   padding-inline: var(--pad);
+}
+
+/* eyebrow is set exactly like the title, just on the other side of the line;
+   the 404 heading shares the same treatment */
+.doc .eyebrow,
+.doc h1,
+.page h1 {
+  margin: 0;
+  font-size: var(--lg);
+  font-weight: var(--weight-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* Optional full-bleed banner under the title: a detail of the project's work.
@@ -325,67 +345,42 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   pointer-events: none;
 }
 
-/* eyebrow is set exactly like the title, just on the other side of the line;
-   the 404 heading shares the same treatment */
-.doc .eyebrow,
-.doc h1,
-.page h1 {
-  margin: 0;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+/* "expand all" above a project's sections (sections.js) */
+.expand-bar {
+  margin: 0 0 0.4rem;
+  padding: 0 var(--pad);
+  text-align: right;
 }
 
-/*
-   Project writing follows a Tufte-like reading layout: a generous main measure
-   occupies two thirds of the document column, while the remaining third is
-   held for annotations.  Notes sit alongside their related material where
-   space permits, rather than being positioned with brittle pixel offsets.
-*/
+.expand-all {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--xs);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+/* ---- sections ---------------------------------------------------------- */
+/* Each section is a <details>: a centred heading with +/– at the right; its
+   contents (an .int-grid, see style-int.css) unfold underneath. */
 .doc section {
   padding: 0.65rem var(--pad);
-  border-top: 1px dotted var(--rule);
+  border-top: var(--dotted);
 }
 
-.section-layout {
-  display: grid;
-  row-gap: clamp(2.4rem, 7svh, 4.25rem);
-  max-width: 96rem;
-  margin: 0 auto;
-}
-
-/* Each row owns its copy/note relationship, so optional notes cannot affect
-   the placement of the content in a later row. */
-.section-row {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
-  column-gap: clamp(1.5rem, 4vw, 4rem);
-}
-
-.section-copy {
-  grid-column: 1;
-  min-width: 0;
-}
-
-/* Add a .marginnote inside this aside for each annotation or citation. */
-.margin-notes {
-  grid-column: 2;
-  min-width: 0;
-  padding-top: 0.1rem;
-  text-align: left;
-}
-
-.margin-notes:empty { display: none; }
-
-.project-section-heading {
+.project-section-heading,
+.stage-project > h2 {
   margin: 0;
   font-size: var(--md);
   font-weight: var(--weight-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  text-align: center;
 }
+
+.project-section-heading { text-align: center; }
 
 .project-section > summary {
   display: grid;
@@ -393,65 +388,45 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   align-items: center;
   margin: -0.25rem -0.5rem;
   padding: 0.25rem 0.5rem;
-  list-style: none;
-  cursor: pointer;
-  transition: color 180ms ease, background-color 180ms ease;
 }
-
-.project-section > summary::-webkit-details-marker { display: none; }
 
 /* empty first column balances the +/– so the heading stays centred */
 .project-section > summary::before { content: ""; }
 
 .project-section > summary::after {
-  content: "+";
   justify-self: end;
-  color: var(--faint);
   font-size: var(--lg);
   line-height: 1;
-  transition: color 180ms ease;
 }
 
-.project-section[open] > summary::after { content: "–"; }
-
-.project-section > summary + .section-layout {
-  margin-top: clamp(1.6rem, 4svh, 2.4rem);
-  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .project-section[open] > .section-layout {
-    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
-  }
-}
-
-.doc .sub {
-  margin: 0.5rem 0 0;
-  font-size: var(--sm);
-  color: var(--dim);
-}
-
-.bullet-list {
-  max-width: var(--measure);
-  margin: 0;
-  padding-left: 2ch;
-}
-
-.bullet-list li + li {
-  margin-top: 0.55rem;
-}
-
-.bullet-list .bullet-list { margin-top: 0.55rem; }
-
-.doc .source {
-  margin-top: 1.5rem;
+/* stage pages: one section from every project (stages.js) */
+.stage-nav {
+  margin: 0 0 clamp(1.6rem, 4svh, 2.4rem);
+  padding: 0 var(--pad);
   font-size: var(--xs);
+  letter-spacing: 0.08em;
   color: var(--dim);
 }
 
-.source cite {
-  font-style: normal;
+.stage-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-underline-offset: 0.25em; }
+
+.stage-project > h2 a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 2rem;
 }
+
+.stage-unit { color: var(--dim); }
+
+.stage-empty {
+  margin: 0.9rem 0 1.4rem;
+  font-size: var(--xs);
+  color: var(--faint);
+}
+
+#stage > .stage-empty { padding: 0 var(--pad); }
 
 /* Temporary reference numbers on every image (000, 001, …, one sequence
    across the site), for talking about them in chat. Added by ref-numbers.py;
@@ -460,208 +435,6 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   margin-right: 0.6em;
   font-variant-numeric: tabular-nums;
 }
-
-.source a,
-.epigraph figcaption a {
-  text-decoration: underline;
-  text-decoration-color: var(--faint);
-  text-underline-offset: 0.2em;
-}
-
-/* Keep supporting headings at the project-title scale; color preserves hierarchy. */
-.section-label {
-  margin: 0;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  line-height: 1.7;
-  color: var(--dim);
-}
-
-/* Body copy is left-aligned in the two-thirds reading column. */
-.doc .section-copy p:not(.sub) {
-  max-width: var(--measure);
-  margin: 1.2rem 0 0;
-  text-align: left;
-  color: var(--dim);
-}
-
-.marginnote {
-  margin: 3rem 0 1.4rem 2rem;
-  padding-left: 1rem;
-  border-left: 1px dotted;
-  font-size: var(--xs);
-  line-height: 1.65;
-  color: var(--ink);
-}
-
-.marginnote > :first-child { margin-top: 0; }
-.marginnote > :last-child { margin-bottom: 0; }
-
-/* ---- epigraphs --------------------------------------------------------- */
-/* A quiet, reusable quotation group for project research and writing. */
-.epigraph {
-  margin: 0;
-}
-
-.section-label + .epigraph {
-  margin-top: clamp(2rem, 6svh, 3.5rem);
-}
-
-.epigraph + .epigraph {
-  margin-top: clamp(2.4rem, 7svh, 4.25rem);
-}
-
-.epigraph blockquote {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.doc .section-copy .epigraph blockquote p {
-  max-width: none;
-  margin: 0;
-  color: var(--ink);
-  font-style: italic;
-  line-height: 1.8;
-}
-
-.doc .section-copy .epigraph blockquote p + p {
-  margin-top: 1rem;
-}
-
-.epigraph figcaption {
-  max-width: 52ch;
-  margin: 0.65rem 0 0 auto;
-  font-size: var(--xs);
-  font-weight: var(--weight-label);
-  line-height: 1.6;
-  text-align: right;
-  color: var(--dim);
-}
-
-.epigraph cite {
-  font-style: italic;
-}
-
-/* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
-@media (max-width: 760px) {
-  .section-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .section-copy,
-  .margin-notes {
-    grid-column: 1;
-  }
-
-  .margin-notes {
-    margin-top: 1.8rem;
-    padding-top: 1.2rem;
-    border-top: 1px dotted var(--rule);
-  }
-
-  .marginnote {
-    max-width: var(--measure);
-    margin-left: 0;
-  }
-}
-
-/* ---- 404 --------------------------------------------------------------- */
-.page {
-  width: min(100%, var(--menu));
-  text-align: left;
-}
-
-.page h1 { margin-bottom: 1.6rem; }
-
-.page p { margin: 0 0 1.2em; color: var(--dim); }
-
-/* ---- entrance ---------------------------------------------------------- */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    animation: fade 600ms ease forwards;
-  }
-  @keyframes fade { to { opacity: 1; } }
-
-  .reveal--title,
-  .reveal--content { animation-delay: 100ms; }
-  .reveal--menu { animation-delay: 220ms; }
-  .reveal--footer { animation-delay: 260ms; }
-}
-
-/* ---- gallery ----------------------------------------------------------- */
-.gallery {
-  margin: clamp(2rem, 6svh, 3rem) auto 0;
-  padding: 0;
-  max-width: min(100%, 68rem);
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  align-items: start;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
-}
-
-/* Feature galleries may use all of the space offered by their layout. */
-.gallery--feature {
-  max-width: none;
-}
-
-/* strip the button back to nothing — it is here for keyboard access */
-.shot {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  position: relative;
-  background: none;
-  /* Hot-pink crosshair cursor for thumbnails that open at full size. */
-  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
-}
-
-.shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
-
-/* Square previews keep the grid stable while the lightbox shows the full image. */
-.shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: opacity 220ms ease;
-}
-
-/* Feature images retain their natural proportions so the complete work is visible,
-   and are never shown larger than the image file itself. */
-.shot--feature {
-  width: fit-content;
-  max-width: 100%;
-  aspect-ratio: auto;
-}
-
-.shot--feature img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* A caption immediately following a gallery shares the gallery's full width. */
-.doc .section-copy .gallery + .source {
-  width: 100%;
-  max-width: min(100%, 68rem);
-  margin-inline: auto;
-}
-
-.shot:hover img,
-.shot:focus-visible img { opacity: 0.45; }
-
-/* Portrait studies can opt into a considered focal point. */
-.shot--crop-upper img { object-position: center 38%; }
-.shot--crop-upper-middle img { object-position: center 42%; }
 
 /* ---- lightbox ---------------------------------------------------------- */
 body.is-locked { overflow: hidden; }
@@ -720,43 +493,50 @@ body.is-locked { overflow: hidden; }
   text-transform: uppercase;
   color: var(--dim);
   cursor: pointer;
-  transition: color 180ms ease;
 }
 
-
+/* ---- motion ------------------------------------------------------------ */
 @media (prefers-reduced-motion: no-preference) {
-  .lightbox:not([hidden]) {
-    animation: fade-in 220ms ease both;
+  .reveal {
+    opacity: 0;
+    animation: fade 600ms ease forwards;
   }
-  /* needs its own keyframe: `fade` has no `from`, and the overlay
-     is not already at opacity 0 the way .reveal elements are */
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  .reveal--title,
+  .reveal--content { animation-delay: 100ms; }
+  .reveal--menu { animation-delay: 220ms; }
+  .reveal--footer { animation-delay: 260ms; }
+
+  .lightbox:not([hidden]) { animation: fade 220ms ease both; }
+
+  details[open] .projects,
+  .project-section[open] > .int-grid {
+    animation: unfold 420ms var(--ease-out) both;
   }
+
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes unfold { from { opacity: 0; transform: translateY(-0.35rem); } }
 }
 
 /* ---- interaction ------------------------------------------------------- */
-/* One hover/focus treatment for everything clickable. Kept last so it wins
-   over each element's resting colour. */
-summary.unit:hover,               summary.unit:focus-visible,
-summary.unit:hover::after,        summary.unit:focus-visible::after,
-.project-section > summary:hover, .project-section > summary:focus-visible,
-.project-section > summary:hover::after,
-.project-section > summary:focus-visible::after,
-.projects a:hover,                .projects a:focus-visible,
-.name a:hover,                    .name a:focus-visible,
-.source a:hover,                  .source a:focus-visible,
-.epigraph figcaption a:hover,     .epigraph figcaption a:focus-visible,
-.lightbox-close:hover,            .lightbox-close:focus-visible {
+/* One hover/focus treatment for everything clickable, on every page. Kept
+   last so it wins over each element's resting colour. */
+a, summary, summary::after, label, .lightbox-close, .expand-all {
+  transition: color 180ms ease;
+}
+
+a:hover, a:focus-visible,
+summary:hover, summary:focus-visible,
+summary:hover::after, summary:focus-visible::after,
+.view-switch label:hover, .view-switch input:focus-visible + label,
+.lightbox-close:hover, .lightbox-close:focus-visible,
+.expand-all:hover, .expand-all:focus-visible {
   color: var(--accent);
 }
 
-summary.unit:focus-visible,
-.project-section > summary:focus-visible,
-.projects a:focus-visible,
-.name a:focus-visible,
-.lightbox-close:focus-visible {
+a:focus-visible,
+summary:focus-visible,
+.lightbox-close:focus-visible,
+.expand-all:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: var(--focus-offset);
 }

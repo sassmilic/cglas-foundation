@@ -513,6 +513,20 @@
   text-underline-offset: 0.2em;
 }
 
+/* lines underlined in a source, quoted one under another, centred under the
+   page they come from (Research Week) */
+.int-underlined { text-align: center; text-wrap: balance; }
+.int-underlined p { margin: 0 auto; max-width: 30em; }
+.int-underlined p + p { margin-top: 0.9em; }
+
+.int-underlined .int-underlined-source {
+  margin-top: 1.4em;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  line-height: 1.6;
+  color: var(--dim);
+}
+
 /* pull quotes: the largest words on the page after the headline */
 .int-pull {
   font-size: var(--t-xl);

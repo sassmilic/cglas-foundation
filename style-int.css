@@ -23,7 +23,9 @@
 
 /* ---- the 12-column grid ----------------------------------------------- */
 /* Children say where they sit with --col (desktop) and --col-m (phone),
-   both in 12ths, e.g. style="--col: 2 / 6; --col-m: 1 / 9". */
+   both in 12ths, e.g. style="--col: 2 / 6; --col-m: 1 / 9". A tall image
+   can take up two rows on desktop with --rows: span 2, so that two smaller
+   things stack beside it. */
 .int-grid {
   font-family: var(--sans);
   font-size: var(--t-body);
@@ -53,6 +55,7 @@
 
 .int-grid > * {
   grid-column: var(--col, 1 / -1);
+  grid-row: var(--rows, auto);
   align-self: var(--align, start);
   min-width: 0;
   margin: 0;
@@ -60,7 +63,7 @@
 
 @media (max-width: 760px) {
   .int-grid { row-gap: calc(var(--row) * 0.85); }
-  .int-grid > * { grid-column: var(--col-m, 1 / -1); }
+  .int-grid > * { grid-column: var(--col-m, 1 / -1); grid-row: auto; }
 }
 
 /* subheads: an artist's name, set mid-size */
@@ -508,6 +511,20 @@
   text-decoration: underline;
   text-decoration-color: var(--faint);
   text-underline-offset: 0.2em;
+}
+
+/* lines underlined in a source, quoted one under another, centred under the
+   page they come from (Research Week) */
+.int-underlined { text-align: center; text-wrap: balance; }
+.int-underlined p { margin: 0 auto; max-width: 30em; }
+.int-underlined p + p { margin-top: 0.9em; }
+
+.int-underlined .int-underlined-source {
+  margin-top: 1.4em;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  line-height: 1.6;
+  color: var(--dim);
 }
 
 /* pull quotes: the largest words on the page after the headline */

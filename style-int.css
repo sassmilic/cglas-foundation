@@ -172,22 +172,26 @@
   text-underline-offset: 0.2em;
 }
 
-.int-prose sup {
+.int-prose sup,
+.int-say sup {
   font-size: 0.7em;
   line-height: 0;
   margin-left: 0.1em;
 }
 
 .int-prose sup a,
+.int-say sup a,
 .int-footnote > a:first-child { text-decoration: none; }
 
 /* a footnote under a paragraph: small and grey, in mono */
-.int-prose .int-footnote {
+.int-prose .int-footnote,
+.int-say .int-footnote {
   max-width: none;
   margin-top: 0.7em;
   font-family: var(--mono);
   font-size: var(--xs);
   line-height: 1.6;
+  letter-spacing: normal;
   color: var(--dim);
 }
 
@@ -290,6 +294,190 @@
 .int-facts { margin: 0; padding: 0; list-style: none; }
 .int-facts li { padding: 0.3em 0; border-top: 1px solid var(--rule); }
 
+/* a timeline: plain rows, the date in mono to the left of each event, and
+   any glosses under it as small grey notes behind a +. timeline.js adds
+   .is-scaled: a line down the left with a dot at each date, the rows placed
+   at true distance in years (Research Week) */
+.int-timeline { margin: 0; padding: 0; list-style: none; font-size: var(--md); }
+.int-timeline > li + li { margin-top: 1.4em; }
+
+.int-timeline > li {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  column-gap: var(--gap);
+}
+
+.int-timeline > li > p { margin: 0; max-width: 36em; }
+
+.int-timeline .int-timeline-date {
+  font-family: var(--mono);
+  font-size: var(--sm);
+  color: var(--dim);
+  padding-top: 0.25em;
+}
+
+.int-timeline-more { grid-column: 2; }
+
+/* an image under an event, kept small so the row stays short */
+.int-timeline > li > .int-fig { grid-column: 2; max-width: 22rem; margin: 0.8em 0 0; }
+
+/* several images under one event, two to a row */
+.int-timeline-figs {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4em var(--gap);
+  max-width: 36em;
+  margin-top: 0.8em;
+}
+
+.int-timeline-figs .int-fig { margin: 0; }
+
+.int-timeline-more > summary {
+  width: fit-content;
+  list-style: none;
+  cursor: pointer;
+  color: var(--faint);
+  line-height: 1.4;
+  transition: color 180ms ease;
+}
+
+.int-timeline-more > summary::-webkit-details-marker { display: none; }
+.int-timeline-more > summary::after { content: "+"; }
+.int-timeline-more[open] > summary::after { content: "–"; }
+.int-timeline-more > summary:hover { color: var(--accent); }
+
+.int-timeline .int-timeline-note {
+  margin-top: 0.3em;
+  font-size: var(--xs);
+  line-height: 1.6;
+  color: var(--dim);
+  max-width: 48em;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.int-timeline .int-timeline-note li + li { margin-top: 0.3em; }
+
+/* --dot-y: the middle of the date's first line, where the dot sits */
+.int-timeline.is-scaled {
+  --dot-y: 0.85em;
+  position: relative;
+}
+
+.int-timeline.is-scaled::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: var(--dot-y);
+  height: var(--last, 0px);
+  width: 1px;
+  background: var(--faint);
+}
+
+.int-timeline.is-scaled > li {
+  position: absolute;
+  top: var(--top, 0px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding-left: 1.6em;
+}
+
+.int-timeline.is-scaled > li::before,
+.int-timeline.is-scaled > li::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+}
+
+.int-timeline.is-scaled > li::before {
+  left: 0;
+  top: calc(var(--dot-y) - 3.5px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+/* a span of years, e.g. AD 197–211, as a thicker stretch of the line */
+.int-timeline.is-scaled > li::after {
+  left: 2px;
+  top: var(--dot-y);
+  width: 3px;
+  height: var(--span, 0px);
+}
+
+@media (max-width: 760px) {
+  .int-timeline > li { grid-template-columns: minmax(0, 1fr); }
+  .int-timeline .int-timeline-date { padding: 0 0 0.3em; }
+  .int-timeline-more,
+  .int-timeline > li > .int-fig,
+  .int-timeline-figs { grid-column: 1; }
+  .int-timeline.is-scaled { --dot-y: 0.65em; }
+}
+
+/* a map of Britain beside the timeline, pinned while it scrolls past, the
+   Roman part filled in for the row being read (timeline.js adds .has-map
+   and switches the stages). Phones: a small map pinned at the top right. */
+.int-timeline-wrap.has-map {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+.int-timeline-wrap.has-map > div { grid-column: 1 / 9; grid-row: 1; }
+
+.int-timeline-map {
+  grid-column: 9 / 13;
+  grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: 12vh;
+  margin: 0;
+}
+
+.int-timeline-map svg { display: block; width: 100%; max-height: 70vh; overflow: hidden; }
+
+.int-timeline-map path { fill: none; vector-effect: non-scaling-stroke; }
+.int-timeline-map .map-coast { stroke: var(--dim); stroke-width: 1px; }
+.int-timeline-map .map-ireland { stroke: var(--faint); stroke-width: 1px; }
+
+.int-timeline-map .map-stage,
+.int-timeline-map .map-wall { opacity: 0; transition: opacity 400ms ease; }
+/* the Roman part as a field of evenly spaced dots, fixed to the map so they
+   appear and disappear in place between stages */
+.int-timeline-map .map-stage { fill: url(#map-dots); }
+.int-timeline-map .map-dot { fill: var(--faint); }
+.int-timeline-map .map-wall { stroke: var(--accent); stroke-width: 3.5px; stroke-linecap: round; }
+.int-timeline-map .is-on { opacity: 1; }
+
+.int-timeline-map figcaption {
+  margin-top: 0.6em;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .int-timeline-map .map-stage,
+  .int-timeline-map .map-wall { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .int-timeline-wrap.has-map > div { grid-column: 1 / -1; }
+  .int-timeline-map {
+    grid-column: 1 / -1;
+    justify-self: end;
+    width: 30vw;
+    top: 0.5rem;
+    z-index: 1;
+    padding: 0.4rem 0 0.4rem 0.4rem;
+    background: var(--paper);
+  }
+  .int-timeline-map .map-cap-label { display: none; }
+}
+
 /* quotations from artists: large type, mono attribution */
 .int-quote blockquote { margin: 0; }
 
@@ -379,7 +567,8 @@
 
 .int-fig figcaption a,
 .int-note a,
-.int-prose a {
+.int-prose a,
+.int-say a {
   text-decoration: underline;
   text-decoration-color: var(--faint);
   text-underline-offset: 0.2em;
@@ -388,7 +577,8 @@
 .int-fig figcaption a:hover,
 .int-quote figcaption a:hover,
 .int-note a:hover,
-.int-prose a:hover { color: var(--accent); }
+.int-prose a:hover,
+.int-say a:hover { color: var(--accent); }
 
 
 /* a grid of equal-size tiles inside one figure (Infraordinary sketches) */

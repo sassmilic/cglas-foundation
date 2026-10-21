@@ -7,7 +7,7 @@
    - text      .int-h3 subhead · .int-prose reading text · .int-note (prose
                under a rule) · .int-say (a note in large type) · .int-bio
                (an artist's bio, in mono) · .int-next (a tinted box)
-   - quote     .int-quote, the one style for anyone else's words
+   - quote     .int-quote for anyone else's words: large, or --small
    - meta      captions, attributions, dates, footnotes: mono, grey, one
                size (--md), or --xs for small print
    - lists     .int-code · .int-facts · .int-timeline (+ map)
@@ -178,9 +178,9 @@
    the <blockquote>, and a <figcaption> for who said it. */
 .int-quote .int-sub { margin-bottom: 1.2rem; }
 
-/* Sol LeWitt's own words (his instructions and sentences, Drawing Week) keep
-   their original setting: reading size, in italics */
-.int-quote--lewitt blockquote {
+/* two sizes: large by default, or --small, at reading size in italics
+   (Sol LeWitt's instructions and sentences, Drawing Week) */
+.int-quote--small blockquote {
   font-size: var(--t-body);
   line-height: var(--lh-text);
   letter-spacing: normal;

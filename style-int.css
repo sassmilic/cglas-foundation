@@ -615,6 +615,13 @@
   .int-tiles--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* eight across on desktop, four on phones (Visual Communication walk photos) */
+.int-tiles--8 { grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0.5rem; }
+
+@media (max-width: 760px) {
+  .int-tiles--8 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 /* images side by side at the same height: each column's fr is that image's
    width at a shared height, set inline (Cardboard Orchestra exquisite corpse) */
 .int-row {

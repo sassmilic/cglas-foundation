@@ -40,7 +40,9 @@
     });
 
     if (grid && grid.children.length) {
-      section.appendChild(document.importNode(grid, true));
+      var copy = document.importNode(grid, true);
+      if (window.mediaOrder) window.mediaOrder.hold(copy);
+      section.appendChild(copy);
     } else {
       var empty = document.createElement("p");
       empty.className = "stage-empty";

@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Inter+Tight:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&amp;family=Inter+Tight:ital,wght@0,400;0,500;1,400&amp;display=swap">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="style-int.css">
 </head>
@@ -52,11 +52,15 @@
           <button type="button" class="int-shot"
                   data-full="images/screenprint-01-bjork-notget-full.jpg"
                   data-caption="178 · Björk in one of her masks, a still from the video for Notget">
-            <img src="images/screenprint-01-bjork-notget-thumb.jpg"
-                 srcset="images/screenprint-01-bjork-notget-thumb.jpg 800w, images/screenprint-01-bjork-notget-full.jpg 1800w"
-                 sizes="(min-width: 760px) 58vw, 100vw"
-                 width="800" height="1100" loading="lazy" decoding="async"
-                 alt="Black and white halftone image of Björk wearing a mask of glowing white looping ribbons that swirl around her head and shoulders against a black background.">
+            <picture>
+              <source type="image/avif" srcset="images/screenprint-01-bjork-notget-thumb.avif 800w, images/screenprint-01-bjork-notget-mid.avif 1200w, images/screenprint-01-bjork-notget-full.avif 1800w" sizes="(min-width: 760px) 58vw, 100vw">
+              <img src="images/screenprint-01-bjork-notget-thumb.jpg"
+                   data-ph="data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAABQBACdASoQABYAPu1iqU2ppaOiMAgBMB2JZwAD5Joe1NEtO9HJflv2UXoAAP5n096xfNksNpjG6IhzIbWg4D0skMeq9QsBxLD8xbHlgLUnwN78719a5OMfMhuuVDlCtfRr7BDLKrKvjwXysj/B3XcjNtib7ZdHot9fPRiDBwjHY690E+vW0zsrw4bqLY1IRz5vd8ilnSJ5nybcIyV+tum5ICIKXfMhhYfgAA=="
+                   srcset="images/screenprint-01-bjork-notget-thumb.jpg 800w, images/screenprint-01-bjork-notget-mid.jpg 1200w, images/screenprint-01-bjork-notget-full.jpg 1800w"
+                   sizes="(min-width: 760px) 58vw, 100vw"
+                   width="800" height="1100" loading="lazy" decoding="async"
+                   alt="Black and white halftone image of Björk wearing a mask of glowing white looping ribbons that swirl around her head and shoulders against a black background.">
+            </picture>
           </button>
           <figcaption><span class="ref-no">178</span> Björk in one of her masks, a still from the video for Notget</figcaption>
         </figure>
@@ -93,6 +97,7 @@
 
   <script src="banner.js" defer></script>
   <script src="lightbox.js" defer></script>
+  <script src="media.js" defer></script>
   <script src="sections.js" defer></script>
 
 </body>

@@ -552,6 +552,15 @@
   transition: opacity 220ms ease;
 }
 
+/* an embedded film (Vimeo), full width of its columns at 16:9 */
+.int-fig iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+}
+
 /* a thin keyline round drawings on white paper (Drawing as Process) */
 .int-fig--framed img {
   box-sizing: border-box;

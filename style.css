@@ -6,9 +6,10 @@
    - content   what sits inside an opened section, after It's Nice That
                features (hence the int- prefix): a 12-column .int-grid,
                sans for reading, mono for anything that is metadata
-               - text    .int-h3 subhead · .int-prose reading text · .int-note
-                         (prose under a rule, beside an image) · .int-bio
-                         (an artist's bio, in mono) · .int-next (a tinted box)
+               - text    .int-h3 subhead · .int-prose reading text, or
+                         --large · .int-note (prose under a rule, beside an
+                         image) · .int-bio (an artist's bio, in mono) ·
+                         .int-next (a tinted box)
                - quote   .int-quote for anyone else's words: large, or --small
                - meta    captions, attributions, dates, footnotes: mono, grey,
                          one size (--md), or --xs for small print
@@ -38,7 +39,7 @@
   --md:  clamp(0.98rem, 0.92rem + 0.3vw, 1.14rem);
   --lg:  clamp(1.2rem, 1.05rem + 0.65vw, 1.55rem);
 
-  /* sans sizes: reading, and large (subheads, quotes) */
+  /* sans sizes: reading, and large (subheads, quotes, large prose) */
   --t-body: clamp(1.06rem, 0.98rem + 0.35vw, 1.3rem);
   --t-l:    clamp(1.45rem, 1.05rem + 1.7vw, 2.6rem);
 
@@ -573,8 +574,11 @@ body.is-locked { overflow: hidden; }
 }
 
 /* ---- large type ------------------------------------------------------- */
-/* subheads and quotations share one large setting */
+/* subheads, quotations and large prose share one large setting. Reading
+   text comes in two sizes, like quotes: .int-prose--large is the overview
+   set above the detail (Printmaking reflection). */
 .int-h3,
+.int-prose--large,
 .int-quote blockquote {
   font-size: var(--t-l);
   line-height: var(--lh-large);

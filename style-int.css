@@ -664,6 +664,24 @@
 
 .int-strip-fig figcaption { text-align: right; max-width: none; }
 
+/* a short caption under a tile */
+.int-tiles .int-tile-cap {
+  margin: 0.35rem 0 0;
+  font-family: var(--mono);
+  font-size: var(--xs);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.int-tiles .int-tile-cap a {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+.int-tiles .int-tile-cap a:hover { color: var(--accent); }
+
 /* ---- reading across sections and projects ------------------------------ */
 /* "expand all" above a project's sections (sections.js) */
 .expand-bar {

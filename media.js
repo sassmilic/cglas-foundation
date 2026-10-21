@@ -97,13 +97,7 @@
 
   // looping videos: fetch and play only while on screen
   var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var videos = document.querySelectorAll("video[data-loop-on-view]");
-  if (!videos.length) return;
-  if (still || !("IntersectionObserver" in window)) {
-    [].forEach.call(videos, function (v) { v.controls = true; });
-    return;
-  }
-  var seen = new IntersectionObserver(function (entries) {
+  var seen = !still && "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       var v = e.target;
       if (e.isIntersecting) {
@@ -114,6 +108,14 @@
         v.pause();
       }
     });
-  }, { threshold: 0.25 });
-  [].forEach.call(videos, function (v) { seen.observe(v); });
+  }, { threshold: 0.25 }) : null;
+
+  function watchVideos() {
+    [].forEach.call(document.querySelectorAll("video[data-loop-on-view]"), function (v) {
+      if (seen) seen.observe(v);
+      else v.controls = true;
+    });
+  }
+  watchVideos();
+  document.addEventListener("stages:ready", watchVideos);
 })();

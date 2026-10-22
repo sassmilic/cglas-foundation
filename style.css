@@ -28,8 +28,8 @@
   --scrim: rgba(250, 248, 247, 0.97);
   --accent: #ff46a2;
 
-  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
+  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono",
           Menlo, Consolas, monospace;
 
   /* mono sizes. In the content only two are used: --md for captions and
@@ -184,7 +184,7 @@ details[open] > summary::after { content: "–"; }
 .title .title-split > span:last-child { text-align: right; }
 
 /* diploma name as one word, spaced out so it runs edge to edge.
-   IBM Plex Mono letters are 0.6em wide, so 18 characters take 10.8em; the
+   Geist Mono letters are 0.6em wide, so 18 characters take 10.8em; the
    leftover width is shared between the 17 gaps. It ends 0.1em short of the
    edge, like the other title lines (their tracking is 0.1 x --lg). */
 .title .title-main {

@@ -910,6 +910,19 @@ body.is-locked { overflow: hidden; }
 
 .int-fig figcaption { max-width: var(--w, 100%); }
 
+/* an image grid: figures side by side share an image row and a caption
+   row, so the images end on one line and every caption starts level,
+   however long it runs (Diorama research) */
+@media (min-width: 761px) {
+  .int-grid > .int-fig--grid {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+  .int-fig--grid > .int-shot { align-self: end; }
+}
+
 /* an embedded film (Vimeo), full width of its columns at 16:9 */
 .int-fig iframe {
   display: block;

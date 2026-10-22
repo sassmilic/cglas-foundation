@@ -56,7 +56,7 @@
     if (opener) { opener.focus(); opener = null; }
   }
 
-  var SHOT = ".gallery .shot, .int-shot";
+  var SHOT = ".int-shot";
 
   // one listener for every gallery on the page
   document.addEventListener("click", function (e) {

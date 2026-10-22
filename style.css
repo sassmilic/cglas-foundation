@@ -1,3 +1,23 @@
+/* ==========================================================================
+   One stylesheet, top down:
+   - tokens    colours, fonts, sizes, line-heights, rules
+   - frame     what every page shares, set in mono: name bar, home menu,
+               project header and banner, collapsible sections, lightbox
+   - content   what sits inside an opened section, after It's Nice That
+               features (hence the int- prefix): a 12-column .int-grid,
+               sans for reading, mono for anything that is metadata
+               - text    .int-h3 subhead · .int-prose reading text, or
+                         --large · .int-note (prose under a rule, beside an
+                         image) · .int-bio (an artist's bio, in mono) ·
+                         .int-next (a tinted box)
+               - quote   .int-quote for anyone else's words: large, or --small
+               - meta    captions, attributions, dates, footnotes: mono, grey,
+                         one size (--md), or --xs for small print
+               - lists   .int-code · .int-facts · .int-timeline (+ map)
+               - media   .int-fig · .int-tiles · .int-row · .int-strip
+   - motion, then interaction, kept last so hover and focus win
+   ========================================================================== */
+
 /* ---- tokens ------------------------------------------------------------ */
 :root {
   --paper: #faf8f7;
@@ -8,19 +28,41 @@
   --scrim: rgba(250, 248, 247, 0.97);
   --accent: #ff46a2;
 
-  --pad: clamp(1.5rem, 5vw, 3rem);
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
+          Menlo, Consolas, monospace;
+
+  /* mono sizes. In the content only two are used: --md for captions and
+     metadata, --xs for small print. */
   --xs:  clamp(0.66rem, 0.62rem + 0.16vw, 0.76rem);
   --sm:  clamp(0.82rem, 0.78rem + 0.2vw, 0.94rem);
   --md:  clamp(0.98rem, 0.92rem + 0.3vw, 1.14rem);
   --lg:  clamp(1.2rem, 1.05rem + 0.65vw, 1.55rem);
 
+  /* sans sizes: reading, and large (subheads, quotes, large prose) */
+  --t-body: clamp(1.06rem, 0.98rem + 0.35vw, 1.3rem);
+  --t-l:    clamp(1.45rem, 1.05rem + 1.7vw, 2.6rem);
+
+  --lh-text: 1.5;
+  --lh-large: 1.2;
+  --lh-meta: 1.6;
+
   /* Keep the type hierarchy within the weights that are actually loaded. */
   --weight-body: 300;
   --weight-label: 400;
 
+  /* the shell's lines are dotted, the content's solid */
+  --dotted: 1px dotted var(--rule);
+  --hairline: 1px solid var(--rule);
+
+  --pad: clamp(1.5rem, 5vw, 3rem);
+  --gap: clamp(0.9rem, 2vw, 1.75rem);
+  --row: clamp(3rem, 7vw, 7rem);
   --menu: 29ch;
   --measure: 62ch;
   --focus-offset: 0.25rem;
+
+  --ease-out: cubic-bezier(.22,1,.36,1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,8 +87,7 @@ body {
   flex-direction: column;
   background: var(--paper);
   color: var(--ink);
-  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
-               Menlo, Consolas, monospace;
+  font-family: var(--mono);
   font-size: var(--md);
   font-weight: var(--weight-body);
   line-height: 2;
@@ -58,19 +99,23 @@ a {
   text-decoration: none;
 }
 
+/* every disclosure on the site ends in a +/– */
+summary { list-style: none; cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+details > summary::after { content: "+"; color: var(--faint); }
+details[open] > summary::after { content: "–"; }
+
 /* ---- name, top left ---------------------------------------------------- */
 .name {
   margin-top: 1em;
   padding: 0 var(--pad) 1.1rem;
-  border-bottom: 1px dotted var(--rule);
+  border-bottom: var(--dotted);
   font-size: var(--sm);
   font-weight: var(--weight-label);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--dim);
 }
-
-.name a { transition: color 180ms ease; }
 
 .back { margin-left: var(--pad); }
 
@@ -83,7 +128,7 @@ a {
 }
 .next { margin-right: var(--pad); margin-left: auto; text-align: right; }
 
-/* ---- centred block, left aligned --------------------------------------- */
+/* ---- centred block, left aligned (home and 404) ------------------------ */
 .centre {
   flex: 1;
   display: grid;
@@ -95,7 +140,8 @@ a {
   align-items: start;
 }
 
-.block {
+.block,
+.page {
   width: min(100%, var(--menu));
   text-align: left;
 }
@@ -151,6 +197,9 @@ a {
   margin-right: calc(0.1 * var(--lg) - var(--spread));
 }
 
+.page h1 { margin-bottom: 1.6rem; }
+.page p { margin: 0 0 1.2em; color: var(--dim); }
+
 /* ---- menu -------------------------------------------------------------- */
 .menu {
   margin: 0;
@@ -171,23 +220,9 @@ a {
 .menu span.unit { color: var(--faint); cursor: default; }
 
 /* unit 1 — expands */
-details > summary.unit {
-  list-style: none;
-  cursor: pointer;
-  color: var(--ink);
-  transition: color 180ms ease;
-}
-details > summary.unit::-webkit-details-marker { display: none; }
+summary.unit { color: var(--ink); }
+summary.unit::after { margin-left: auto; }
 
-details > summary.unit::after {
-  content: "+";
-  margin-left: auto;
-  color: var(--faint);
-  transition: color 180ms ease;
-}
-details[open] > summary.unit::after { content: "–"; }
-
-/* ---- projects ---------------------------------------------------------- */
 .projects {
   margin: 0.4rem 0 1rem;
   padding: 0 0 0 3ch;
@@ -215,11 +250,7 @@ details[open] > summary.unit::after { content: "–"; }
 .view-switch label {
   color: var(--dim);
   cursor: pointer;
-  transition: color 180ms ease;
 }
-
-.view-switch label:hover,
-.view-switch input:focus-visible + label { color: var(--accent); }
 
 .view-switch input:checked + label {
   color: var(--ink);
@@ -239,8 +270,6 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   column-gap: 1ch;
 }
 
-.project--inactive { color: var(--faint); }
-
 .projects a.project {
   width: calc(100% + 3ch);
   margin-left: -3ch;
@@ -254,22 +283,13 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   content: "⟶";
   opacity: 0;
   transform: translateX(-0.4ch);
-  transition: opacity 400ms ease, transform 400ms cubic-bezier(.22,1,.36,1);
+  transition: opacity 400ms ease, transform 400ms var(--ease-out);
 }
 
 .projects a:hover,
 .projects a:focus-visible { border-bottom-color: currentColor; }
 .projects a:hover::after,
 .projects a:focus-visible::after { opacity: 1; transform: none; }
-
-@media (prefers-reduced-motion: no-preference) {
-  details[open] .projects {
-    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
-  }
-  @keyframes unfold {
-    from { opacity: 0; transform: translateY(-0.35rem); }
-  }
-}
 
 /* ---- project page ------------------------------------------------------ */
 .doc { margin-top: clamp(1rem, 2.5svh, 1.5rem); }
@@ -283,6 +303,18 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   gap: 0.6rem 2rem;
   margin-bottom: clamp(2.5rem, 8svh, 4rem);
   padding-inline: var(--pad);
+}
+
+/* eyebrow is set exactly like the title, just on the other side of the line;
+   the 404 heading shares the same treatment */
+.doc .eyebrow,
+.doc h1,
+.page h1 {
+  margin: 0;
+  font-size: var(--lg);
+  font-weight: var(--weight-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* Optional full-bleed banner under the title: a detail of the project's work.
@@ -325,67 +357,42 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   pointer-events: none;
 }
 
-/* eyebrow is set exactly like the title, just on the other side of the line;
-   the 404 heading shares the same treatment */
-.doc .eyebrow,
-.doc h1,
-.page h1 {
-  margin: 0;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+/* "expand all" above a project's sections (sections.js) */
+.expand-bar {
+  margin: 0 0 0.4rem;
+  padding: 0 var(--pad);
+  text-align: right;
 }
 
-/*
-   Project writing follows a Tufte-like reading layout: a generous main measure
-   occupies two thirds of the document column, while the remaining third is
-   held for annotations.  Notes sit alongside their related material where
-   space permits, rather than being positioned with brittle pixel offsets.
-*/
+.expand-all {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--xs);
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+/* ---- sections ---------------------------------------------------------- */
+/* Each section is a <details>: a centred heading with +/– at the right; its
+   contents (an .int-grid, see content below) unfold underneath. */
 .doc section {
   padding: 0.65rem var(--pad);
-  border-top: 1px dotted var(--rule);
+  border-top: var(--dotted);
 }
 
-.section-layout {
-  display: grid;
-  row-gap: clamp(2.4rem, 7svh, 4.25rem);
-  max-width: 96rem;
-  margin: 0 auto;
-}
-
-/* Each row owns its copy/note relationship, so optional notes cannot affect
-   the placement of the content in a later row. */
-.section-row {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);
-  column-gap: clamp(1.5rem, 4vw, 4rem);
-}
-
-.section-copy {
-  grid-column: 1;
-  min-width: 0;
-}
-
-/* Add a .marginnote inside this aside for each annotation or citation. */
-.margin-notes {
-  grid-column: 2;
-  min-width: 0;
-  padding-top: 0.1rem;
-  text-align: left;
-}
-
-.margin-notes:empty { display: none; }
-
-.project-section-heading {
+.project-section-heading,
+.stage-project > h2 {
   margin: 0;
   font-size: var(--md);
   font-weight: var(--weight-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  text-align: center;
 }
+
+.project-section-heading { text-align: center; }
 
 .project-section > summary {
   display: grid;
@@ -393,65 +400,45 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   align-items: center;
   margin: -0.25rem -0.5rem;
   padding: 0.25rem 0.5rem;
-  list-style: none;
-  cursor: pointer;
-  transition: color 180ms ease, background-color 180ms ease;
 }
-
-.project-section > summary::-webkit-details-marker { display: none; }
 
 /* empty first column balances the +/– so the heading stays centred */
 .project-section > summary::before { content: ""; }
 
 .project-section > summary::after {
-  content: "+";
   justify-self: end;
-  color: var(--faint);
   font-size: var(--lg);
   line-height: 1;
-  transition: color 180ms ease;
 }
 
-.project-section[open] > summary::after { content: "–"; }
-
-.project-section > summary + .section-layout {
-  margin-top: clamp(1.6rem, 4svh, 2.4rem);
-  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .project-section[open] > .section-layout {
-    animation: unfold 420ms cubic-bezier(.22,1,.36,1) both;
-  }
-}
-
-.doc .sub {
-  margin: 0.5rem 0 0;
-  font-size: var(--sm);
-  color: var(--dim);
-}
-
-.bullet-list {
-  max-width: var(--measure);
-  margin: 0;
-  padding-left: 2ch;
-}
-
-.bullet-list li + li {
-  margin-top: 0.55rem;
-}
-
-.bullet-list .bullet-list { margin-top: 0.55rem; }
-
-.doc .source {
-  margin-top: 1.5rem;
+/* stage pages: one section from every project (stages.js) */
+.stage-nav {
+  margin: 0 0 clamp(1.6rem, 4svh, 2.4rem);
+  padding: 0 var(--pad);
   font-size: var(--xs);
+  letter-spacing: 0.08em;
   color: var(--dim);
 }
 
-.source cite {
-  font-style: normal;
+.stage-nav a[aria-current] { color: var(--ink); text-decoration: underline; text-underline-offset: 0.25em; }
+
+.stage-project > h2 a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 2rem;
 }
+
+.stage-unit { color: var(--dim); }
+
+.stage-empty {
+  margin: 0.9rem 0 1.4rem;
+  font-size: var(--xs);
+  color: var(--faint);
+}
+
+#stage > .stage-empty { padding: 0 var(--pad); }
 
 /* Temporary reference numbers on every image (000, 001, …, one sequence
    across the site), for talking about them in chat. Added by ref-numbers.py;
@@ -460,208 +447,6 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
   margin-right: 0.6em;
   font-variant-numeric: tabular-nums;
 }
-
-.source a,
-.epigraph figcaption a {
-  text-decoration: underline;
-  text-decoration-color: var(--faint);
-  text-underline-offset: 0.2em;
-}
-
-/* Keep supporting headings at the project-title scale; color preserves hierarchy. */
-.section-label {
-  margin: 0;
-  font-size: var(--lg);
-  font-weight: var(--weight-body);
-  line-height: 1.7;
-  color: var(--dim);
-}
-
-/* Body copy is left-aligned in the two-thirds reading column. */
-.doc .section-copy p:not(.sub) {
-  max-width: var(--measure);
-  margin: 1.2rem 0 0;
-  text-align: left;
-  color: var(--dim);
-}
-
-.marginnote {
-  margin: 3rem 0 1.4rem 2rem;
-  padding-left: 1rem;
-  border-left: 1px dotted;
-  font-size: var(--xs);
-  line-height: 1.65;
-  color: var(--ink);
-}
-
-.marginnote > :first-child { margin-top: 0; }
-.marginnote > :last-child { margin-bottom: 0; }
-
-/* ---- epigraphs --------------------------------------------------------- */
-/* A quiet, reusable quotation group for project research and writing. */
-.epigraph {
-  margin: 0;
-}
-
-.section-label + .epigraph {
-  margin-top: clamp(2rem, 6svh, 3.5rem);
-}
-
-.epigraph + .epigraph {
-  margin-top: clamp(2.4rem, 7svh, 4.25rem);
-}
-
-.epigraph blockquote {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.doc .section-copy .epigraph blockquote p {
-  max-width: none;
-  margin: 0;
-  color: var(--ink);
-  font-style: italic;
-  line-height: 1.8;
-}
-
-.doc .section-copy .epigraph blockquote p + p {
-  margin-top: 1rem;
-}
-
-.epigraph figcaption {
-  max-width: 52ch;
-  margin: 0.65rem 0 0 auto;
-  font-size: var(--xs);
-  font-weight: var(--weight-label);
-  line-height: 1.6;
-  text-align: right;
-  color: var(--dim);
-}
-
-.epigraph cite {
-  font-style: italic;
-}
-
-/* Like Tufte CSS, preserve notes until a genuinely narrow reading width. */
-@media (max-width: 760px) {
-  .section-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .section-copy,
-  .margin-notes {
-    grid-column: 1;
-  }
-
-  .margin-notes {
-    margin-top: 1.8rem;
-    padding-top: 1.2rem;
-    border-top: 1px dotted var(--rule);
-  }
-
-  .marginnote {
-    max-width: var(--measure);
-    margin-left: 0;
-  }
-}
-
-/* ---- 404 --------------------------------------------------------------- */
-.page {
-  width: min(100%, var(--menu));
-  text-align: left;
-}
-
-.page h1 { margin-bottom: 1.6rem; }
-
-.page p { margin: 0 0 1.2em; color: var(--dim); }
-
-/* ---- entrance ---------------------------------------------------------- */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    animation: fade 600ms ease forwards;
-  }
-  @keyframes fade { to { opacity: 1; } }
-
-  .reveal--title,
-  .reveal--content { animation-delay: 100ms; }
-  .reveal--menu { animation-delay: 220ms; }
-  .reveal--footer { animation-delay: 260ms; }
-}
-
-/* ---- gallery ----------------------------------------------------------- */
-.gallery {
-  margin: clamp(2rem, 6svh, 3rem) auto 0;
-  padding: 0;
-  max-width: min(100%, 68rem);
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  align-items: start;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
-}
-
-/* Feature galleries may use all of the space offered by their layout. */
-.gallery--feature {
-  max-width: none;
-}
-
-/* strip the button back to nothing — it is here for keyboard access */
-.shot {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  position: relative;
-  background: none;
-  /* Hot-pink crosshair cursor for thumbnails that open at full size. */
-  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
-}
-
-.shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
-
-/* Square previews keep the grid stable while the lightbox shows the full image. */
-.shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: opacity 220ms ease;
-}
-
-/* Feature images retain their natural proportions so the complete work is visible,
-   and are never shown larger than the image file itself. */
-.shot--feature {
-  width: fit-content;
-  max-width: 100%;
-  aspect-ratio: auto;
-}
-
-.shot--feature img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* A caption immediately following a gallery shares the gallery's full width. */
-.doc .section-copy .gallery + .source {
-  width: 100%;
-  max-width: min(100%, 68rem);
-  margin-inline: auto;
-}
-
-.shot:hover img,
-.shot:focus-visible img { opacity: 0.45; }
-
-/* Portrait studies can opt into a considered focal point. */
-.shot--crop-upper img { object-position: center 38%; }
-.shot--crop-upper-middle img { object-position: center 42%; }
 
 /* ---- lightbox ---------------------------------------------------------- */
 body.is-locked { overflow: hidden; }
@@ -720,43 +505,550 @@ body.is-locked { overflow: hidden; }
   text-transform: uppercase;
   color: var(--dim);
   cursor: pointer;
-  transition: color 180ms ease;
 }
 
+/* ==========================================================================
+   Content: inside an opened section
+   ========================================================================== */
 
-@media (prefers-reduced-motion: no-preference) {
-  .lightbox:not([hidden]) {
-    animation: fade-in 220ms ease both;
-  }
-  /* needs its own keyframe: `fade` has no `from`, and the overlay
-     is not already at opacity 0 the way .reveal elements are */
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+/* ---- the 12-column grid ----------------------------------------------- */
+/* Children say where they sit with --col (desktop) and --col-m (phone),
+   both in 12ths, e.g. style="--col: 2 / 6; --col-m: 1 / 9". A tall image
+   can take up two rows on desktop with --rows: span 2, so that two smaller
+   things stack beside it. */
+.int-grid {
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: var(--lh-text);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: var(--row);
+  max-width: 100rem;
+  margin: 0 auto;
 }
 
-/* ---- interaction ------------------------------------------------------- */
-/* One hover/focus treatment for everything clickable. Kept last so it wins
-   over each element's resting colour. */
-summary.unit:hover,               summary.unit:focus-visible,
-summary.unit:hover::after,        summary.unit:focus-visible::after,
-.project-section > summary:hover, .project-section > summary:focus-visible,
-.project-section > summary:hover::after,
-.project-section > summary:focus-visible::after,
-.projects a:hover,                .projects a:focus-visible,
-.name a:hover,                    .name a:focus-visible,
-.source a:hover,                  .source a:focus-visible,
-.epigraph figcaption a:hover,     .epigraph figcaption a:focus-visible,
-.lightbox-close:hover,            .lightbox-close:focus-visible {
+.project-section > summary + .int-grid,
+.stage-project > h2 + .int-grid {
+  margin-top: clamp(1.6rem, 4svh, 2.4rem);
+  margin-bottom: clamp(1.85rem, 6svh, 3.35rem);
+}
+
+.int-grid:empty { display: none; }
+
+.int-grid > * {
+  grid-column: var(--col, 1 / -1);
+  grid-row: var(--rows, auto);
+  align-self: var(--align, start);
+  min-width: 0;
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .int-grid { row-gap: calc(var(--row) * 0.85); }
+  .int-grid > * { grid-column: var(--col-m, 1 / -1); grid-row: auto; }
+}
+
+/* ---- defaults for everything in the grid ------------------------------ */
+/* :where() keeps these at the lowest specificity, so any block below can
+   change them without a fight. */
+.int-grid :where(p, blockquote, figure, ul, ol) { margin: 0; }
+.int-grid :where(p + p) { margin-top: 1em; }
+
+.int-grid :where(a) {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 0.2em;
+}
+
+.int-grid sup {
+  font-size: 0.7em;
+  line-height: 0;
+  margin-left: 0.1em;
+}
+
+/* footnote markers, and the number that starts each footnote */
+.int-grid :where(sup a, .int-footnote > a:first-child, .int-bio-note > a:first-child) {
+  text-decoration: none;
+}
+
+/* ---- large type ------------------------------------------------------- */
+/* subheads, quotations and large prose share one large setting. Reading
+   text comes in two sizes, like quotes: .int-prose--large is the overview
+   set above the detail (Printmaking reflection). */
+.int-h3,
+.int-prose--large,
+.int-quote blockquote {
+  font-size: var(--t-l);
+  line-height: var(--lh-large);
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+/* an artist's name, over a rule */
+.int-h3 {
+  font-weight: 500;
+  padding-top: 0.7rem;
+  border-top: var(--hairline);
+}
+
+/* ---- metadata --------------------------------------------------------- */
+/* Everything that describes something else is set the same way. */
+.int-sub,
+.int-footnote,
+.int-grid figcaption,
+.int-tile-cap,
+.int-strip .ref-no,
+.int-tiles .ref-no,
+.int-row .ref-no,
+.int-timeline-date,
+.int-timeline-note,
+.int-next-q,
+.int-bio-dates,
+.int-bio-note {
+  font-family: var(--mono);
+  font-size: var(--md);
+  font-weight: var(--weight-body);
+  line-height: var(--lh-meta);
+  letter-spacing: normal;
+  color: var(--dim);
+}
+
+/* small print */
+.int-sub,
+.int-footnote,
+.int-bio-note,
+.int-timeline-note { font-size: var(--xs); }
+
+.int-grid figcaption { margin-top: 0.8rem; }
+.int-footnote { margin-top: 0.7em; }
+
+/* ---- text ------------------------------------------------------------- */
+/* the reading measure is set on the block, so footnotes keep to the same
+   width as the paragraphs above them */
+.int-prose { max-width: 36em; }
+
+.int-prose ul { padding-left: 1.2em; }
+.int-prose li + li,
+.int-prose li > ul { margin-top: 1em; }
+
+/* prose beside an image, under a rule */
+.int-note {
+  border-top: var(--hairline);
+  padding-top: 0.6rem;
+}
+
+/* an artist's bio before their work: a third of the page, all in mono,
+   the dates and places, a short note, and the official source in pink */
+.int-bio {
+  font-family: var(--mono);
+  font-size: var(--md);
+  font-weight: var(--weight-body);
+  line-height: var(--lh-meta);
+}
+
+.int-bio .int-bio-name {
+  font-size: var(--t-l);
+  font-weight: var(--weight-label);
+  line-height: var(--lh-large);
+}
+
+.int-bio .int-bio-dates { margin-top: 0.6em; }
+
+.int-bio .int-bio-source {
+  margin-top: 1.1em;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--accent);
   color: var(--accent);
 }
 
-summary.unit:focus-visible,
-.project-section > summary:focus-visible,
-.projects a:focus-visible,
-.name a:focus-visible,
-.lightbox-close:focus-visible {
+.int-bio-source a { text-decoration-color: currentColor; }
+
+/* at the end of an artist's research: how it informs my work (a box on the right) */
+.int-next {
+  padding: 1.1rem 1.25rem;
+  background: color-mix(in srgb, var(--ink) 5%, var(--paper));
+}
+
+/* ---- quotations ------------------------------------------------------- */
+/* <figure class="int-quote">, optionally an .int-sub line to introduce it,
+   the <blockquote>, and a <figcaption> for who said it. */
+.int-quote .int-sub { margin-bottom: 1.2rem; }
+
+/* two sizes: large by default, or --small, at reading size in italics
+   (Sol LeWitt's instructions and sentences, Drawing Week) */
+.int-quote--small blockquote {
+  font-size: var(--t-body);
+  line-height: var(--lh-text);
+  letter-spacing: normal;
+  font-style: italic;
+}
+
+/* ---- lists ------------------------------------------------------------ */
+/* a numbered list set like source code (Drawing Week rules) */
+.int-code {
+  font-family: var(--mono);
+  font-size: var(--md);
+  font-weight: var(--weight-body);
+  line-height: var(--lh-meta);
+  border-left: var(--hairline);
+  padding-left: 1.1rem;
+}
+
+.int-code .int-code-title {
+  margin-bottom: 0.4em;
+  font-weight: var(--weight-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.int-code p { margin: 0; }
+.int-code-head { color: var(--dim); }
+.int-code .int-code-gap { margin: 0.9em 0 0.4em; }
+
+.int-code ol {
+  padding: 0;
+  list-style: none;
+  counter-reset: line;
+}
+
+.int-code li {
+  counter-increment: line;
+  display: grid;
+  grid-template-columns: 3ch 1fr;
+  column-gap: 1.4ch;
+}
+
+.int-code li::before {
+  content: counter(line, decimal-leading-zero);
+  color: var(--dim);
+  text-align: right;
+}
+
+/* source code shown as it is, beside what it draws (Wall Drawing 26) */
+.int-code--src {
+  font-size: var(--xs);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* a list of short facts, one per ruled line */
+.int-facts { padding: 0; list-style: none; }
+.int-facts li { padding: 0.3em 0; border-top: var(--hairline); }
+
+/* a timeline: plain rows, the date in mono to the left of each event, and
+   any glosses under it as small grey notes behind a +. timeline.js adds
+   .is-scaled: a line down the left with a dot at each date, the rows placed
+   at true distance in years (Research Week) */
+.int-timeline { padding: 0; list-style: none; }
+.int-timeline > li + li { margin-top: 1.4em; }
+
+.int-timeline > li {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  column-gap: var(--gap);
+}
+
+.int-timeline > li > p { margin: 0; max-width: 36em; }
+
+.int-timeline-date { padding-top: 0.25em; }
+
+.int-timeline-more,
+.int-timeline > li > .int-fig,
+.int-timeline-figs { grid-column: 2; }
+
+/* an image under an event, kept small so the row stays short */
+.int-timeline > li > .int-fig { max-width: 22rem; margin-top: 0.8em; }
+
+/* several images under one event, two to a row */
+.int-timeline-figs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4em var(--gap);
+  max-width: 36em;
+  margin-top: 0.8em;
+}
+
+/* resting colour at the lowest specificity, so the shared hover still wins */
+:where(.int-timeline-more) > summary {
+  width: fit-content;
+  color: var(--faint);
+  line-height: 1.4;
+}
+
+.int-timeline-note {
+  margin-top: 0.3em;
+  max-width: 48em;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.int-timeline-note li + li { margin-top: 0.3em; }
+
+/* --dot-y: the middle of the date's first line, where the dot sits */
+.int-timeline.is-scaled {
+  --dot-y: 0.85em;
+  position: relative;
+}
+
+.int-timeline.is-scaled::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: var(--dot-y);
+  height: var(--last, 0px);
+  width: 1px;
+  background: var(--faint);
+}
+
+.int-timeline.is-scaled > li {
+  position: absolute;
+  top: var(--top, 0px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding-left: 1.6em;
+}
+
+.int-timeline.is-scaled > li::before,
+.int-timeline.is-scaled > li::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+}
+
+.int-timeline.is-scaled > li::before {
+  left: 0;
+  top: calc(var(--dot-y) - 3.5px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+/* a span of years, e.g. AD 197–211, as a thicker stretch of the line */
+.int-timeline.is-scaled > li::after {
+  left: 2px;
+  top: var(--dot-y);
+  width: 3px;
+  height: var(--span, 0px);
+}
+
+@media (max-width: 760px) {
+  .int-timeline > li { grid-template-columns: minmax(0, 1fr); }
+  .int-timeline-date { padding: 0 0 0.3em; }
+  .int-timeline-more,
+  .int-timeline > li > .int-fig,
+  .int-timeline-figs { grid-column: 1; }
+  .int-timeline.is-scaled { --dot-y: 0.65em; }
+}
+
+/* a map of Britain beside the timeline, pinned while it scrolls past, the
+   Roman part filled in for the row being read (timeline.js adds .has-map
+   and switches the stages). Phones: a small map pinned at the top right. */
+.int-timeline-wrap.has-map {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+.int-timeline-wrap.has-map > div { grid-column: 1 / 9; grid-row: 1; }
+
+.int-timeline-map {
+  grid-column: 9 / 13;
+  grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: 12vh;
+}
+
+.int-timeline-map svg { display: block; width: 100%; max-height: 70vh; overflow: hidden; }
+
+.int-timeline-map path { fill: none; vector-effect: non-scaling-stroke; }
+.int-timeline-map .map-coast { stroke: var(--dim); stroke-width: 1px; }
+.int-timeline-map .map-ireland { stroke: var(--faint); stroke-width: 1px; }
+
+.int-timeline-map .map-stage,
+.int-timeline-map .map-wall { opacity: 0; transition: opacity 400ms ease; }
+/* the Roman part as a field of evenly spaced dots, fixed to the map so they
+   appear and disappear in place between stages */
+.int-timeline-map .map-stage { fill: url(#map-dots); }
+.int-timeline-map .map-dot { fill: var(--faint); }
+.int-timeline-map .map-wall { stroke: var(--accent); stroke-width: 3.5px; stroke-linecap: round; }
+.int-timeline-map .is-on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .int-timeline-map .map-stage,
+  .int-timeline-map .map-wall { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .int-timeline-wrap.has-map > div { grid-column: 1 / -1; }
+  .int-timeline-map {
+    grid-column: 1 / -1;
+    justify-self: end;
+    width: 30vw;
+    top: 0.5rem;
+    z-index: 1;
+    padding: 0.4rem 0 0.4rem 0.4rem;
+    background: var(--paper);
+  }
+  .int-timeline-map .map-cap-label { display: none; }
+}
+
+/* ---- figures ---------------------------------------------------------- */
+/* --w is the larger file's width: images fill their columns but are never
+   shown larger than the file itself. The caption keeps to the same width. */
+.int-fig img,
+.int-fig video {
+  display: block;
+  width: 100%;
+  max-width: var(--w, 100%);
+  height: auto;
+  transition: opacity 220ms ease;
+}
+
+.int-fig figcaption { max-width: var(--w, 100%); }
+
+/* an embedded film (Vimeo), full width of its columns at 16:9 */
+.int-fig iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+}
+
+/* a drawing made live by code, square */
+.int-fig canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  color: var(--ink);
+}
+
+/* a thin keyline round drawings on white paper (Drawing as Process) */
+.int-fig--framed img { border: 2px solid var(--ink); }
+
+/* content images sit in <picture> (AVIF with a JPEG fallback); the wrapper
+   adds no box of its own, so the image lays out as before */
+.int-grid picture { display: contents; }
+
+/* while media.js holds an image back, it shows its 16px placeholder as
+   hard-edged squares, like the banners before they resolve */
+.int-grid img.is-held { image-rendering: pixelated; }
+
+/* a thumbnail that opens the lightbox */
+.int-shot {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: url("images/cursor-crosshair.svg") 16 16, crosshair;
+}
+
+.int-shot:hover img,
+.int-shot:focus-visible img { opacity: 0.45; }
+.int-shot:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+/* ---- image groups ----------------------------------------------------- */
+/* a grid of equal-size tiles inside one figure: four across by default,
+   --3 three (two on phones), --8 eight (four on phones) */
+.int-tiles,
+.int-row,
+.int-strip {
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.int-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.int-tiles--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.int-tiles--8 { grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0.5rem; }
+
+@media (max-width: 760px) {
+  .int-tiles--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .int-tiles--8 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* images side by side at the same height: each column's fr is that image's
+   width at a shared height, set inline (Cardboard Orchestra exquisite corpse) */
+.int-row { display: grid; }
+
+/* a row of small prints, all the same height, lined up on the right
+   (Printmaking: every print in order at the end of the reflection) */
+.int-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.75rem 0.5rem;
+}
+
+.int-strip li { flex: none; }
+
+.int-strip img {
+  width: auto;
+  height: clamp(5rem, 13vw, 12rem);
+}
+
+.int-strip-fig figcaption { text-align: right; max-width: none; }
+
+/* a number or short caption under each image of a group */
+.int-strip .ref-no,
+.int-tiles .ref-no,
+.int-row .ref-no { display: block; margin-top: 0.35rem; }
+
+.int-tiles .int-tile-cap { margin: 0.35rem 0 0; }
+
+/* ---- motion ------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    animation: fade 600ms ease forwards;
+  }
+  .reveal--title,
+  .reveal--content { animation-delay: 100ms; }
+  .reveal--menu { animation-delay: 220ms; }
+  .reveal--footer { animation-delay: 260ms; }
+
+  .lightbox:not([hidden]) { animation: fade 220ms ease both; }
+
+  details[open] .projects,
+  .project-section[open] > .int-grid {
+    animation: unfold 420ms var(--ease-out) both;
+  }
+
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes unfold { from { opacity: 0; transform: translateY(-0.35rem); } }
+}
+
+/* ---- interaction ------------------------------------------------------- */
+/* One hover/focus treatment for everything clickable, on every page. Kept
+   last so it wins over each element's resting colour. */
+a, summary, summary::after, label, .lightbox-close, .expand-all {
+  transition: color 180ms ease;
+}
+
+a:hover, a:focus-visible,
+summary:hover, summary:focus-visible,
+summary:hover::after, summary:focus-visible::after,
+.view-switch label:hover, .view-switch input:focus-visible + label,
+.lightbox-close:hover, .lightbox-close:focus-visible,
+.expand-all:hover, .expand-all:focus-visible {
+  color: var(--accent);
+}
+
+a:focus-visible,
+summary:focus-visible,
+.lightbox-close:focus-visible,
+.expand-all:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: var(--focus-offset);
 }

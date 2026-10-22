@@ -9,7 +9,7 @@ It strips the old numbers first, so it can be run any number of times.
 Each number goes in two places: a <span class="ref-no"> in the caption (under
 each tile in a grid) and a "NNN · " prefix in the button's data-caption, which
 the lightbox shows. To remove them for good: python3 ref-numbers.py --remove,
-then delete the .ref-no rules in style.css and style-int.css, and this file.
+then delete the .ref-no rules in style.css, and this file.
 """
 import re
 import sys

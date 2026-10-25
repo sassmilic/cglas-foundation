@@ -43,7 +43,7 @@
         <aside class="int-bio" style="--col: 1 / 6; --col-m: 1 / -1">
           <p class="int-bio-name">Sol LeWitt</p>
           <p class="int-bio-dates">b. 1928, Hartford, CT<br>d. 2007, New York</p>
-          <p>A leading figure of Minimalism and a “pioneer of Conceptual art”. LeWitt’s work raises a fundamental ontological question: where does the artwork reside — in the instructions for its creation, or in its physical realization? By separating conception from execution, he allowed the idea to stand on its own. As he famously wrote, <a href="https://rednoise.org/teaching/pdal/uploads/Paragraphs.Conceptual.Lewitt.html">“The idea becomes a machine that makes the art.”</a><sup><a href="#lewitt-note-1" id="lewitt-ref-1">1</a></sup> Did he anticipate the philosophical questions that would later arise with digital and generative art?</p>
+          <p>A leading figure of Minimalism and a “pioneer of Conceptual art”. LeWitt’s work raises a fundamental ontological question: where does the artwork reside — in the instructions for its creation, or in its physical realization? By separating idea/concept from execution, he allowed the idea itself to stand separately on its own. As he famously wrote, <a href="https://rednoise.org/teaching/pdal/uploads/Paragraphs.Conceptual.Lewitt.html">“The idea becomes a machine that makes the art.”</a><sup><a href="#lewitt-note-1" id="lewitt-ref-1">1</a></sup> Did he anticipate the philosophical questions that would later arise with digital and generative art?</p>
           <p class="int-bio-note" id="lewitt-note-1"><a href="#lewitt-ref-1">1</a> Sol LeWitt, “<a href="https://rednoise.org/teaching/pdal/uploads/Paragraphs.Conceptual.Lewitt.html">Paragraphs on Conceptual Art</a>,” <cite>Artforum</cite>, vol. 5, no. 10 (June 1967), pp. 79–83.</p>
           <p class="int-bio-source">Source: <a href="https://www.pacegallery.com/artists/sol-lewitt/">Pace Gallery</a></p>
         </aside>
@@ -137,27 +137,19 @@
 
         <figure class="int-fig" style="--col: 7 / 13; --col-m: 1 / -1">
           <pre class="int-code int-code--src"><code data-wall-drawing-code="26"></code></pre>
-          <figcaption>Pseudocode/JavaScript-ish: this is the code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
+          <figcaption>This is the javascript code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
         </figure>
 
         <h3 class="int-h3"><cite>Wall Drawing 118</cite> (1971), after Sol LeWitt</h3>
 
         <div class="int-prose" style="--col: 1 / 8">
-          <p>The same again for <cite>Wall Drawing 118</cite>: every few seconds, fifty new points are placed at random and every point is joined to every other, 1,225 lines in all.<sup><a href="#wd118-note-1" id="wd118-ref-1">1</a></sup> To spread the points evenly I used <a href="https://observablehq.com/@bensimonds/mitchells-best-candidate-algorithm">Mitchell’s best-candidate algorithm</a>: for each new point, create ten random points on the grid and only keep the one furthest from the points already placed.</p>
-          <p class="int-footnote" id="wd118-note-1"><a href="#wd118-ref-1">1</a> Each of the 50 points connects to the other 49, which gives 50 × 49 = 2,450, but that counts every line twice, once from each end, so 2,450 ÷ 2 = 1,225.</p>
+          <p>The same again for <cite>Wall Drawing 118</cite>: every few seconds, fifty new points are placed at random and every point is joined to every other. 1,225 lines in all.<sup><a href="#wd118-note-1" id="wd118-ref-1">1</a></sup> To spread the points evenly I used <a href="https://observablehq.com/@bensimonds/mitchells-best-candidate-algorithm">Mitchell’s best-candidate algorithm</a>: for each new point, create ten random points on the grid and only keep the one furthest from the points already placed.</p>
+          <p class="int-footnote" id="wd118-note-1"><a href="#wd118-ref-1">1</a> Each of the 50 points connects to the other 49, which gives 50 × 49 = 2,450, but that counts every line twice, so 2,450 ÷ 2 = 1,225.</p>
         </div>
 
         <figure class="int-quote int-quote--small" style="--col: 1 / 7; --col-m: 1 / -1">
           <blockquote>
-            <p>“On a wall surface, any<br>
-            continuous stretch of wall,<br>
-            using a hard pencil, place<br>
-            fifty points at random.<br>
-            The points should be evenly<br>
-            distributed over the area<br>
-            of the wall. All of the<br>
-            points should be connected<br>
-            by straight lines.”</p>
+            <p>“On a wall surface, any continuous stretch of wall, using a hard pencil, place fifty points at random. The points should be evenly distributed over the area of the wall. All of the points should be connected by straight lines.”</p>
           </blockquote>
           <figcaption>Sol LeWitt, <cite>Wall Drawing 118</cite></figcaption>
         </figure>
@@ -170,7 +162,7 @@
 
         <figure class="int-fig" style="--col: 7 / 13; --col-m: 1 / -1">
           <pre class="int-code int-code--src"><code data-wall-drawing-code="118"></code></pre>
-          <figcaption>Pseudocode/JavaScript-ish: this is the code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
+          <figcaption>This is the javascript code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
         </figure>
 
         <h3 class="int-h3"><cite>Wall Drawing 797</cite> (1995), after Sol LeWitt</h3>
@@ -183,10 +175,10 @@
         </figure>
 
         <div class="int-prose" style="--col: 1 / 8">
-          <p><a href="https://massmoca.org/event/walldrawing797/">MASS MoCA</a> describes what happens to the line: “As the draftsman repeatedly copies the line, it becomes drastically altered from its original state, and the smooth original line becomes more and more nervous as it is redrawn.”</p>
-          <p>To get close to a similar effect, <strong>the code has to make mistakes on purpose</strong>. The first line (in the drawing/animation below) is a few random sine waves added together. Each copy is then drawn a little lower, with errors added on top of the ones it <em>inherited</em> from the line above. Each error is mostly the error just before, plus a small random nudge, so a copy strays slowly and drifts back, the way we would assume a human hand moves. Because every copy carries all the mistakes before it, the line grows more nervous on its way down.</p>
+          <p><a href="https://massmoca.org/event/walldrawing797/">MASS MoCA</a> describes what happens to the lines: “As the draftsman repeatedly copies the line, it becomes drastically altered from its original state, and the smooth original line becomes more and more nervous as it is redrawn.”</p>
+          <p>To get close to a similar effect, <strong>the code has to make mistakes on purpose</strong>. The first line (in the drawing/animation below) is a few random sine waves added together. Each copy is then drawn a little lower, with errors added on top of the ones it <em>inherited</em> from the line above. Each error is mostly the error just before, plus a small random nudge, so a copy strays slowly and drifts back, the way we would assume a human hand moves. Because every copy carries all the mistakes before it, the lines grow more nervous on their journey down.</p>
           <p>As you can see, despite my attempts, these lines still look machine-generated and not particularly human-like.</p>
-          <p><strong>Many algorithms exist to imitate randomness and noise, and it is one of the hardest things to get a computer to do: to mimic humanness and organic forms.</strong> It gives me much more appreciation for the perceived messiness of the drawings I made in the <a href="project-one.html#process">Process</a> section.</p>
+          <p><strong>Many algorithms exist to imitate randomness and noise, and it is one of the hardest things to get a computer to do: to mimic human-ness and organic forms.</strong> It gives me much appreciation for the perceived messiness of the drawings I made in the <a href="project-one.html#process">Process</a> section.</p>
         </div>
 
         <figure class="int-fig" style="--col: 1 / 7; --col-m: 1 / -1">
@@ -197,14 +189,14 @@
 
         <figure class="int-fig" style="--col: 7 / 13; --col-m: 1 / -1">
           <pre class="int-code int-code--src"><code data-wall-drawing-code="797"></code></pre>
-          <figcaption>Pseudocode/JavaScript-ish: this is the code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
+          <figcaption>This is the javascript code that creates the drawing on the left. Some boilerplate code removed.</figcaption>
         </figure>
 
         <h3 class="int-h3">Generative art: <cite>Autoglyphs</cite></h3>
 
         <div class="int-prose" style="--col: 1 / 8">
-          <p><cite>Autoglyphs</cite> (2019), by Larva Labs (Matt Hall and John Watkinson), were the first fully “on-chain” generative artworks on Ethereum: the code that produces each artwork lives inside a smart contract on the blockchain. Each glyph is a pattern of characters generated by the code. These characters can then be rendered on a screen, plotted by a machine, or drawn by hand. <a href="https://www.larvalabs.com/autoglyphs">Larva Labs</a> explicitly credits LeWitt: “The idea of having the Blockchain dictate ‘instructions’ for the works to be rendered was inspired by Sol LeWitt’s <cite>Wall Drawings</cite>.”</p>
-          <p><strong>LeWitt’s question—whether the artwork resides in the instructions or in the realised drawing—is pushed further when the hand disappears entirely.</strong> There is no draftsperson to interpret the instructions, no wobble, no random deviation, nothing lost in the digital reproduction: given the same input, the code produces exactly the same output every time.</p>
+          <p><cite>Autoglyphs</cite> (2019), by Larva Labs (Matt Hall and John Watkinson), were the first fully “on-chain” generative artworks on Ethereum: the code that produces each artwork lives inside a single smart contract on the blockchain. Each glyph is a pattern of characters generated by the code. These characters can then be: rendered on a screen, plotted by a machine, or drawn by hand. <a href="https://www.larvalabs.com/autoglyphs">Larva Labs</a> explicitly credits LeWitt: “The idea of having the Blockchain dictate ‘instructions’ for the works to be rendered was inspired by Sol LeWitt’s <cite>Wall Drawings</cite>.”</p>
+          <p><strong>LeWitt’s question—whether the artwork resides in the instructions or in the realised drawing—is pushed further when the hand disappears entirely.</strong> There is no draftsperson to interpret the instructions, no wobbling hand, no random deviation, nothing lost in the digital reproduction. Given the same input, the code produces exactly the same output every time.</p>
           <p>But something even more fundamental happens here. The instructions and their output exist in the same digital medium, bound by an exact mathematical relationship. The algorithm precisely defines a system of possibilities; each glyph is one inevitable realisation of that system. In a sense, the image already exists within the instructions. The process and product are two sides of the proverbial mathematical coin.</p>
           <p><strong>So where does the artwork actually reside?</strong> In the code? In the realised image? Or, perhaps, in the mathematical relationship between them, of which both are merely different manifestations?</p>
         </div>
@@ -407,18 +399,17 @@ function draw(uint id) public view returns (string) {
     string memory result = string(output);
     return result;
 }</code></pre>
-          <figcaption>The drawing function of the <cite>Autoglyphs</cite> contract, written in Solidity, as published by <a href="https://www.larvalabs.com/autoglyphs">Larva Labs</a>.</figcaption>
+          <figcaption>The drawing function of the <cite>Autoglyphs</cite> contract, written in Solidity.</figcaption>
         </figure>
 
         <div class="int-prose" style="--col: 8 / 13; --col-m: 1 / -1">
-          <p>I personally love <cite>Autoglyphs</cite> because the code is so simple, clever and elegant (speaking as a programmer)—each cell position is multiplied by a number taken from the glyph’s seed, the remainder is taken, and that remainder is used to pick a symbol or leave a blank—yet it produces so much complexity. In my opinion, the code is as beautiful as the digital artworks it creates.</p>
-          <p>Larva Labs describe the generator as “capable of creating billions of unique artworks” however the collection was capped at 512. One short piece of code producing this kind of variety is remarkable.</p>
+          <p>I personally love <cite>Autoglyphs</cite> because the code is so clever and elegant (speaking as a programmer) yet it produces so much complexity. In my opinion, the code is as beautiful as the resulting images it creates. Larva Labs describe the generator as “capable of creating billions of unique artworks” (the collection, however, was capped at 512). One short piece of code producing this kind of variety is remarkable.</p>
         </div>
 
         <h3 class="int-h3">Art in the age of AI: where is the art and who is the artist?</h3>
 
         <div class="int-prose" style="--col: 1 / 8">
-          <p>Everything above is a prerequisite for thinking about art in the age of AI. LeWitt separated the idea from the hand that carries the idea out. Generative art (or algorithmic art) replaced the hand entirely. Generative AI takes one (or several) more step: now the code itself is written by a machine (or is it?) from a sentence of instructions.</p>
+          <p>Everything above is a prerequisite for thinking about art in the age of AI. LeWitt separated the idea from the hand that executes the idea. Generative art (or algorithmic art) replaced the hand entirely. Generative AI takes one, or several, more steps: now the code itself is written by a machine (or is it?) from a sentence of instructions.</p>
         </div>
 
         <figure class="int-fig" style="--w: 1800px">
@@ -435,7 +426,7 @@ function draw(uint id) public view returns (string) {
                    alt="Screenshot of Shadertoy: on the left, a rendered landscape of forested green hills below sheer cliffs and a cloudy sky, titled Rainforest, created by iq in 2016-12-22; on the right, the GLSL code that draws it, lines 107 to 147 of a noise function full of hash values and polynomial terms.">
             </picture>
           </button>
-          <figcaption><span class="ref-no">012</span> Inigo Quilez, <a href="https://www.shadertoy.com/view/4ttSWf"><cite>Rainforest</cite></a>, 2016, on <a href="https://www.shadertoy.com/view/4ttSWf">Shadertoy</a>. The landscape on the left is drawn entirely by the shader code on the right. Screenshot.</figcaption>
+          <figcaption><span class="ref-no">012</span> Inigo Quilez, <cite>Rainforest</cite>, 2016, on <a href="https://www.shadertoy.com/view/4ttSWf">Shadertoy</a>. The landscape on the left is drawn entirely by the shader code on the right. Screenshot.</figcaption>
         </figure>
 
         <aside class="int-bio" style="--col: 1 / 6; --col-m: 1 / -1">
@@ -464,13 +455,12 @@ function draw(uint id) public view returns (string) {
         </figure>
 
         <div class="int-prose" style="--col: 1 / 8">
-          <p>On October 20, 2026, gokaygokay posted a shader that Claude Opus 5.5 had reverse-engineered from a 20-second video clip. Iñigo Quílez quoted the post with a provocation: if the model was prompted to impersonate him, and drew on his work in shapes, lighting, and animation—reproducing his style, mathematics, techniques, and conventions, right down to the variable names—then “isn’t this actually, MY brain’s work? Should I claim it as mine?”</p>
+          <p>On October 20, 2026, gokaygokay posted a shader that Claude Opus 5.5 had reverse-engineered from a 20-second video clip. Iñigo Quílez quoted the post with a provocation: if the model was prompted to impersonate him, and drew on his work in shapes, lighting, and animation—reproducing his style, his mathematics, his techniques, and his conventions, right down to the variable names—then “isn’t this actually, MY brain’s work? Should I claim it as mine?”</p>
           <p>So who is the artist?</p>
           <p>The person who prompted the AI? They supplied the instructions. But LeWitt’s instructions generally contained both the artistic idea and the system for executing it. An AI prompt may specify little more than a desired outcome, leaving the model to determine much of the method. Is specifying what one wants the same as conceiving the work?</p>
-          <p>The makers of the AI? They built the machine—though they built it by having it learn from data, that is, from other people’s work. But building the means of production is not the same as conceiving the artwork. In LeWitt’s wall drawings, the people who execute the instructions are credited by MASS MoCA as “first drawn by,” while authorship remains LeWitt’s. Yet, the AI is not merely a draftsperson: it makes decisions that neither its developers nor its user necessarily specified.</p>
-          <p>Iñigo Quílez? His mathematical techniques, developed over decades and shared freely, have become part of the visual and technical vocabulary from which these systems draw. In a sense, his body of work has become part of the machine’s inherited instructions. But does the authorship of a technique extend to every work that uses it?</p>
+          <p>The makers of the AI? They built the machine—though they built it by having it learn from data, that is, from other people’s work. Even so, building the means of production is not the same as conceiving the artwork. In LeWitt’s wall drawings, the people who execute the instructions are credited by MASS MoCA as “first drawn by,” while authorship remains LeWitt’s. Yet, the AI is not merely a draftsperson: it makes decisions that neither its developers nor its users necessarily specified.</p>
+          <p>Iñigo Quílez? His mathematical techniques—developed over decades and shared freely—have become part of the visual and technical vocabulary from which these systems draw. In a sense, his body of work has become part of the machine’s inherited instructions. But does the authorship of a technique extend to every work that uses it?</p>
           <p>The creator of the original video? Their composition, forms, and movement provided the visual target that the AI reconstructed. Without that original work, there would be nothing to reverse-engineer.</p>
-          <p>“The idea becomes a machine that makes the art,” LeWitt wrote. Here, the machine is real, and it has learned from the ideas and labour of other artists.</p>
           <p>The instructions no longer reside entirely with any one person. Instructions generate further instructions, which in turn generate still more instructions, until an image finally emerges. But where, in this chain, do the instructions for the artwork actually reside? Are we talking about the prompt? The code generated by the AI? The code underlying the neural network itself? Its learned parameters? Or even the vast body of human work on which it was trained? These are not all instructions in the same sense, but each plays a role in determining the final image. Can we even locate <em>the</em> instructions? Before we can ask who wrote them, or to whom they belong, we must first establish what, exactly, constitutes the instructions.</p>
           <p>None of these claims to authorship seems complete on its own. Perhaps now—in a hyper-connected and distributed world—authorship is also distributed. Or perhaps our existing conception of authorship is no longer adequate? LeWitt opened the question over half a century ago; AI has made it impossible to avoid.</p>
         </div>
@@ -478,7 +468,7 @@ function draw(uint id) public view returns (string) {
 
         <aside class="int-next" style="--col: 7 / 13; --col-m: 1 / -1">
           <p class="int-next-q">How does this research inform my own work?</p>
-          <p>While I am interested in digital art—particularly algorithmic art, where I believe the code and the realised work should be presented side by side, a Siamese marriage of process and product, each constituting half of the artwork—I think the deeper significance of this research lies in its exploration of a longstanding question, made newly urgent by the rise of AI: What is the relationship between an artwork and the instructions that produce it? Where do those instructions come from? What role do errors, mistakes, and randomness play in their execution and in the materialisation of the final work?</p>
+          <p>While I am interested in digital art—I think the deeper significance of this research lies in its exploration of a longstanding question, made newly urgent by the rise of AI: What is the relationship between an artwork and the instructions that produce it? Where do those instructions come from? And since I’ve perhaps strayed from the subject of Drawing Week, let me return to it—or rather, approach it from another direction: What role do chance, error, and imperfection play in the execution of instructions and the materialisation of the final work?</p>
           <p>It makes me question my own practice: Am I unconsciously following a set of instructions? If so, are those instructions my own? To what extent does randomness—so elusive within deterministic systems—shape my drawings and other non-digital work? And what if randomness is itself a (higher) form of order, a pattern we simply cannot recognise?</p>
         </aside>
 
@@ -587,6 +577,10 @@ function draw(uint id) public view returns (string) {
 
         <h3 class="int-h3">Drawing in Space</h3>
 
+        <div class="int-prose" style="--col: 1 / 8">
+          <p>Jonathan noticed a rectangular paint outline on the far wall. We quickly decided to make it our focal point, and to take an architectural approach to the rest of the string work: everything would draw the eye to one location, one small plane of the space. Teamwork was happily effortless; with the central idea agreed in our minds, we worked well with minimal communication. Through incremental, collective decision-making, the rectangle on the wall became a theatre stage, or a screen.</p>
+        </div>
+
         <figure class="int-fig" style="--col: 3 / 11; --w: 1350px">
           <button type="button" class="int-shot" data-caption="018"
                   data-full="images/string-01-final-installation-full.jpg">
@@ -670,7 +664,7 @@ function draw(uint id) public view returns (string) {
         <figure class="int-fig int-fig--framed" style="--col: 3 / 11; --w: 1800px">
           <button type="button" class="int-shot"
                   data-full="images/string-06-installation-drawing-full.jpg"
-                  data-caption="023 · Final drawing, with the installation as subject matter">
+                  data-caption="023 · Final drawing of the installation">
             <picture>
               <source type="image/avif" srcset="images/string-06-installation-drawing-thumb.avif 800w, images/string-06-installation-drawing-mid.avif 1200w, images/string-06-installation-drawing-full.avif 1800w" sizes="(min-width: 760px) 67vw, 100vw">
               <img src="images/string-06-installation-drawing-thumb.jpg"
@@ -681,7 +675,7 @@ function draw(uint id) public view returns (string) {
                    alt="Black ink drawing of the string installation: taut lines fanning from the corners, a knotted, sagging web across the back wall, and the cross-hatched dress form in the centre with its sash drawn in red.">
             </picture>
           </button>
-          <figcaption><span class="ref-no">023</span> Final drawing, with the installation as subject matter</figcaption>
+          <figcaption><span class="ref-no">023</span> Final drawing of the installation</figcaption>
         </figure>
 
         <h3 class="int-h3">Life Drawing</h3>
@@ -1088,10 +1082,10 @@ function draw(uint id) public view returns (string) {
             <li>I’m currently taking a traditional drawing atelier course on Saturdays
               alongside Foundation at City &amp; Guilds, and I like the back-and-forth between
               the two: formalism and strict control on one side, freedom and experimentation
-              on the other. Like the tension and release one puts into building muscle. In
+              on the other. Something like the tension and release one puts into building muscle. In
               the first atelier lesson, we spent 10–15 minutes simply drawing straight lines
               correctly: arm extended, movement originating from the shoulder, eye looking
-              ahead of the charcoal. The contrast between the first respective lessons in
+              ahead of the charcoal. By contrast, the first drawing exercise I was given at City &amp; Guilds was to draw with my eyes closed, deliberately relinquishing conscious control. The contrast between the first respective lessons in
               the two programs struck me as both poetic and slightly funny. I think moving
               gracefully between these two modes could be extremely useful to me as an
               artist: honing control, then deliberately abdicating control, then returning
@@ -1099,8 +1093,8 @@ function draw(uint id) public view returns (string) {
             <li>The final exercise—“drawing” in three-dimensional space—was a particular
               brain-tickler. I found the act of demarcating planes in space strangely
               compelling, probably because of my mathematical background. A finite volume
-              of space can contain infinitely many possible planes or divisions. By placing
-              just a few lines or surfaces within it, you temporarily select and make visible
+              of space can contain infinitely many possible divisions. By placing
+              just a few finite lines or surfaces within it, you temporarily select and make visible
               one structure out of infinitely many possible ones. There is something poetic
               in that: drawing as an act of imposing a finite order on continuous space.</li>
           </ul>

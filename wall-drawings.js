@@ -87,7 +87,7 @@ function furthest(spots, points) {
 function mistakes(n) {
   var e = 0, out = [];
   for (var k = 0; k < n; k++) {
-    e = e * 0.97 + (Math.random() - 0.5) * 0.003;
+    e = e * 0.97 + (Math.random() - 0.5) * 0.0022;
     out.push(e);
   }
   return out;

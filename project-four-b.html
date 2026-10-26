@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,300;0,400;1,300&amp;family=Geist:ital,wght@0,400;0,500;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100;0,300;0,400;1,300&amp;family=Geist:ital,wght@0,400;0,500;1,400&amp;display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,7 +38,39 @@
     <section id="research">
       <details class="project-section">
         <summary><h2 class="project-section-heading">Research</h2></summary>
-      <div class="int-grid"></div>
+      <div class="int-grid">
+
+        <aside class="int-bio" style="--col: 1 / 7; --col-m: 1 / -1">
+          <p class="int-bio-name">Lewis Sydney — <cite>The Follyphone</cite></p>
+          <p class="int-bio-dates">b. c. 1872 (sources differ)<br>d. 1941</p>
+          <p>A British actor, comedian, mimic and pianist, Sydney began as a straight actor in melodrama and classic comedy with touring companies before joining H. G. Pelissier’s Follies, the Edwardian comic troupe, where he became Pelissier’s regular comic partner. He was known for impersonating musical instruments in the Follies’ sketches, such as the tin whistle in their send-up of Tchaikovsky’s <cite>1812</cite>, and later had a long career as a society entertainer at the piano.</p>
+          <p>Invented by Lewis Sydney, the <cite>Follyphone</cite> was a deliberately absurd musical instrument, combining an organ-like keyboard with a bewildering assortment of pipes, horns, levers, and stops. Sydney performed it during H. G. Pelissier’s comic orchestral concerts in London in 1912. Despite its elaborate construction and imposing appearance, the instrument often produced little more than silence or a few feeble notes, to the audience’s great amusement. The Follyphone was as much a theatrical sculpture as a musical instrument, playfully mocking the spectacle of technological invention.</p>
+          <p>At its first appearance in September 1912, the Follyphone stood all afternoon in the orchestra, “looking like a huge shower-bath swathed in grey”, before Sydney unveiled it: “a sort of Positive organ, with a great many stops, a device like a trombone valve working sideways, innumerable serpentine pipes, and a huge gramophone receiver atop, pointing to the stars”. It had two keyboards and no end of stops that made no sound at all. The joke travelled: in January 1913 the American magazine <cite>Popular Mechanics</cite> called it a “dreadful instrument”, perhaps one for producing the new “futurist” music.</p>
+          <p class="int-bio-source">Sources: <a href="https://www.pelissiersfollies.com/the-follies">Pélissier’s Follies</a>; <a href="https://imslp.org/wiki/Category:Sydney,_Lewis">IMSLP</a>; <a href="https://paleofuture.com/blog/2025/1/6/the-follyphone-and-our-ridiculous-future">Paleofuture</a>, quoting the <cite>South Wales Echo</cite>, the <cite>Daily Telegraph</cite> and <cite>Popular Mechanics</cite>; <a href="https://paperspast.natlib.govt.nz/periodicals/NZGRAP19121030.2.52">Papers Past</a></p>
+        </aside>
+
+        <figure class="int-fig" style="--col: 8 / 13; --col-m: 1 / -1; --rows: span 2; --w: 1249px">
+          <button type="button" class="int-shot"
+                  data-full="images/follyphone-1912-full.jpg"
+                  data-caption="245 · Lewis Sydney at the Follyphone, New Zealand Graphic, 30 October 1912, p. 26. Topical, photo. Papers Past, National Library of New Zealand.">
+            <picture>
+              <source type="image/avif" srcset="images/follyphone-1912-thumb.avif 800w, images/follyphone-1912-full.avif 1249w" sizes="(min-width: 760px) 42vw, 100vw">
+              <img src="images/follyphone-1912-thumb.jpg"
+                   data-ph="data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwAwCdASoQABoAPtFYpkwoJSOiMAgBABoJaQAAW+0JiuAzHlAFqMAAAP7vKwDT3h6CZAl/UW0tRgkmklwOfJJcnaNYi6D14PMvs8akcfg/S5JKC0nM/GK2XUfU0iFtd//UFj+larJML9j13qLyE/0S6F/NxvA1ln2pEAAA"
+                   srcset="images/follyphone-1912-thumb.jpg 800w, images/follyphone-1912-full.jpg 1249w"
+                   sizes="(min-width: 760px) 42vw, 100vw"
+                   width="800" height="1294" loading="lazy" decoding="async"
+                   alt="A 1912 newspaper photograph: a man in a suit sits on a stool at a keyboard, half swallowed by a towering contraption of curling pipes, rows of stops and a long trombone-like slide, above the printed caption “The latest musical instrument—the Follyphone”.">
+            </picture>
+          </button>
+          <figcaption><span class="ref-no">245</span> Lewis Sydney at the Follyphone, <cite>New Zealand Graphic</cite>, 30 October 1912, p. 26. Topical, photo. <a href="https://paperspast.natlib.govt.nz/periodicals/NZGRAP19121030.2.52">Papers Past</a>, National Library of New Zealand.</figcaption>
+        </figure>
+
+        <div class="int-prose" style="--col: 1 / 7; --col-m: 1 / 13">
+          <p>Musical instruments fascinate me as sculptural objects because their forms are primarily dictated by function: they must produce particular sounds, pitches, and timbres, yet so many are extraordinarily beautiful structures in their own right. There is a wonderful resonance between beautiful sound and beautiful form. The Follyphone playfully challenges this relationship: regardless of whether it produces music, we immediately recognise it as a musical instrument. What is the visual grammar of a musical instrument, and what exactly is the Follyphone borrowing from it?</p>
+        </div>
+
+      </div>
       </details>
     </section>
 
@@ -481,7 +513,17 @@
     <section id="reflection">
       <details class="project-section">
         <summary><h2 class="project-section-heading">Reflection + Evaluation</h2></summary>
-      <div class="int-grid"></div>
+      <div class="int-grid">
+
+        <div class="int-prose" style="--col: 3 / 11">
+          <ul>
+            <li>This project made me realise that designing assignments for art students is an art in and of itself. It’s a brilliant brief: it encourages everyone to draw on a shared visual vocabulary—what makes something recognisable as a musical instrument?—while leaving room for individual interpretation.</li>
+            <li>It also made me think more seriously about the nature of materials. We were “just” working with cardboard, but, as it turns out, there are many different kinds: some bend more easily, others are better suited to rigid construction, and even their colours and textures vary enormously. Within what seemed like a very simple restriction, I discovered a surprising amount of depth. I imagine this is true of almost any material. You really have to spend time playing with it to understand its properties and limitations—what it does, what it resists, and what you can coax out of it.</li>
+            <li>A smaller observation, but one that made me laugh to myself: I have quite a few architect friends, and they’ve told me there’s a good reason you don’t see too many curves in buildings out in the wild. Curves are difficult to work with, and they posed quite a structural challenge for me too. A simple thing, intellectually speaking, but I came to understand it through my hands, which is a different thing entirely. When you’re constructing something, rectilinearity makes life easy; anything that departs from it demands more thought.</li>
+          </ul>
+        </div>
+
+      </div>
       </details>
     </section>
   </main>

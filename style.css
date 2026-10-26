@@ -50,6 +50,7 @@
   /* Keep the type hierarchy within the weights that are actually loaded. */
   --weight-body: 300;
   --weight-label: 400;
+  --weight-thin: 100;
 
   /* the shell's lines are dotted, the content's solid */
   --dotted: 1px dotted var(--rule);
@@ -111,10 +112,11 @@ details[open] > summary::after { content: "–"; }
   padding: 0 var(--pad) 1.1rem;
   border-bottom: var(--dotted);
   font-size: var(--sm);
-  font-weight: var(--weight-label);
-  letter-spacing: 0.5em;
+  font-weight: var(--weight-thin);
+  line-height: 1.5;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--ink);
 }
 
 .back { margin-left: var(--pad); }
@@ -150,7 +152,7 @@ details[open] > summary::after { content: "–"; }
   container-type: inline-size;
   margin: 0 0 2rem;
   font-size: var(--lg);
-  font-weight: var(--weight-label);
+  font-weight: var(--weight-body);
   line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -639,6 +641,23 @@ body.is-locked { overflow: hidden; }
   padding-top: 0.6rem;
 }
 
+/* a row of small images under a note's text, captions in small print.
+   The figures share an image row and a caption row, so the images end on
+   one line and every caption starts level. */
+.int-note-figs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap);
+  margin-top: 1.5em;
+}
+.int-note-figs > .int-fig {
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+}
+.int-note-figs .int-shot { align-self: end; }
+.int-note-figs figcaption { font-size: var(--xs); }
+
 /* an artist's bio before their work: a third of the page, all in mono,
    the dates and places, a short note, and the official source in pink */
 .int-bio {
@@ -942,6 +961,20 @@ body.is-locked { overflow: hidden; }
 
 /* a thin keyline round drawings on white paper (Drawing as Process) */
 .int-fig--framed img { border: 2px solid var(--ink); }
+
+/* drawings fitted together like a masonry wall (Drawing as Process):
+   three columns, each drawing at its own height, one gap between every
+   drawing. They run down the first column, then the second, then the third. */
+.int-puzzle {
+  columns: 3 12rem;
+  column-gap: var(--gap);
+}
+.int-puzzle > .int-fig {
+  break-inside: avoid;
+  margin: 0 0 var(--gap);
+}
+.int-puzzle .int-fig img,
+.int-puzzle .int-fig figcaption { max-width: none; }
 
 /* content images sit in <picture> (AVIF with a JPEG fallback); the wrapper
    adds no box of its own, so the image lays out as before */

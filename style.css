@@ -624,6 +624,8 @@ body.is-locked { overflow: hidden; }
 .int-timeline-note { font-size: var(--xs); }
 
 .int-grid figcaption { margin-top: 0.8rem; }
+.int-timeline figcaption,
+.int-grid .int-cap-sm { font-size: var(--sm); }
 .int-footnote { margin-top: 0.7em; }
 
 /* ---- text ------------------------------------------------------------- */
@@ -634,6 +636,7 @@ body.is-locked { overflow: hidden; }
 .int-prose ul { padding-left: 1.2em; }
 .int-prose li + li,
 .int-prose li > ul { margin-top: 1em; }
+.int-prose hr { border: 0; border-top: 2px solid var(--rule); margin: 1.6em 0; }
 
 /* prose beside an image, under a rule */
 .int-note {
@@ -1098,3 +1101,12 @@ summary:focus-visible,
   outline: 1px solid currentColor;
   outline-offset: var(--focus-offset);
 }
+
+/* several images under one shared caption, two to a row, bottoms level */
+.int-quad {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: end;
+}
+.int-quad .ref-no { display: block; margin-top: 0.35rem; }

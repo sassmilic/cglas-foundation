@@ -442,14 +442,6 @@ details:has(#u1-by-stage:checked) .projects--by-project { display: none; }
 
 #stage > .stage-empty { padding: 0 var(--pad); }
 
-/* Temporary reference numbers on every image (000, 001, …, one sequence
-   across the site), for talking about them in chat. Added by ref-numbers.py;
-   to remove, see the note at the top of that file. */
-.ref-no {
-  margin-right: 0.6em;
-  font-variant-numeric: tabular-nums;
-}
-
 /* ---- lightbox ---------------------------------------------------------- */
 body.is-locked { overflow: hidden; }
 
@@ -601,9 +593,6 @@ body.is-locked { overflow: hidden; }
 .int-footnote,
 .int-grid figcaption,
 .int-tile-cap,
-.int-strip .ref-no,
-.int-tiles .ref-no,
-.int-row .ref-no,
 .int-timeline-date,
 .int-timeline-note,
 .int-next-q,
@@ -1049,11 +1038,6 @@ body.is-locked { overflow: hidden; }
 
 .int-strip-fig figcaption { text-align: right; max-width: none; }
 
-/* a number or short caption under each image of a group */
-.int-strip .ref-no,
-.int-tiles .ref-no,
-.int-row .ref-no { display: block; margin-top: 0.35rem; }
-
 .int-tiles .int-tile-cap { margin: 0.35rem 0 0; }
 
 /* ---- motion ------------------------------------------------------------ */
@@ -1109,4 +1093,3 @@ summary:focus-visible,
   gap: var(--gap);
   align-items: end;
 }
-.int-quad .ref-no { display: block; margin-top: 0.35rem; }

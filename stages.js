@@ -38,8 +38,10 @@
       var h = d.querySelector(".project-section-heading");
       if (h && h.textContent.trim().toLowerCase().indexOf(stage) === 0) grid = d.querySelector(".int-grid");
     });
+    // the evaluation page has no sections: its whole text belongs with the reflections
+    if (!doc.querySelector("details.project-section") && stage === "reflection") grid = doc.querySelector("main .int-grid");
 
-    // projects with nothing for this stage (and the evaluation page) are left out
+    // projects with nothing for this stage are left out (as is the evaluation, except under Reflection)
     if (!grid || !grid.children.length) return null;
     var copy = document.importNode(grid, true);
     if (window.mediaOrder) window.mediaOrder.hold(copy);

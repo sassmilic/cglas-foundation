@@ -549,6 +549,7 @@ body.is-locked { overflow: hidden; }
    change them without a fight. */
 .int-grid :where(p, blockquote, figure, ul, ol) { margin: 0; }
 .int-grid :where(p + p) { margin-top: 1em; }
+.int-prose :where(p + ul, ul + p) { margin-top: 1em; }
 
 .int-grid :where(a) {
   text-decoration: underline;

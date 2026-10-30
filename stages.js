@@ -39,16 +39,11 @@
       if (h && h.textContent.trim().toLowerCase().indexOf(stage) === 0) grid = d.querySelector(".int-grid");
     });
 
-    if (grid && grid.children.length) {
-      var copy = document.importNode(grid, true);
-      if (window.mediaOrder) window.mediaOrder.hold(copy);
-      section.appendChild(copy);
-    } else {
-      var empty = document.createElement("p");
-      empty.className = "stage-empty";
-      empty.textContent = "Not written up yet";
-      section.appendChild(empty);
-    }
+    // projects with nothing for this stage (and the evaluation page) are left out
+    if (!grid || !grid.children.length) return null;
+    var copy = document.importNode(grid, true);
+    if (window.mediaOrder) window.mediaOrder.hold(copy);
+    section.appendChild(copy);
     return section;
   }
 
@@ -60,7 +55,7 @@
       return page(url).then(function (doc) { return block(url, doc); });
     }));
   }).then(function (blocks) {
-    out.replaceChildren.apply(out, blocks);
+    out.replaceChildren.apply(out, blocks.filter(Boolean));
     document.dispatchEvent(new Event("stages:ready"));   // e.g. wall-drawings.js starts its canvas
   }).catch(function () {
     out.querySelector(".stage-empty").textContent =
